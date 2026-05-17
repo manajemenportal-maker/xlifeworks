@@ -347,20 +347,30 @@ service cloud.firestore {
   }
 }</pre></div>`}
     async function saveSettings(){db.company={name:setName.value,brand:setBrand.value,plan:setPlan.value,website:setWebsite.value,wa:setWa.value,email:setEmail.value,adminName:db.company.adminName||'Admin'};await saveDB();applyCompany();toast('Pengaturan disimpan')}
-    function exportCSV(module){const schema=schemas[module];if(!schema){toast('Buka modul data dulu');return}const lines=[schema.columns.join(',')].concat((db[module]||[]).map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')));downloadFile(module+'.csv',lines.join('
-'),'text/csv')}function exportActiveCSV(){if(schemas[active])exportCSV(active);else toast('Modul ini tidak punya CSV')}
+    function exportCSV(module){
+      const schema=schemas[module];
+      if(!schema){toast('Buka modul data dulu');return}
+      const newline=String.fromCharCode(10);
+      const lines=[schema.columns.join(',')].concat((db[module]||[]).map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')));
+      downloadFile(module+'.csv',lines.join(newline),'text/csv');
+    }
+    function exportActiveCSV(){if(schemas[active])exportCSV(active);else toast('Modul ini tidak punya CSV')}
     function printRecord(module,idx){const schema=schemas[module];const row=(db[module]||[])[idx];if(!schema||!row)return;const html=`<html><head><title>Print ${schema.name}</title><style>body{font-family:Arial;padding:30px;color:#0f172a}.brand{color:#6d28d9;font-weight:900}h1{margin:8px 0}.box{border:1px solid #e2e8f0;border-radius:16px;padding:18px;margin-top:20px}table{width:100%;border-collapse:collapse}td{border-bottom:1px solid #e2e8f0;padding:10px}td:first-child{font-weight:bold;width:32%;background:#f8fafc}</style></head><body><div class="brand">${db.company.brand||'KaliERP'}</div><h1>${schema.name}</h1><p>${db.company.name||''} • ${db.company.email||''}</p><div class="box"><table>${schema.columns.map((c,i)=>`<tr><td>${c}</td><td>${row[i]||'-'}</td></tr>`).join('')}</table></div><script>window.print();<\/script></body></html>`;const w=window.open('','_blank');w.document.write(html);w.document.close()}
     function backupData(){downloadFile('backup-kalierp-'+(currentTenantId||'local')+'.json',JSON.stringify(db,null,2),'application/json')}
     async function restoreBackupFile(event){const file=event.target.files[0];if(!file)return;try{const text=await file.text();const imported=JSON.parse(text);if(!imported.company||!imported.crm||!imported.sales){throw new Error('Format backup tidak cocok')}if(confirm('Restore backup ini ke akun yang sedang login? Data lama akan terganti.')){db=imported;if(currentUser){db.company.email=currentUser.email||db.company.email;db.company.adminName=currentUser.displayName||db.company.adminName||'Admin'}if(!db.accounting)db.accounting=clone(db.sales);await saveDB();applyCompany();setModule('dashboard');toast('Restore backup berhasil')}}catch(e){alert('File backup tidak valid. Pastikan file berasal dari Backup KaliERP.')}event.target.value=''}
     async function testCloud(){await saveDB();toast(currentTenantId?'Cloud tersambung untuk akun ini':'Belum login Firebase')}
     function downloadFile(name,content,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();URL.revokeObjectURL(a.href)}
-    async function resetDemo(){if(confirm('Reset semua data demo ke awal untuk akun ini?')){localStorage.removeItem(localKey());const oldCompany=db.company;db=clone(defaultDB);db.company=oldCompany;await saveDB();applyCompany();setModule('dashboard');toast('Data akun ini direset')}}function showRoadmap(){alert('Roadmap jualan:
-1. Rapikan branding & landing page
-2. Upload ke GitHub Pages
-3. Demo ke calon pelanggan
-4. Tambah database online
-5. Tambah pembayaran & akun per pelanggan
-6. Jual langganan/lifetime')}
+    async function resetDemo(){if(confirm('Reset semua data demo ke awal untuk akun ini?')){localStorage.removeItem(localKey());const oldCompany=db.company;db=clone(defaultDB);db.company=oldCompany;await saveDB();applyCompany();setModule('dashboard');toast('Data akun ini direset')}}function showRoadmap(){
+      alert([
+        'Roadmap jualan:',
+        '1. Rapikan branding & landing page',
+        '2. Upload ke GitHub Pages',
+        '3. Demo ke calon pelanggan',
+        '4. Tambah database online',
+        '5. Tambah pembayaran & akun per pelanggan',
+        '6. Jual langganan/lifetime'
+      ].join(String.fromCharCode(10)))
+    }
     function copyFirestoreRules(){const text=document.getElementById('rulesBox').innerText;navigator.clipboard.writeText(text).then(()=>toast('Rules berhasil dicopy')).catch(()=>alert(text))}
     function searchTable(keyword){const table=document.getElementById('dataTable');if(!table)return;table.querySelectorAll('tbody tr').forEach(row=>{row.style.display=row.innerText.toLowerCase().includes(keyword.toLowerCase())?'':'none'})}function openMenu(){sidebar.classList.add('open');overlay.classList.add('show')}function closeMenu(){sidebar.classList.remove('open');overlay.classList.remove('show')}
     window.addEventListener('load',()=>{
