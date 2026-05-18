@@ -2,23 +2,33 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in ['kalimayasuryaalam@gmail.com'];
+    }
+
     match /members/{userId} {
       allow read, write: if request.auth != null
         && request.auth.uid == userId;
+      allow read, update, delete: if isAdmin();
     }
 
     match /licenses/{code} {
       allow read: if true;
-      allow create, update, delete: if request.auth != null;
+      allow create, update, delete: if isAdmin()
+        || (request.auth != null
+          && resource.data.status == 'Available'
+          && request.resource.data.status == 'Used');
     }
 
     match /invites/{code} {
       allow read: if true;
-      allow create, update, delete: if request.auth != null;
+      allow create, update, delete: if request.auth != null || isAdmin();
     }
 
     match /tenants/{tenantId} {
       allow create: if request.auth != null;
+      allow read, update, delete: if isAdmin();
       allow read, update, delete: if request.auth != null
         && exists(/databases/$(database)/documents/members/$(request.auth.uid))
         && get(/databases/$(database)/documents/members/$(request.auth.uid)).data.tenantId == tenantId

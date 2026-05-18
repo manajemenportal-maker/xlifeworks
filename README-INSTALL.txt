@@ -1,50 +1,30 @@
-KALIERP PROTECTED PER USER FINAL
+KALIERP ADMIN V3 - TAMBAH KUOTA USER CUSTOMER LAMA
 
 FILE:
-- index.html = landing page jualan
+- index.html = landing page
 - app.html = aplikasi ERP
-- firestore.rules = pasang di Firebase Firestore Rules
-- license-sample.json = contoh data license code
+- admin-license.html = panel admin membuat license dan upgrade kuota user
+- firestore.rules = rules Firebase terbaru
+- license-sample.json = contoh license
 
-HARGA:
-- Starter = Rp 23.000 / user / bulan
-- Business = Rp 75.000 / user / bulan
-- Lifetime = Rp 1.500.000 sekali bayar
+CARA MENAMBAH KUOTA USER CUSTOMER LAMA:
+1. Upload admin-license.html atau buka lokal.
+2. Login admin.
+3. Buka tab "Tambah Kuota Existing".
+4. Cari customer dengan Tenant ID atau License Code lama.
+5. Isi "Kuota User Baru / Total User Setelah Upgrade".
+   Contoh: dari 3 user jadi 7 user, isi 7.
+6. Isi tanggal valid sampai baru.
+7. Klik "Simpan Upgrade Kuota".
 
-PROTEKSI:
-- Owner tidak bisa daftar bebas.
-- Owner wajib punya License Code dari collection Firestore: licenses
-- License status harus Available.
-- Setelah dipakai, license menjadi Used.
-- Tenant menyimpan subscription: plan, status, userLimit, pricePerUser, monthlyAmount, validUntil.
-- Staff tidak bisa daftar kalau kuota user penuh.
-- Jika status bukan Active atau validUntil habis, aplikasi terkunci dan diarahkan upgrade via WhatsApp.
+RUMUS:
+Starter  = Rp 23.000 x total user aktif paket
+Business = Rp 75.000 x total user aktif paket
 
-CARA BUAT LICENSE MANUAL DI FIREBASE:
-Firestore Database > Data > Start collection
-Collection ID: licenses
-Document ID: KALI-BUSINESS-001
+CONTOH:
+Business lama 3 user = 3 x 75.000 = 225.000/bulan
+Upgrade jadi 7 user = 7 x 75.000 = 525.000/bulan
+Tambahan bayar per bulan = 4 x 75.000 = 300.000/bulan
 
-Fields contoh:
-plan: Business
-status: Available
-pricePerUser: 75000
-userLimit: 5
-billingCycle: monthly
-validUntil: 2026-06-18
-
-Untuk Starter:
-pricePerUser: 23000
-userLimit: sesuai jumlah user yang dibeli
-
-Untuk Lifetime:
-plan: Lifetime
-status: Available
-pricePerUser: 0
-oneTimePrice: 1500000
-billingCycle: lifetime
-validUntil: 2099-12-31
-
-UPLOAD:
-Upload index.html dan app.html ke domain.
-Copy isi firestore.rules ke Firebase Console > Firestore Database > Rules > Publish.
+PENTING:
+Pasang firestore.rules baru dari paket ini, karena admin panel v3 butuh akses admin untuk membaca dan mengupdate tenants.
