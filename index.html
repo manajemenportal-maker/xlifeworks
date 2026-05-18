@@ -3,187 +3,304 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KaliERP Real Launch</title>
+  <!-- KaliERP Launch Final - Landing -->
+  <title>KaliERP - Aplikasi ERP Bisnis untuk UMKM, Jasa, Retail & Service</title>
+  <meta name="description" content="KaliERP membantu bisnis mengelola customer, invoice, inventory, POS kasir, accounting, staff, dan laporan bisnis dalam satu aplikasi." />
   <style>
     :root{
-      --p:#6d28d9;--p2:#c026d3;--o:#fb5a1f;--bg:#f1f5f9;--t:#0f172a;--m:#64748b;
-      --l:#e2e8f0;--g:#059669;--r:#e11d48;--a:#d97706;--b:#2563eb;--sh:0 18px 42px rgba(15,23,42,.08)
+      --p:#6d28d9;--p2:#c026d3;--o:#fb5a1f;--dark:#0f172a;--text:#1e293b;--muted:#64748b;
+      --line:#e2e8f0;--soft:#f8fafc;--green:#059669;--red:#e11d48;--amber:#d97706;
+      --shadow:0 22px 55px rgba(15,23,42,.10);
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:#1e293b}
-    button,input,select,textarea{font-family:inherit}button{border:0;cursor:pointer}
-    .hidden{display:none!important}.full{grid-column:1/-1}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:16px;padding:11px 15px;font-size:14px;font-weight:900}
-    .primary{background:var(--p);color:white}.soft{background:white;border:1px solid var(--l);color:#334155}
-    .green{background:#ecfdf5;color:#047857;border:1px solid #a7f3d0}.red{background:#fff1f2;color:#be123c;border:1px solid #fecdd3}
-    .blue{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}.dark{background:#0f172a;color:white}
-    .auth{min-height:100vh;display:grid;place-items:center;padding:18px;background:radial-gradient(circle at 15% 5%,rgba(192,38,211,.24),transparent 28%),linear-gradient(135deg,#0f172a,#312e81 50%,#6d28d9)}
-    .auth-card{width:100%;max-width:1080px;background:white;border-radius:34px;overflow:hidden;box-shadow:0 35px 100px rgba(0,0,0,.28);display:grid;grid-template-columns:1fr 1fr}
-    .auth-left{padding:42px;color:white;background:linear-gradient(135deg,#581c87,#6d28d9,#c026d3)}
-    .logo{width:62px;height:62px;border-radius:22px;background:white;color:var(--p);display:grid;place-items:center;font-weight:900;font-size:30px;margin-bottom:22px}
-    .auth-left h1{font-size:42px;line-height:1.05;margin-bottom:14px}.auth-left p{line-height:1.8;color:#f3e8ff}
-    .points{display:grid;gap:12px;margin-top:24px}.points div{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:18px;padding:13px;font-weight:800}
-    .auth-right{padding:42px}.auth-right h2{font-size:28px;color:var(--t)}.auth-right p{margin-top:8px;color:var(--m);line-height:1.6}
-    .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:#f1f5f9;border-radius:18px;padding:6px;margin:18px 0}
-    .tab{border-radius:14px;padding:11px;background:transparent;font-weight:900;color:#64748b}.tab.active{background:white;color:var(--p);box-shadow:0 8px 20px rgba(15,23,42,.08)}
-    .form{display:none}.form.active{display:block}.fg{margin-top:14px}.fg label{display:block;font-size:13px;font-weight:900;color:#334155;margin-bottom:7px}
-    .ctrl{width:100%;border:1px solid var(--l);border-radius:16px;padding:13px 14px;font-size:14px;outline:0;background:white}
-    .ctrl:focus{border-color:var(--p);box-shadow:0 0 0 4px rgba(109,40,217,.1)}
-    .note{margin-top:16px;background:#f8fafc;border:1px dashed #cbd5e1;border-radius:18px;padding:14px;color:#475569;font-size:13px;line-height:1.7}
-    .err{display:none;margin-top:12px;background:#fff1f2;border:1px solid #fecdd3;color:#be123c;border-radius:14px;padding:10px;font-weight:800;font-size:13px}
-    .app{min-height:100vh;display:flex}.side{width:288px;background:rgba(255,255,255,.96);border-right:1px solid var(--l);padding:18px;position:fixed;inset:0 auto 0 0;display:flex;flex-direction:column;z-index:40}
-    .brand{display:flex;align-items:center;gap:12px;margin-bottom:16px}.mark{width:48px;height:48px;border-radius:18px;display:grid;place-items:center;color:white;font-weight:900;font-size:21px;background:linear-gradient(135deg,var(--p),var(--p2));box-shadow:0 12px 30px rgba(109,40,217,.25)}
-    .brand h1{font-size:19px;font-weight:900;color:var(--t)}.brand p{font-size:12px;color:var(--m);font-weight:700;margin-top:4px}
-    .tenant{background:#f8fafc;border:1px solid var(--l);border-radius:20px;padding:12px;margin-bottom:16px}.tenant b{font-size:13px;color:var(--t)}.tenant span{display:block;font-size:12px;color:var(--m);margin-top:4px;line-height:1.5}
-    .nav{display:flex;flex-direction:column;gap:8px;overflow:auto}.nav button{width:100%;display:flex;align-items:center;gap:12px;padding:11px;border-radius:18px;background:transparent;color:#475569;font-weight:800;text-align:left}
-    .nav button:hover{background:#f1f5f9;color:var(--t)}.nav button.active{background:var(--p);color:white;box-shadow:0 14px 30px rgba(109,40,217,.22)}
-    .nav i{width:36px;height:36px;border-radius:14px;display:grid;place-items:center;background:white;border:1px solid var(--l);font-style:normal}.nav button.active i{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.18)}
-    .side-card{margin-top:auto;background:#020617;color:white;border-radius:24px;padding:16px}.side-card span{display:block;color:#cbd5e1;font-size:12px;line-height:1.7;margin-top:5px}
-    .main{margin-left:288px;width:calc(100% - 288px)}.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.9);border-bottom:1px solid var(--l);backdrop-filter:blur(18px);padding:14px 24px;display:flex;align-items:center;gap:16px;justify-content:space-between}
-    .top-left{display:flex;align-items:center;gap:12px}.menu{display:none;width:42px;height:42px;border-radius:14px;background:white;border:1px solid var(--l);font-size:22px}
-    .small-label{font-size:11px;color:var(--p);font-weight:900;letter-spacing:.2em;text-transform:uppercase}.title{font-size:24px;font-weight:900;color:var(--t)}
-    .search{max-width:480px;flex:1;background:#f8fafc;border:1px solid var(--l);border-radius:18px;padding:11px 14px;display:flex;gap:10px}.search input{border:0;background:transparent;outline:0;width:100%;font-size:14px}
-    .actions{display:flex;gap:10px;align-items:center}.round{height:42px;min-width:42px;border-radius:16px;background:white;border:1px solid var(--l);font-size:14px;font-weight:900;color:#334155;padding:0 12px}
-    .avatar{width:32px;height:32px;border-radius:12px;background:#ede9fe;color:var(--p);display:grid;place-items:center;font-weight:900}.profile{display:flex;align-items:center;gap:10px;background:white;border:1px solid var(--l);border-radius:18px;padding:7px 11px;font-weight:800}
-    .content{padding:24px;display:flex;flex-direction:column;gap:20px}
-    .hero{border-radius:34px;padding:28px;color:white;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,.22),transparent 28%),linear-gradient(135deg,#581c87,#6d28d9 48%,#c026d3);box-shadow:0 24px 60px rgba(109,40,217,.18)}
-    .hero h2{font-size:40px;line-height:1.08;max-width:900px}.hero p{margin-top:12px;color:#f3e8ff;line-height:1.75;max-width:780px}.hero-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
-    .badge{display:inline-flex;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.12);border-radius:999px;padding:8px 12px;font-size:12px;font-weight:900;margin-bottom:12px}
-    .head{background:white;border:1px solid var(--l);border-radius:28px;padding:18px;box-shadow:var(--sh);display:flex;justify-content:space-between;gap:16px}.head h3{font-size:22px;color:var(--t)}.head p{color:var(--m);font-size:14px;line-height:1.6;margin-top:6px}.head-actions{display:flex;gap:10px;flex-wrap:wrap}
-    .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.kpi{background:white;border:1px solid var(--l);border-radius:28px;padding:20px;box-shadow:var(--sh)}
-    .kpi-top{display:flex;justify-content:space-between;align-items:center}.kpi-icon{width:48px;height:48px;border-radius:18px;background:#f3e8ff;color:var(--p);display:grid;place-items:center;font-size:23px}.trend{border-radius:999px;padding:6px 10px;font-size:12px;font-weight:900;background:#ecfdf5;color:var(--g)}
-    .kpi p{margin-top:16px;color:var(--m);font-size:13px;font-weight:800}.kpi h3{font-size:24px;color:var(--t);margin-top:4px}
-    .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:white;border:1px solid var(--l);border-radius:28px;padding:20px;box-shadow:var(--sh)}
-    .card h3{font-size:18px;color:var(--t)}.card p{font-size:13px;color:var(--m);line-height:1.65;margin-top:6px}
-    .table-card{background:white;border:1px solid var(--l);border-radius:28px;overflow:hidden;box-shadow:var(--sh)}.table-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px;border-bottom:1px solid var(--l)}
-    .table-head h3{color:var(--t)}.table-head p{font-size:13px;color:var(--m);margin-top:4px}.table-actions{display:flex;gap:8px;flex-wrap:wrap}.wrap{overflow-x:auto}
-    table{width:100%;min-width:860px;border-collapse:collapse;font-size:14px;text-align:left}thead{background:#f8fafc;color:#64748b;text-transform:uppercase;font-size:11px;letter-spacing:.05em}th,td{padding:14px 16px;border-bottom:1px solid #f1f5f9}td strong{color:var(--t)}
-    .status{display:inline-flex;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:900;background:#f1f5f9;color:#475569}.status.green{background:#ecfdf5;color:var(--g)}.status.amber{background:#fffbeb;color:var(--a)}.status.red{background:#fff1f2;color:var(--r)}
-    .act{width:34px;height:34px;border-radius:12px;background:white;border:1px solid var(--l);margin-right:5px}.row{cursor:pointer}.row:hover{background:#faf5ff}.empty{padding:30px;text-align:center;color:var(--m);font-weight:800}
-    .low{background:#fff7ed;border:1px solid #fed7aa;color:#c2410c;border-radius:18px;padding:13px;font-weight:800;line-height:1.6}.pill{display:inline-flex;border-radius:999px;padding:6px 10px;font-size:12px;font-weight:900;background:#eef2ff;color:#4338ca}.box{background:#f8fafc;border:1px solid var(--l);border-radius:18px;padding:14px;margin-top:12px}.mini{font-size:12px;color:var(--m);line-height:1.6;margin-top:6px}
-    .cart{display:grid;gap:8px}.cart-row{display:grid;grid-template-columns:1fr auto auto;gap:8px;background:#f8fafc;border:1px solid var(--l);border-radius:14px;padding:10px}.code{white-space:pre;overflow:auto;max-height:360px;background:#020617;color:#dbeafe;border-radius:18px;padding:16px;font-family:Consolas,monospace;font-size:12px;line-height:1.65;margin-top:14px}
-    .modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:80;display:none;align-items:center;justify-content:center;padding:16px}.modal-bg.show{display:flex}
-    .modal{width:100%;max-width:860px;max-height:94vh;background:white;border-radius:28px;box-shadow:0 35px 90px rgba(0,0,0,.25);display:flex;flex-direction:column;overflow:hidden}.modal.wide{max-width:1080px}
-    .modal-head{padding:18px 20px;border-bottom:1px solid var(--l);display:flex;justify-content:space-between;align-items:center;flex-shrink:0}.modal-body{padding:20px;display:grid;grid-template-columns:1fr 1fr;gap:14px;overflow-y:auto;min-height:0}.modal-foot{padding:14px 20px;border-top:1px solid var(--l);display:flex;gap:10px;justify-content:flex-end;box-shadow:0 -12px 30px rgba(15,23,42,.06)}
-    .toast{position:fixed;right:18px;bottom:18px;background:#020617;color:white;border-radius:18px;padding:13px 16px;font-weight:900;z-index:90;display:none}.toast.show{display:block}.overlay{display:none}.file{display:none}.mobile-tools,.bottom-nav{display:none}
-    @media(max-width:1100px){.kpis{grid-template-columns:repeat(2,1fr)}.grid2{grid-template-columns:1fr}.grid3{grid-template-columns:1fr 1fr}.search{display:none}.auth-card{grid-template-columns:1fr}}
-    @media(max-width:820px){
-      body{padding-bottom:86px;background:#f6f6f6}.side{transform:translateX(-100%);transition:.25s;width:82%;max-width:330px;border-radius:0 26px 26px 0}.side.open{transform:translateX(0)}.main{margin-left:0;width:100%}.overlay.show{display:block;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:35}
-      .top{padding:12px;background:linear-gradient(135deg,#fb5a1f,#ff7a18 55%,#ff9f1c);border:0;display:grid;grid-template-columns:42px 1fr auto;gap:10px}.menu{display:grid;place-items:center;background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.25);color:white}.small-label{display:none}.title{font-size:17px;color:white}.actions{gap:6px}.actions .round{height:38px;min-width:38px;font-size:0;background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.22);color:white;padding:0}.actions .round[data-icon]::after{content:attr(data-icon);font-size:17px}.profile{display:none}
-      .search{display:flex;grid-column:1/-1;max-width:none;width:100%;background:white;border:0;border-radius:999px;padding:10px 14px}.content{padding:12px;gap:12px}.hero{padding:16px;border-radius:22px;background:linear-gradient(135deg,#fb5a1f,#ff7a18 58%,#ffb703)}.hero h2{font-size:23px}.hero p{font-size:13px}
-      .mobile-tools{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;background:white;border-radius:22px;padding:13px 8px;box-shadow:0 10px 26px rgba(15,23,42,.06)}.mitem{background:white;text-align:center;color:#334155;font-weight:800;font-size:10.5px}.micon{width:42px;height:42px;margin:0 auto 6px;border-radius:15px;display:grid;place-items:center;background:#fff7ed;color:#ea580c;border:1px solid #fed7aa;font-size:20px}
-      .head,.table-head{border:0;border-radius:20px;padding:14px;box-shadow:0 10px 26px rgba(15,23,42,.06);flex-direction:column;align-items:flex-start}.head-actions,.table-actions{display:grid;grid-template-columns:1fr 1fr;width:100%}.head-actions .btn,.table-actions .btn{font-size:11px;padding:9px 8px}.kpis{grid-template-columns:repeat(2,1fr);gap:10px}.kpi{border:0;border-radius:20px;padding:13px}.kpi-icon{width:38px;height:38px;background:#fff7ed;color:#ea580c}.kpi p{font-size:11px}.kpi h3{font-size:17px}.grid2,.grid3{grid-template-columns:1fr}.card{border:0;border-radius:20px;padding:15px}.table-card{border:0;border-radius:20px}
-      .wrap{overflow:visible}table,thead,tbody,tr,td{display:block;width:100%;min-width:0}thead{display:none}tbody{display:grid;gap:10px;padding:0 12px 12px}tr{background:white;border:1px solid #f1f5f9;border-radius:18px;padding:12px}td{border:0;padding:5px 0}td:last-child{display:flex;gap:8px}.act{flex:1;height:36px;background:#fff7ed;border-color:#fed7aa}.modal{border-radius:24px;max-height:96vh;width:calc(100vw - 18px)}.modal-body{grid-template-columns:1fr;padding:14px}.modal-foot{display:grid;grid-template-columns:1fr 1fr;padding:12px}.modal-foot .btn{width:100%;font-size:12px}.auth{padding:12px}.auth-card{border-radius:26px}.auth-left,.auth-right{padding:22px}.auth-left h1{font-size:28px}.tabs{grid-template-columns:1fr}.bottom-nav{position:fixed;left:10px;right:10px;bottom:10px;z-index:70;display:grid;grid-template-columns:repeat(5,1fr);gap:5px;background:rgba(255,255,255,.96);border:1px solid #f1f5f9;border-radius:22px;padding:8px;box-shadow:0 20px 45px rgba(15,23,42,.18)}.bitem{background:transparent;color:#64748b;font-size:10px;font-weight:900;display:grid;place-items:center;gap:3px}.bitem span{font-size:20px}.bitem.active{color:#fb5a1f}
+    html{scroll-behavior:smooth}
+    body{font-family:Arial,Helvetica,sans-serif;background:#f8fafc;color:var(--text)}
+    a{text-decoration:none;color:inherit}
+    button{font-family:inherit;cursor:pointer;border:0}
+    .container{width:min(1180px,calc(100% - 32px));margin:auto}
+    .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;color:var(--dark)}
+    .logo{width:46px;height:46px;border-radius:17px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;display:grid;place-items:center;font-size:22px;box-shadow:0 14px 32px rgba(109,40,217,.28)}
+    .menu{display:flex;gap:18px;align-items:center;color:#475569;font-weight:800;font-size:14px}
+    .menu a:hover{color:var(--p)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:16px;padding:12px 16px;font-size:14px;font-weight:900;transition:.2s}
+    .btn-primary{background:var(--p);color:white;box-shadow:0 14px 30px rgba(109,40,217,.22)}
+    .btn-primary:hover{transform:translateY(-2px)}
+    .btn-soft{background:white;border:1px solid var(--line);color:#334155}
+    .btn-green{background:#ecfdf5;color:#047857;border:1px solid #a7f3d0}
+    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 15% 10%,rgba(192,38,211,.18),transparent 28%),linear-gradient(135deg,#0f172a,#312e81 48%,#6d28d9);color:white}
+    .hero::after{content:"";position:absolute;right:-140px;top:90px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,.10);filter:blur(2px)}
+    .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;min-height:680px;padding:70px 0}
+    .badge{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);font-size:13px;font-weight:900;color:#f3e8ff}
+    .hero h1{font-size:58px;line-height:1.02;letter-spacing:-.055em;margin-top:18px}
+    .hero p{font-size:17px;line-height:1.8;color:#e9d5ff;margin-top:18px;max-width:680px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .hero-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:34px;padding:18px;box-shadow:0 24px 70px rgba(0,0,0,.18)}
+    .app-preview{background:white;color:#1e293b;border-radius:26px;overflow:hidden}
+    .preview-top{height:56px;background:#f8fafc;border-bottom:1px solid #e2e8f0;display:flex;align-items:center;gap:8px;padding:0 16px}
+    .dot{width:12px;height:12px;border-radius:50%;background:#cbd5e1}
+    .preview-body{padding:18px;display:grid;gap:14px}
+    .kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .kpi{background:#f8fafc;border:1px solid #e2e8f0;border-radius:20px;padding:14px}
+    .kpi small{color:#64748b;font-weight:800}
+    .kpi b{display:block;color:#0f172a;font-size:22px;margin-top:6px}
+    .mini-table{background:#fff;border:1px solid #e2e8f0;border-radius:20px;overflow:hidden}
+    .row{display:grid;grid-template-columns:1fr auto;gap:10px;padding:12px 14px;border-bottom:1px solid #f1f5f9;font-size:13px}
+    .row:last-child{border-bottom:0}
+    .pill{border-radius:999px;padding:5px 9px;font-size:11px;font-weight:900;background:#ecfdf5;color:#047857}
+    .section{padding:82px 0}
+    .section-head{text-align:center;max-width:760px;margin:0 auto 34px}
+    .section-head span{display:inline-flex;color:var(--p);font-weight:900;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+    .section-head h2{font-size:40px;line-height:1.12;color:var(--dark);letter-spacing:-.035em}
+    .section-head p{color:var(--muted);line-height:1.8;margin-top:12px}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .card{background:white;border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:var(--shadow)}
+    .card-icon{width:52px;height:52px;border-radius:19px;background:#f3e8ff;color:var(--p);display:grid;place-items:center;font-size:24px;margin-bottom:16px}
+    .card h3{font-size:19px;color:var(--dark)}
+    .card p{font-size:14px;color:var(--muted);line-height:1.7;margin-top:8px}
+    .who{background:#fff}
+    .who-card{display:flex;gap:12px;align-items:flex-start;background:#f8fafc;border:1px solid var(--line);border-radius:24px;padding:18px}
+    .who-card b{color:var(--dark)}
+    .who-card p{font-size:13px;color:var(--muted);line-height:1.65;margin-top:5px}
+    .pricing{background:linear-gradient(180deg,#f8fafc,#fff)}
+    .price-card{position:relative;background:white;border:1px solid var(--line);border-radius:32px;padding:28px;box-shadow:var(--shadow);display:flex;flex-direction:column}
+    .price-card.popular{border:2px solid var(--p);transform:translateY(-10px)}
+    .tag{position:absolute;top:18px;right:18px;border-radius:999px;background:#f3e8ff;color:var(--p);padding:7px 10px;font-size:12px;font-weight:900}
+    .price-card h3{font-size:24px;color:var(--dark)}
+    .price-card .desc{color:var(--muted);line-height:1.7;margin-top:8px;font-size:14px;min-height:48px}
+    .price{font-size:38px;color:var(--dark);font-weight:900;letter-spacing:-.04em;margin:22px 0 6px}
+    .price small{font-size:15px;color:var(--muted);letter-spacing:0}
+    .features{display:grid;gap:12px;margin:22px 0;flex:1}
+    .features div{display:flex;gap:10px;color:#334155;font-size:14px;line-height:1.5}
+    .features span{color:var(--green);font-weight:900}
+    .cta{background:linear-gradient(135deg,#581c87,#6d28d9,#c026d3);color:white;border-radius:38px;padding:42px;display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;box-shadow:0 28px 70px rgba(109,40,217,.2)}
+    .cta h2{font-size:38px;line-height:1.1}
+    .cta p{color:#f3e8ff;line-height:1.8;margin-top:12px}
+    .cta-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end}
+    .faq{display:grid;gap:12px;max-width:880px;margin:auto}
+    details{background:white;border:1px solid var(--line);border-radius:20px;padding:18px 20px;box-shadow:0 12px 28px rgba(15,23,42,.05)}
+    summary{font-weight:900;color:var(--dark);cursor:pointer}
+    details p{color:var(--muted);line-height:1.75;margin-top:12px}
+    footer{background:#0f172a;color:#cbd5e1;padding:34px 0}
+    .footer-inner{display:flex;justify-content:space-between;gap:18px;align-items:center}
+    .footer-inner b{color:white}
+    .wa-float{position:fixed;right:18px;bottom:18px;z-index:70;background:#22c55e;color:white;border-radius:999px;padding:14px 18px;font-weight:900;box-shadow:0 20px 45px rgba(34,197,94,.28)}
+    @media(max-width:980px){
+      .hero-inner,.cta{grid-template-columns:1fr}
+      .hero h1{font-size:42px}
+      .grid-3,.grid-4{grid-template-columns:1fr 1fr}
+      .price-card.popular{transform:none}
+      .cta-actions{justify-content:flex-start}
+      .menu{display:none}
     }
-    @media print{.side,.top,.hero,.head-actions,.table-actions,.act,.bottom-nav{display:none!important}.main{margin:0;width:100%}.content{padding:0}.card,.table-card,.kpi{box-shadow:none}}
+    @media(max-width:640px){
+      .container{width:min(100% - 22px,1180px)}
+      .nav-inner{height:68px}
+      .hero-inner{min-height:auto;padding:42px 0}
+      .hero h1{font-size:34px}
+      .hero p{font-size:14px}
+      .hero-actions .btn{width:100%}
+      .kpis,.grid-3,.grid-4{grid-template-columns:1fr}
+      .section{padding:54px 0}
+      .section-head h2{font-size:29px}
+      .cta{padding:24px;border-radius:28px}
+      .cta h2{font-size:28px}
+      .footer-inner{display:grid}
+      .wa-float{left:12px;right:12px;text-align:center}
+    }
   </style>
 </head>
 <body>
-  <section class="auth" id="authScreen">
-    <div class="auth-card">
-      <div class="auth-left">
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
         <div class="logo">K</div>
-        <h1>KaliERP untuk operasional bisnis modern.</h1>
-        <p>Kelola customer, penjualan, stok, kasir, accounting, staff, dan laporan bisnis dalam satu aplikasi yang terhubung.</p>
-        <div class="points"><div>✅ Multi-user dengan role akses</div><div>✅ Inventory, POS, invoice, dan accounting saling terhubung</div><div>✅ Siap dipakai usaha jasa, retail, trading, dan service</div></div>
+        <div>
+          <div>KaliERP</div>
+          <small style="color:#64748b;font-weight:800">Business Operating System</small>
+        </div>
+      </a>
+      <div class="menu">
+        <a href="#fitur">Fitur</a>
+        <a href="#cocok">Cocok Untuk</a>
+        <a href="#harga">Harga</a>
+        <a href="#faq">FAQ</a>
       </div>
-      <div class="auth-right">
-        <h2>Masuk ke KaliERP</h2><p>Login sebagai owner perusahaan atau staff yang sudah diundang.</p>
-        <div class="tabs"><button class="tab active" id="tabLogin" onclick="tabAuth('login')">Login</button><button class="tab" id="tabOwner" onclick="tabAuth('owner')">Daftar Owner</button><button class="tab" id="tabStaff" onclick="tabAuth('staff')">Daftar Staff</button></div>
-        <div class="form active" id="fLogin"><div class="fg"><label>Email</label><input id="loginEmail" class="ctrl"></div><div class="fg"><label>Password</label><input id="loginPass" type="password" class="ctrl"></div><button class="btn primary" style="width:100%;margin-top:18px" onclick="login()">Masuk</button></div>
-        <div class="form" id="fOwner"><div class="fg"><label>Nama Perusahaan</label><input id="ownCompany" class="ctrl"></div><div class="fg"><label>Nama Owner/Admin</label><input id="ownName" class="ctrl"></div><div class="fg"><label>Email</label><input id="ownEmail" class="ctrl"></div><div class="fg"><label>Password</label><input id="ownPass" type="password" class="ctrl" placeholder="Minimal 6 karakter"></div><button class="btn green" style="width:100%;margin-top:18px" onclick="registerOwner()">Daftar Perusahaan</button></div>
-        <div class="form" id="fStaff"><div class="fg"><label>Invite Code</label><input id="staffCode" class="ctrl" placeholder="Kode dari Owner/Admin"></div><div class="fg"><label>Nama Staff</label><input id="staffRegName" class="ctrl"></div><div class="fg"><label>Email Staff</label><input id="staffRegEmail" class="ctrl"></div><div class="fg"><label>Password</label><input id="staffRegPass" type="password" class="ctrl" placeholder="Minimal 6 karakter"></div><button class="btn blue" style="width:100%;margin-top:18px" onclick="registerStaff()">Daftar Staff</button></div>
-        <div class="err" id="authError"></div>
-        <div class="note"><b>Catatan:</b> Owner membuat perusahaan. Staff masuk memakai invite code dari menu Settings &gt; Staff.</div>
+      <a class="btn btn-primary" href="app.html">Masuk Aplikasi</a>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="container hero-inner">
+      <div>
+        <span class="badge">✨ Aplikasi ERP bisnis siap pakai</span>
+        <h1>Kelola bisnis lebih rapi dalam satu aplikasi.</h1>
+        <p>KaliERP membantu usaha jasa, retail, service, trading, bengkel, dan kantor cabang mengelola customer, invoice, stok, POS kasir, accounting, staff, dan laporan bisnis secara terhubung.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://wa.me/6285150973789?text=Halo%2C%20saya%20tertarik%20dengan%20KaliERP.%20Mohon%20info%20paket%20dan%20demo.">Order via WhatsApp</a>
+          <a class="btn btn-soft" href="app.html">Coba / Login Aplikasi</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="app-preview">
+          <div class="preview-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><b style="margin-left:8px">Dashboard KaliERP</b></div>
+          <div class="preview-body">
+            <div class="kpis">
+              <div class="kpi"><small>Sales</small><b>Invoice</b></div>
+              <div class="kpi"><small>Gudang</small><b>Stok</b></div>
+              <div class="kpi"><small>Kasir</small><b>POS</b></div>
+              <div class="kpi"><small>Finance</small><b>Laba/Rugi</b></div>
+            </div>
+            <div class="mini-table">
+              <div class="row"><span>CRM & Customer</span><span class="pill">Aktif</span></div>
+              <div class="row"><span>Invoice + WhatsApp</span><span class="pill">Aktif</span></div>
+              <div class="row"><span>Inventory + Mutasi</span><span class="pill">Aktif</span></div>
+              <div class="row"><span>Staff Role Access</span><span class="pill">Aktif</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="fitur">
+    <div class="container">
+      <div class="section-head">
+        <span>Fitur Utama</span>
+        <h2>Satu sistem untuk operasional bisnis harian.</h2>
+        <p>Setiap modul dirancang saling terhubung, sehingga transaksi penjualan bisa memengaruhi stok, accounting, dan riwayat customer.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card"><div class="card-icon">👥</div><h3>CRM Customer</h3><p>Simpan data customer, WhatsApp, alamat, kategori, status follow up, catatan, dan riwayat transaksi.</p></div>
+        <div class="card"><div class="card-icon">🧾</div><h3>Invoice & Sales</h3><p>Buat invoice, pilih produk dari inventory, hitung total otomatis, print, dan kirim tagihan via WhatsApp.</p></div>
+        <div class="card"><div class="card-icon">📦</div><h3>Inventory & Gudang</h3><p>Kelola produk, stok masuk, stok keluar, mutasi gudang, dan peringatan stok menipis.</p></div>
+        <div class="card"><div class="card-icon">🏪</div><h3>POS Kasir</h3><p>Transaksi cepat dengan keranjang multi-item, print struk, dan stok otomatis berkurang.</p></div>
+        <div class="card"><div class="card-icon">💰</div><h3>Accounting</h3><p>Catat pemasukan, pengeluaran, piutang, dan laba/rugi sederhana untuk memantau bisnis.</p></div>
+        <div class="card"><div class="card-icon">🔐</div><h3>Staff & Role</h3><p>Atur hak akses Owner, Admin, Sales, Finance, Gudang, Kasir, dan Staff sesuai kebutuhan.</p></div>
       </div>
     </div>
   </section>
 
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
-  <div class="app hidden" id="app">
-    <aside class="side" id="side"><div class="brand"><div class="mark">K</div><div><h1 id="brandName">KaliERP</h1><p>Business Operating System</p></div></div><div class="tenant"><b id="tenantName"></b><span id="tenantInfo"></span></div><nav class="nav" id="nav"></nav><div class="side-card"><strong>Cloud ERP</strong><span>Data tersimpan di Firebase dan akses menu mengikuti role user.</span></div></aside>
-    <main class="main"><header class="top"><div class="top-left"><button class="menu" onclick="openMenu()">☰</button><div><div class="small-label">ERP Online</div><div class="title" id="pageTitle">Dashboard</div></div></div><div class="search">🔎 <input id="searchInput" placeholder="Cari data..." onkeyup="searchTable(this.value)"></div><div class="actions"><button class="round owner-only admin-only" data-icon="💾" onclick="backupData()">Backup</button><button class="round owner-only admin-only" data-icon="📥" onclick="restoreInput.click()">Restore</button><button class="round owner-only" data-icon="⚠️" onclick="resetCompanyData()">Reset</button><button class="profile"><span class="avatar">KS</span><span id="userLabel">User</span></button><button class="round" data-icon="⎋" onclick="logout()">Keluar</button></div></header>
-      <section class="content"><section class="hero"><span class="badge">✨ ERP terintegrasi untuk bisnis</span><h2>Operasional, penjualan, stok, kasir, dan keuangan dalam satu sistem.</h2><p>Semua transaksi saling terhubung: invoice dan POS mengurangi stok, pemasukan masuk ke accounting, customer punya riwayat transaksi, dan staff hanya melihat menu sesuai role.</p><div class="hero-row"><button class="btn primary" onclick="quickAdd()">＋ Tambah Cepat</button><button class="btn dark" onclick="window.print()">Print Laporan</button></div></section>
-      <section class="mobile-tools"><button class="mitem" onclick="setModule('crm')"><span class="micon">👥</span>CRM</button><button class="mitem" onclick="setModule('sales')"><span class="micon">🧾</span>Sales</button><button class="mitem" onclick="setModule('inventory')"><span class="micon">📦</span>Stok</button><button class="mitem" onclick="setModule('pos')"><span class="micon">🏪</span>POS</button><button class="mitem" onclick="setModule('accounting')"><span class="micon">💰</span>Finance</button></section>
-      <section class="head"><div><h3 id="sectionTitle">Dashboard</h3><p id="sectionSub">Ringkasan kondisi bisnis hari ini.</p></div><div class="head-actions" id="headActions"></div></section><section id="moduleContent"></section></section></main>
-  </div>
-  <nav class="bottom-nav" id="bottomNav"><button class="bitem active" onclick="setModule('dashboard')"><span>🏠</span>Home</button><button class="bitem" onclick="setModule('sales')"><span>🧾</span>Sales</button><button class="bitem" onclick="setModule('inventory')"><span>📦</span>Stok</button><button class="bitem" onclick="quickAdd()"><span>➕</span>Tambah</button><button class="bitem" onclick="setModule('settings')"><span>👤</span>Akun</button></nav>
-  <div class="modal-bg" id="modalBg"><div class="modal" id="modal"><div class="modal-head"><h3 id="modalTitle">Form</h3><button class="round" onclick="closeModal()">✕</button></div><div class="modal-body" id="modalBody"></div><div class="modal-foot" id="modalFoot"></div></div></div>
-  <input class="file" id="restoreInput" type="file" accept="application/json,.json" onchange="restoreBackup(event)"><div class="toast" id="toast">Berhasil</div>
+  <section class="section who" id="cocok">
+    <div class="container">
+      <div class="section-head">
+        <span>Cocok Untuk</span>
+        <h2>Dipakai banyak jenis usaha.</h2>
+        <p>KaliERP cocok untuk bisnis yang butuh pencatatan customer, stok, transaksi, dan laporan yang lebih rapi.</p>
+      </div>
+      <div class="grid-4">
+        <div class="who-card"><span>🛠️</span><div><b>Industri / Pabrik</b><p>Kelola customer, vendor, stok material, invoice, gudang, dan tagihan.</p></div></div>
+        <div class="who-card"><span>🏪</span><div><b>Toko Retail</b><p>Gunakan POS, inventory, struk, dan laporan kasir.</p></div></div>
+        <div class="who-card"><span>🚚</span><div><b>Trading / Distributor</b><p>Kelola stok gudang, cabang, invoice, dan piutang.</p></div></div>
+        <div class="who-card"><span>🏢</span><div><b>Jasa & Kantor Cabang</b><p>Pantau operasional, staff, sales, dan accounting.</p></div></div>
+      </div>
+    </div>
+  </section>
 
-<script type="module">
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js';
-import { getFirestore, doc, getDoc, setDoc, updateDoc, serverTimestamp, getDocs, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js';
-const firebaseConfig={apiKey:'AIzaSyDfTbFVolL7nfJbgoZCcg9CCUGgyky073Q',authDomain:'kalierp-d4905.firebaseapp.com',projectId:'kalierp-d4905',storageBucket:'kalierp-d4905.firebasestorage.app',messagingSenderId:'549448963486',appId:'1:549448963486:web:b2f3690cd509b87a72f28f',measurementId:'G-9WD9SJGW3J'};
-const app=initializeApp(firebaseConfig);window.fb={auth:getAuth(app),db:getFirestore(app),createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged,updateProfile,doc,getDoc,setDoc,updateDoc,serverTimestamp,getDocs,deleteDoc};
-window.firebaseLoaded=true;
-</script>
-<script>
-const STORAGE='kalierp_launch_v1';
-const modules=[{id:'dashboard',label:'Dashboard',icon:'📊',title:'Dashboard',sub:'Ringkasan kondisi bisnis hari ini.'},{id:'crm',label:'CRM',icon:'👥',title:'CRM & Customer',sub:'Kelola customer, follow up, WhatsApp, dan riwayat transaksi.'},{id:'sales',label:'Sales',icon:'🧾',title:'Sales & Invoice',sub:'Buat invoice profesional dan kirim tagihan.'},{id:'inventory',label:'Inventory',icon:'📦',title:'Inventory & Gudang',sub:'Produk, stok masuk, stok keluar, mutasi, dan alert stok.'},{id:'pos',label:'POS',icon:'🏪',title:'POS Kasir',sub:'Keranjang multi-item, struk, dan stok otomatis.'},{id:'accounting',label:'Accounting',icon:'💰',title:'Accounting',sub:'Pemasukan, pengeluaran, piutang, dan laba/rugi.'},{id:'project',label:'Project',icon:'🗂️',title:'Project',sub:'Kelola pekerjaan dan progress tim.'},{id:'hr',label:'HR',icon:'🧑‍💼',title:'HR',sub:'Data karyawan dan absensi.'},{id:'website',label:'Website',icon:'🌐',title:'Website',sub:'Halaman website dan katalog.'},{id:'pricing',label:'Paket',icon:'💎',title:'Paket Harga',sub:'Paket produk dan penawaran.'},{id:'settings',label:'Settings',icon:'⚙️',title:'Settings',sub:'Perusahaan, staff, role, backup, dan keamanan.'}];
-const access={Owner:['dashboard','crm','sales','inventory','pos','accounting','project','hr','website','pricing','settings'],Admin:['dashboard','crm','sales','inventory','pos','accounting','project','hr','website','pricing','settings'],Sales:['dashboard','crm','sales','pricing'],Finance:['dashboard','sales','accounting','pricing'],Gudang:['dashboard','inventory'],Kasir:['dashboard','pos','inventory'],Staff:['dashboard','project','hr']};
-const schemas={crm:['Customer','WhatsApp','Alamat','Kategori','Status','Catatan'],sales:['No Invoice','Customer','Tanggal','Jatuh Tempo','Total','Status','Items'],inventory:['SKU','Produk','Stok','Lokasi','Harga Jual','Min Stok'],pos:['No POS','Kasir','Cabang','Tanggal','Total','Metode','Status','Items'],accounting:['No','Keterangan','Tanggal','Jumlah','Status','Tipe'],expenses:['No','Keterangan','Kategori','Tanggal','Jumlah','Status'],project:['Proyek','Progress','Deadline','Tim','Status'],hr:['Karyawan','Jabatan','Absensi','Payroll','Status'],website:['Halaman','Visitor','Conversion','Status','PIC'],pricing:['Paket','Deskripsi','Harga','Fitur','Status'],staff:['Nama','Email','Jabatan','Role','Status']};
-function today(){return new Date().toISOString().slice(0,10)}
-const defaultDB={company:{name:'',brand:'KaliERP',plan:'Business',website:'',wa:'',email:''},crm:[],inventory:[],sales:[],pos:[],accounting:[],expenses:[],stockMoves:[],project:[],hr:[],website:[],pricing:[],staff:[],invites:[]};
-let user=null,tenantId=null,member=null,db=null,active='dashboard',editModule=null,editIndex=null,cart=[];
-function rp(n){return 'Rp '+Number(n||0).toLocaleString('id-ID')}function num(v){return Number(String(v||'').replace(/[^0-9]/g,''))||0}function clone(o){return JSON.parse(JSON.stringify(o))}function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(()=>toastEl.classList.remove('show'),1800)}function safe(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
-function tabAuth(m){['login','owner','staff'].forEach(x=>{document.getElementById('tab'+cap(x)).classList.toggle('active',x===m);document.getElementById('f'+cap(x)).classList.toggle('active',x===m)});authError.style.display='none'}function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}function authMsg(m){authError.textContent=m;authError.style.display='block'}
-async function registerOwner(){try{if(!ownCompany.value||!ownName.value||!ownEmail.value||!ownPass.value)return authMsg('Lengkapi semua data.');const c=await fb.createUserWithEmailAndPassword(fb.auth,ownEmail.value.trim(),ownPass.value.trim());await fb.updateProfile(c.user,{displayName:ownName.value.trim()});const t=c.user.uid;const data=clone(defaultDB);data.company.name=ownCompany.value.trim();data.company.email=c.user.email;data.company.adminName=ownName.value.trim();data.company.website='';data.company.wa='';data.company.plan='Business';data.staff=[[ownName.value.trim(),c.user.email,'Owner','Owner','Aktif']];await fb.setDoc(fb.doc(fb.db,'members',c.user.uid),{tenantId:t,role:'Owner',name:ownName.value.trim(),email:c.user.email,status:'Aktif',createdAt:fb.serverTimestamp()});await fb.setDoc(fb.doc(fb.db,'tenants',t),{ownerUid:t,companyName:data.company.name,erpDataJson:JSON.stringify(data),updatedAt:fb.serverTimestamp()});await boot(c.user);}catch(e){authMsg(readErr(e))}}
-async function registerStaff(){try{if(!staffCode.value||!staffRegName.value||!staffRegEmail.value||!staffRegPass.value)return authMsg('Lengkapi semua data staff.');const code=staffCode.value.trim().toUpperCase();const inv=await fb.getDoc(fb.doc(fb.db,'invites',code));if(!inv.exists())return authMsg('Invite code tidak ditemukan.');const invite=inv.data();if(invite.status!=='Aktif')return authMsg('Invite code sudah tidak aktif.');if(invite.email&&invite.email.toLowerCase()!==staffRegEmail.value.trim().toLowerCase())return authMsg('Email tidak sesuai invite.');const c=await fb.createUserWithEmailAndPassword(fb.auth,staffRegEmail.value.trim(),staffRegPass.value.trim());await fb.updateProfile(c.user,{displayName:staffRegName.value.trim()});await fb.setDoc(fb.doc(fb.db,'members',c.user.uid),{tenantId:invite.tenantId,role:invite.role,name:staffRegName.value.trim(),email:c.user.email,status:'Aktif',createdAt:fb.serverTimestamp()});await fb.updateDoc(fb.doc(fb.db,'invites',code),{status:'Dipakai',usedBy:c.user.uid});const snap=await fb.getDoc(fb.doc(fb.db,'tenants',invite.tenantId));if(snap.exists()){const raw=snap.data();let d=clone(defaultDB);if(raw.erpDataJson){try{d=JSON.parse(raw.erpDataJson)}catch(e){d=raw.erpData||clone(defaultDB)}}else if(raw.erpData){d=raw.erpData}d.staff=d.staff||[];d.staff.unshift([staffRegName.value.trim(),c.user.email,invite.jabatan||invite.role,invite.role,'Aktif']);await fb.setDoc(fb.doc(fb.db,'tenants',invite.tenantId),{erpDataJson:JSON.stringify(d),updatedAt:fb.serverTimestamp()},{merge:true});await boot(c.user)}}catch(e){authMsg(readErr(e))}}
-async function login(){try{await fb.signInWithEmailAndPassword(fb.auth,loginEmail.value.trim(),loginPass.value.trim())}catch(e){authMsg(readErr(e))}}async function logout(){await fb.signOut(fb.auth);location.reload()}function readErr(e){if(e.code==='auth/email-already-in-use')return'Email sudah terdaftar.';if(e.code==='auth/weak-password')return'Password minimal 6 karakter.';if(e.code==='auth/invalid-credential')return'Email atau password salah.';return e.message||'Terjadi error.'}
-async function boot(u){user=u;let ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));if(!ms.exists()){await new Promise(r=>setTimeout(r,700));ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));}if(!ms.exists()){authMsg('Akun belum punya akses perusahaan. Coba klik Login lagi atau cek dokumen members di Firestore.');return}member=ms.data();tenantId=member.tenantId;const ts=await fb.getDoc(fb.doc(fb.db,'tenants',tenantId));db=clone(defaultDB);if(ts.exists()){const raw=ts.data();if(raw.erpDataJson){try{db=JSON.parse(raw.erpDataJson)}catch(e){db=raw.erpData||clone(defaultDB)}}else if(raw.erpData){db=raw.erpData}}normalize();await save();authScreen.classList.add('hidden');app.classList.remove('hidden');applyShell();setModule('dashboard')}
-function normalize(){db.company=db.company||clone(defaultDB.company);['crm','inventory','sales','pos','accounting','expenses','stockMoves','project','hr','website','pricing','staff','invites'].forEach(k=>{if(!db[k])db[k]=clone(defaultDB[k]||[])});db.pricing=(db.pricing||[]).map(p=>{if(String(p[0]).toLowerCase()==='starter')p[2]='Rp 23.000/bulan';if(String(p[0]).toLowerCase()==='business')p[2]='Rp 75.000/bulan';if(String(p[0]).toLowerCase()==='lifetime')p[2]='Rp 1.500.000';return p})}
-async function save(){localStorage.setItem(STORAGE+'_'+tenantId,JSON.stringify(db));await fb.setDoc(fb.doc(fb.db,'tenants',tenantId),{companyName:db.company.name,erpDataJson:JSON.stringify(db),updatedAt:fb.serverTimestamp()},{merge:true})}
-function isOwner(){return ['Owner','Admin'].includes(member?.role)}function isPureOwner(){return member?.role==='Owner'}function can(id){return (access[member?.role]||[]).includes(id)}function applyShell(){brandName.textContent=db.company.brand;tenantName.textContent=db.company.name;tenantInfo.textContent='Role: '+member.role+' • '+user.email;userLabel.textContent=(member.name||user.displayName||'User')+' / '+member.role;document.querySelectorAll('.owner-only').forEach(e=>e.classList.toggle('hidden',!isPureOwner()));document.querySelectorAll('.admin-only').forEach(e=>e.classList.toggle('hidden',!isOwner()));renderNav()}
-function renderNav(){nav.innerHTML=modules.filter(m=>can(m.id)).map(m=>`<button class="${m.id===active?'active':''}" onclick="setModule('${m.id}')"><i>${m.icon}</i>${m.label}</button>`).join('')}
-function setModule(id){if(!can(id)){toast('Role tidak punya akses');id='dashboard'}active=id;const m=modules.find(x=>x.id===id);pageTitle.textContent=m.title;sectionTitle.textContent=m.title;sectionSub.textContent=m.sub;renderNav();closeMenu();updateBottom();headActions.innerHTML='';if(id==='dashboard')return renderDashboard();if(id==='crm')return renderCRM();if(id==='sales')return renderSales();if(id==='inventory')return renderInventory();if(id==='pos')return renderPOS();if(id==='accounting')return renderAccounting();if(id==='pricing')return renderPricing();if(id==='settings')return renderSettings();return renderGeneric(id)}function updateBottom(){[...bottomNav.children].forEach(x=>x.classList.remove('active'));const map={dashboard:0,sales:1,inventory:2,settings:4};if(bottomNav.children[map[active]])bottomNav.children[map[active]].classList.add('active')}function openMenu(){side.classList.add('open');overlay.classList.add('show')}function closeMenu(){side.classList.remove('open');overlay.classList.remove('show')}
-function summary(){const paid=db.accounting.filter(r=>r[4]==='Lunas').reduce((s,r)=>s+num(r[3]),0);const unpaid=db.accounting.filter(r=>r[4]!=='Lunas').reduce((s,r)=>s+num(r[3]),0);const exp=db.expenses.reduce((s,r)=>s+num(r[4]),0);const stock=db.inventory.reduce((s,r)=>s+(Number(r[2])||0),0);const low=db.inventory.filter(r=>(Number(r[2])||0)<=Number(r[5]||5)).length;return{paid,unpaid,exp,profit:paid-exp,stock,low,customers:db.crm.length,pos:db.pos.length}}
-function kpi(items){return `<div class="kpis">${items.map(k=>`<div class="kpi"><div class="kpi-top"><div class="kpi-icon">${k[0]}</div><span class="trend">Real</span></div><p>${k[1]}</p><h3>${k[2]}</h3></div>`).join('')}</div>`}
-function renderDashboard(){const s=summary();const empty=(db.crm.length+db.inventory.length+db.sales.length+db.pos.length+db.accounting.length)===0;moduleContent.innerHTML=kpi([['💰','Pemasukan Lunas',rp(s.paid)],['⏳','Piutang',rp(s.unpaid)],['📦','Total Stok',s.stock.toLocaleString('id-ID')],['📈','Laba/Rugi',rp(s.profit)]])+(empty?`<div class="card" style="margin-top:18px"><h3>Akun baru masih kosong</h3><p>Mulai dari tambah customer di CRM, tambah produk di Inventory, lalu buat Invoice atau transaksi POS.</p><div class="head-actions" style="margin-top:12px"><button class="btn green" onclick="setModule('crm')">Tambah Customer</button><button class="btn blue" onclick="setModule('inventory')">Tambah Produk</button></div></div>`:'')+`<div class="grid3" style="margin-top:18px"><div class="card"><h3>Customer</h3><p>${s.customers} customer tercatat di CRM.</p></div><div class="card"><h3>Stok Menipis</h3><p>${s.low} produk perlu perhatian gudang.</p></div><div class="card"><h3>Transaksi POS</h3><p>${s.pos} transaksi kasir tercatat.</p></div></div>`}
-function tableHTML(schema,rows,actions=''){return `<div class="table-card"><div class="table-head"><div><h3>Data</h3><p>Klik baris untuk melihat detail.</p></div><div class="table-actions">${actions}</div></div><div class="wrap"><table id="dataTable"><thead><tr>${schema.map(c=>`<th>${c}</th>`).join('')}<th>Aksi</th></tr></thead><tbody>${rows}</tbody></table></div></div>`}
-function status(s){return `<span class="status ${s==='Lunas'||s==='Aktif'||s==='Published'?'green':s==='Hot'||s==='Promo'?'red':'amber'}">${safe(s)}</span>`}
-function renderCRM(){headActions.innerHTML=`<button class="btn green" onclick="openRecord('crm')">＋ Customer</button><button class="btn blue" onclick="exportCSV('crm')">Export</button>`;const rows=db.crm.map((r,i)=>`<tr class="row" onclick="customerDetail(${i})"><td><strong>${safe(r[0])}</strong><div class="mini">${safe(r[2])}</div></td><td>${safe(r[1])}</td><td>${safe(r[3])}</td><td>${status(r[4])}</td><td>${history(r[0]).length} transaksi</td><td onclick="event.stopPropagation()"><button class="act" onclick="customerDetail(${i})">👁️</button><button class="act" onclick="waCustomer(${i})">🟢</button><button class="act" onclick="openRecord('crm',${i})">✏️</button><button class="act" onclick="del('crm',${i})">🗑️</button></td></tr>`).join('')||`<tr><td colspan="6" class="empty">Belum ada customer.</td></tr>`;moduleContent.innerHTML=kpi([['👥','Total Customer',db.crm.length],['🔥','Hot Lead',db.crm.filter(r=>r[4]==='Hot').length],['🧾','Riwayat Transaksi',db.crm.reduce((s,r)=>s+history(r[0]).length,0)],['📱','WA Tersimpan',db.crm.filter(r=>r[1]).length]])+`<div style="margin-top:18px">${tableHTML(['Customer','WhatsApp','Kategori','Status','Riwayat'],rows,`<button class="btn green" onclick="openRecord('crm')">＋ Customer</button>`)}</div>`}
-function history(name){return db.sales.filter(r=>r[1]===name).map(r=>['Sales',r[0],r[2],r[4],r[5]]).concat(db.accounting.filter(r=>r[1]===name).map(r=>['Accounting',r[0],r[2],r[3],r[4]]))}function customerDetail(i){const r=db.crm[i],h=history(r[0]);showModal('Detail Customer',`<div class="full box"><b>${safe(r[0])}</b><p class="mini">WA: ${safe(r[1])} • Kategori: ${safe(r[3])}</p><p>${safe(r[2])}</p><p class="mini">${safe(r[5])}</p></div><div class="full table-card"><div class="table-head"><div><h3>Riwayat</h3></div></div><div class="wrap"><table><thead><tr><th>Modul</th><th>No</th><th>Tanggal</th><th>Jumlah</th><th>Status</th></tr></thead><tbody>${h.map(x=>`<tr>${x.map(y=>`<td>${safe(y)}</td>`).join('')}</tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada transaksi.</td></tr>'}</tbody></table></div></div>`,`<button class="btn soft" onclick="closeModal()">Tutup</button><button class="btn green" onclick="waCustomer(${i})">WhatsApp</button><button class="btn primary" onclick="openRecord('crm',${i})">Edit</button>`,'wide')}function waCustomer(i){const r=db.crm[i];const w=String(r[1]||'').replace(/[^0-9]/g,'');if(!w)return alert('Nomor WA belum ada.');window.open('https://wa.me/62'+w.replace(/^0/,'')+'?text='+encodeURIComponent(`Halo ${r[0]}, saya dari ${db.company.name}. Kami ingin follow up kebutuhan bisnis Anda.`),'_blank')}
-function renderSales(){headActions.innerHTML=`<button class="btn green" onclick="openInvoice()">🧾 Invoice</button>`;const rows=db.sales.map((r,i)=>`<tr class="row" onclick="detail('sales',${i})">${r.slice(0,6).map((c,j)=>`<td>${j===0?'<strong>'+safe(c)+'</strong>':j===5?status(c):safe(c)}</td>`).join('')}<td onclick="event.stopPropagation()"><button class="act" onclick="printInvoice(${i})">🧾</button><button class="act" onclick="sendInvoiceWA(${i})">🟢</button><button class="act" onclick="del('sales',${i})">🗑️</button></td></tr>`).join('')||`<tr><td colspan="7" class="empty">Belum ada invoice.</td></tr>`;moduleContent.innerHTML=tableHTML(['Invoice','Customer','Tanggal','Jatuh Tempo','Total','Status'],rows,`<button class="btn green" onclick="openInvoice()">Invoice Baru</button>`)}
-function openInvoice(){cart=[];const customers=db.crm.map(r=>r[0]);const opts=db.inventory.map((p,i)=>`<option value="${i}">${safe(p[0])} - ${safe(p[1])} | ${p[3]} | Stok ${p[2]} | ${p[4]}</option>`).join('');showModal('Invoice Profesional',`<div class="fg"><label>No Invoice</label><input id="invNo" class="ctrl" value="${nextNo('INV',db.sales.length)}"></div><div class="fg"><label>Customer CRM</label><select id="invCust" class="ctrl"><option value="">Pilih customer</option>${customers.map(c=>`<option>${safe(c)}</option>`).join('')}</select></div><div class="fg"><label>Customer Manual</label><input id="invCustNew" class="ctrl"></div><div class="fg"><label>Jatuh Tempo</label><input id="invDue" type="date" class="ctrl" value="${today()}"></div><div class="fg full"><label>Produk</label><select id="itemProduct" class="ctrl">${opts}</select></div><div class="fg"><label>Qty</label><input id="itemQty" type="number" class="ctrl" value="1" min="1"></div><div class="fg"><label>Status</label><select id="invStatus" class="ctrl"><option>Menunggu Bayar</option><option>Sebagian</option><option>Lunas</option><option>Draft</option></select></div><div class="full"><button class="btn blue" onclick="addCart('invoice')">Tambah Item</button></div><div class="full box"><div id="cartBox" class="cart">Keranjang masih kosong.</div></div>`,`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveInvoice()">Simpan Invoice</button>`,'wide')}
-function addCart(mode){const idx=Number(itemProduct.value),q=Number(itemQty.value)||1,p=db.inventory[idx],st=Number(p[2])||0;if(q>st)return alert('Qty melebihi stok.');cart.push({idx,sku:p[0],name:p[1],loc:p[3],qty:q,price:num(p[4]),total:q*num(p[4])});renderCart()}function renderCart(){cartBox.innerHTML=cart.length?cart.map((x,i)=>`<div class="cart-row"><b>${safe(x.name)} x${x.qty}</b><span>${rp(x.total)}</span><button class="act" onclick="cart.splice(${i},1);renderCart()">🗑️</button></div>`).join('')+`<div class="cart-row"><b>Total</b><b>${rp(cart.reduce((s,x)=>s+x.total,0))}</b><span></span></div>`:'Keranjang masih kosong.'}
-async function saveInvoice(){if(!cart.length)return alert('Tambahkan item.');const customer=invCustNew.value.trim()||invCust.value;if(!customer)return alert('Pilih/isi customer.');for(const x of cart){db.inventory[x.idx][2]=Number(db.inventory[x.idx][2])-x.qty;db.stockMoves.unshift([today(),'Keluar',x.sku,x.name,x.qty,db.inventory[x.idx][3],'Invoice '+invNo.value])}if(!db.crm.find(r=>r[0]===customer))db.crm.unshift([customer,'','','Customer Baru','Warm','Dibuat dari invoice']);const total=cart.reduce((s,x)=>s+x.total,0);const row=[invNo.value,customer,today(),invDue.value,rp(total),invStatus.value,JSON.stringify(cart)];db.sales.unshift(row);db.accounting.unshift([row[0],customer,today(),rp(total),invStatus.value,'Pemasukan']);await save();closeModal();setModule('sales');toast('Invoice tersimpan dan stok berkurang')}
-function renderInventory(){const low=db.inventory.filter(r=>Number(r[2])<=Number(r[5]||5));headActions.innerHTML=`<button class="btn green" onclick="openRecord('inventory')">＋ Produk</button><button class="btn blue" onclick="stockInOut('Masuk')">Stok Masuk</button><button class="btn red" onclick="stockInOut('Keluar')">Stok Keluar</button><button class="btn soft" onclick="moveStock()">Mutasi</button>`;const rows=db.inventory.map((r,i)=>`<tr class="row" onclick="detail('inventory',${i})">${r.map((c,j)=>`<td>${j===0?'<strong>'+safe(c)+'</strong>':safe(c)}</td>`).join('')}<td onclick="event.stopPropagation()"><button class="act" onclick="openRecord('inventory',${i})">✏️</button><button class="act" onclick="del('inventory',${i})">🗑️</button></td></tr>`).join('');const moves=db.stockMoves.slice(0,10).map(r=>`<tr>${r.map(c=>`<td>${safe(c)}</td>`).join('')}</tr>`).join('')||'<tr><td colspan="7" class="empty">Belum ada mutasi.</td></tr>';moduleContent.innerHTML=`${low.length?`<div class="low">⚠️ Stok menipis: ${low.map(r=>r[1]+' ('+r[2]+')').join(', ')}</div>`:''}<div style="margin-top:18px">${tableHTML(schemas.inventory,rows,headActions.innerHTML)}</div><div class="table-card" style="margin-top:18px"><div class="table-head"><div><h3>Riwayat Stok</h3><p>Stok masuk, keluar, dan mutasi gudang.</p></div></div><div class="wrap"><table><thead><tr><th>Tanggal</th><th>Tipe</th><th>SKU</th><th>Produk</th><th>Qty</th><th>Lokasi</th><th>Catatan</th></tr></thead><tbody>${moves}</tbody></table></div></div>`}
-function stockInOut(type){const opts=db.inventory.map((p,i)=>`<option value="${i}">${p[0]} - ${p[1]} | Stok ${p[2]} | ${p[3]}</option>`).join('');showModal('Stok '+type,`<div class="fg full"><label>Produk</label><select id="stockProduct" class="ctrl">${opts}</select></div><div class="fg"><label>Qty</label><input id="stockQty" type="number" class="ctrl" value="1"></div><div class="fg"><label>Catatan</label><input id="stockNote" class="ctrl" value="${type==='Masuk'?'Pembelian / Koreksi':'Pemakaian / Koreksi'}"></div>`,`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveStock('${type}')">Simpan</button>`)}async function saveStock(type){const i=Number(stockProduct.value),q=Number(stockQty.value)||0,p=db.inventory[i],cur=Number(p[2])||0;if(type==='Keluar'&&q>cur)return alert('Qty melebihi stok.');p[2]=type==='Masuk'?cur+q:cur-q;db.stockMoves.unshift([today(),type,p[0],p[1],q,p[3],stockNote.value]);await save();closeModal();renderInventory();toast('Stok tersimpan')}
-function moveStock(){const opts=db.inventory.map((p,i)=>`<option value="${i}">${p[0]} - ${p[1]} | ${p[3]}</option>`).join('');showModal('Mutasi Gudang',`<div class="fg full"><label>Produk</label><select id="moveProduct" class="ctrl">${opts}</select></div><div class="fg"><label>Qty</label><input id="moveQty" type="number" class="ctrl" value="1"></div><div class="fg"><label>Lokasi Tujuan</label><input id="moveTo" class="ctrl" placeholder="Contoh: Cabang Bekasi"></div>`,`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveMove()">Mutasi</button>`)}async function saveMove(){const i=Number(moveProduct.value),q=Number(moveQty.value)||0,p=db.inventory[i],cur=Number(p[2])||0;if(q>cur)return alert('Qty melebihi stok.');const old=p[3];p[2]=cur-q;const newSku=p[0]+'-M'+String(db.inventory.length+1).padStart(3,'0');db.inventory.push([newSku,p[1],q,moveTo.value,p[4],p[5]]);db.stockMoves.unshift([today(),'Mutasi',p[0],p[1],q,old+' → '+moveTo.value,'Pindah gudang']);await save();closeModal();renderInventory();toast('Mutasi berhasil')}
-function renderPOS(){headActions.innerHTML=`<button class="btn green" onclick="openPOS()">🏪 Transaksi POS</button>`;const rows=db.pos.map((r,i)=>`<tr class="row" onclick="detail('pos',${i})">${r.slice(0,7).map((c,j)=>`<td>${j===0?'<strong>'+safe(c)+'</strong>':j===6?status(c):safe(c)}</td>`).join('')}<td onclick="event.stopPropagation()"><button class="act" onclick="printPOS(${i})">🧾</button><button class="act" onclick="del('pos',${i})">🗑️</button></td></tr>`).join('')||'<tr><td colspan="8" class="empty">Belum ada transaksi POS.</td></tr>';moduleContent.innerHTML=tableHTML(['No POS','Kasir','Cabang','Tanggal','Total','Metode','Status'],rows,`<button class="btn green" onclick="openPOS()">Transaksi POS</button>`)}function openPOS(){cart=[];showModal('POS Keranjang Multi Item',`<div class="fg"><label>No POS</label><input id="posNo" class="ctrl" value="${nextNo('POS',db.pos.length)}"></div><div class="fg"><label>Kasir</label><input id="posCashier" class="ctrl" value="${member.name||user.displayName||'Kasir'}"></div><div class="fg"><label>Cabang</label><input id="posBranch" class="ctrl" value="Toko Pusat"></div><div class="fg"><label>Metode Bayar</label><select id="posPay" class="ctrl"><option>Tunai</option><option>QRIS</option><option>Transfer</option><option>Debit</option></select></div><div class="fg full"><label>Produk</label><select id="itemProduct" class="ctrl">${db.inventory.map((p,i)=>`<option value="${i}">${p[0]} - ${p[1]} | ${p[3]} | Stok ${p[2]} | ${p[4]}</option>`).join('')}</select></div><div class="fg"><label>Qty</label><input id="itemQty" type="number" min="1" class="ctrl" value="1"></div><div class="full"><button class="btn blue" onclick="addCart('pos')">Tambah Item</button></div><div class="full box"><div id="cartBox" class="cart">Keranjang masih kosong.</div></div>`,`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="savePOS()">Bayar & Print Struk</button>`,'wide')}async function savePOS(){if(!cart.length)return alert('Tambahkan item.');for(const x of cart){db.inventory[x.idx][2]=Number(db.inventory[x.idx][2])-x.qty;db.stockMoves.unshift([today(),'Keluar',x.sku,x.name,x.qty,db.inventory[x.idx][3],'POS '+posNo.value])}const total=cart.reduce((s,x)=>s+x.total,0);const row=[posNo.value,posCashier.value,posBranch.value,today(),rp(total),posPay.value,'Lunas',JSON.stringify(cart)];db.pos.unshift(row);db.accounting.unshift([row[0],'POS - '+row[1],today(),rp(total),'Lunas','Pemasukan']);await save();closeModal();setModule('pos');printPOS(0);toast('POS tersimpan dan stok berkurang')}
-function renderAccounting(){const s=summary();headActions.innerHTML=`<button class="btn red" onclick="openExpense()">＋ Pengeluaran</button><button class="btn blue" onclick="exportCSV('accounting')">Export</button>`;const inc=db.accounting.map((r,i)=>`<tr class="row" onclick="detail('accounting',${i})">${r.map((c,j)=>`<td>${j===0?'<strong>'+safe(c)+'</strong>':j===4?status(c):safe(c)}</td>`).join('')}<td onclick="event.stopPropagation()"><button class="act" onclick="del('accounting',${i})">🗑️</button></td></tr>`).join('')||'<tr><td colspan="7" class="empty">Belum ada pemasukan.</td></tr>';const exp=db.expenses.map((r,i)=>`<tr class="row" onclick="detail('expenses',${i})">${r.map((c,j)=>`<td>${j===0?'<strong>'+safe(c)+'</strong>':j===5?status(c):safe(c)}</td>`).join('')}<td onclick="event.stopPropagation()"><button class="act" onclick="openExpense(${i})">✏️</button><button class="act" onclick="del('expenses',${i})">🗑️</button></td></tr>`).join('');moduleContent.innerHTML=kpi([['💰','Pemasukan Lunas',rp(s.paid)],['⏳','Piutang',rp(s.unpaid)],['💸','Pengeluaran',rp(s.exp)],['📈','Laba/Rugi',rp(s.profit)]])+`<div class="grid2" style="margin-top:18px"><div class="card"><h3>Ringkasan</h3><div class="box"><p>Pemasukan lunas: <b>${rp(s.paid)}</b></p><p>Pengeluaran: <b>${rp(s.exp)}</b></p><p>Laba/rugi: <b>${rp(s.profit)}</b></p></div></div><div class="card"><h3>Aksi Keuangan</h3><p>Catat pengeluaran dan export laporan.</p><div class="head-actions"><button class="btn red" onclick="openExpense()">Pengeluaran</button><button class="btn soft" onclick="window.print()">Print</button></div></div></div><div style="margin-top:18px">${tableHTML(schemas.accounting,inc,'')}</div><div style="margin-top:18px">${tableHTML(schemas.expenses,exp,`<button class="btn red" onclick="openExpense()">＋ Pengeluaran</button>`)}</div>`}
-function openExpense(i=null){const r=i!=null?db.expenses[i]:[nextNo('EXP',db.expenses.length),'','Operasional',today(),'Rp 0','Lunas'];showModal(i!=null?'Edit Pengeluaran':'Catat Pengeluaran',`<div class="fg"><label>No</label><input id="expNo" class="ctrl" value="${safe(r[0])}"></div><div class="fg"><label>Keterangan</label><input id="expDesc" class="ctrl" value="${safe(r[1])}"></div><div class="fg"><label>Kategori</label><select id="expCat" class="ctrl">${['Operasional','Pembelian','Gaji','Transport','Marketing','Lainnya'].map(x=>`<option ${r[2]===x?'selected':''}>${x}</option>`).join('')}</select></div><div class="fg"><label>Tanggal</label><input id="expDate" type="date" class="ctrl" value="${r[3]||today()}"></div><div class="fg"><label>Jumlah</label><input id="expAmt" class="ctrl" value="${safe(r[4])}"></div><div class="fg"><label>Status</label><select id="expStatus" class="ctrl"><option ${r[5]==='Lunas'?'selected':''}>Lunas</option><option ${r[5]==='Pending'?'selected':''}>Pending</option></select></div>`,`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveExpense(${i==null?'null':i})">Simpan</button>`)}async function saveExpense(i){const r=[expNo.value,expDesc.value,expCat.value,expDate.value,expAmt.value,expStatus.value];if(i===null)db.expenses.unshift(r);else db.expenses[i]=r;await save();closeModal();renderAccounting();toast('Pengeluaran tersimpan')}
-function renderPricing(){if(!db.pricing.length){moduleContent.innerHTML=`<div class="card"><h3>Paket Harga masih kosong</h3><p>Tambahkan paket harga sesuai produk/jasa yang ingin dijual.</p><button class="btn green" style="margin-top:12px" onclick="openRecord('pricing')">＋ Tambah Paket</button></div>`;return}const rows=db.pricing.map((r,i)=>`<tr>${r.map((c,j)=>`<td>${j===0?'<strong>'+safe(c)+'</strong>':j===4?status(c):safe(c)}</td>`).join('')}<td><button class="act" onclick="offerPackage(${i})">🟢</button><button class="act" onclick="openRecord('pricing',${i})">✏️</button></td></tr>`).join('');moduleContent.innerHTML=`<div class="grid3">${db.pricing.map((p,i)=>`<div class="card"><h3>${p[0]}</h3><p>${p[1]}</p><h2>${p[2]}</h2><p>${p[3]}</p><button class="btn primary" onclick="offerPackage(${i})" style="margin-top:12px;width:100%">Tawarkan WA</button></div>`).join('')}</div><div style="margin-top:18px">${tableHTML(schemas.pricing,rows,`<button class="btn green" onclick="openRecord('pricing')">＋ Paket</button>`)}</div>`}
-function renderGeneric(mod){const rows=(db[mod]||[]).map((r,i)=>`<tr class="row" onclick="detail('${mod}',${i})">${r.map((c,j)=>`<td>${j===0?'<strong>'+safe(c)+'</strong>':j===r.length-1?status(c):safe(c)}</td>`).join('')}<td onclick="event.stopPropagation()"><button class="act" onclick="openRecord('${mod}',${i})">✏️</button><button class="act" onclick="del('${mod}',${i})">🗑️</button></td></tr>`).join('')||`<tr><td colspan="${schemas[mod].length+1}" class="empty">Belum ada data.</td></tr>`;headActions.innerHTML=`<button class="btn green" onclick="openRecord('${mod}')">＋ Tambah</button>`;moduleContent.innerHTML=tableHTML(schemas[mod],rows,headActions.innerHTML)}
-function renderSettings(){headActions.innerHTML='';const staffRows=db.staff.map((r,i)=>`<tr><td><strong>${safe(r[0])}</strong><div class="mini">${safe(r[1])}</div></td><td>${safe(r[2])}</td><td><span class="pill">${safe(r[3])}</span></td><td>${status(r[4])}</td><td><button class="act" onclick="createInviteFromStaff(${i})">🔑</button><button class="act" onclick="openRecord('staff',${i})">✏️</button><button class="act" onclick="del('staff',${i})">🗑️</button></td></tr>`).join('');moduleContent.innerHTML=`<div class="grid2"><div class="card"><h3>Perusahaan</h3><div class="fg"><label>Nama</label><input id="setName" class="ctrl" value="${safe(db.company.name)}"></div><div class="fg"><label>Brand</label><input id="setBrand" class="ctrl" value="${safe(db.company.brand)}"></div><div class="fg"><label>Website</label><input id="setWeb" class="ctrl" value="${safe(db.company.website)}"></div><div class="fg"><label>WhatsApp</label><input id="setWa" class="ctrl" value="${safe(db.company.wa)}"></div><button class="btn primary" style="margin-top:14px" onclick="saveSettings()">Simpan</button></div><div class="card"><h3>Backup & Keamanan</h3><p>Backup/Restore/Reset hanya muncul untuk Owner/Admin. Gunakan rules di bawah untuk Firestore.</p><div class="head-actions" style="margin-top:12px"><button class="btn blue admin-only" onclick="backupData()">Backup</button><button class="btn green admin-only" onclick="restoreInput.click()">Restore</button><button class="btn red owner-only" onclick="resetCompanyData()">Reset</button></div></div></div><div style="margin-top:18px">${tableHTML(schemas.staff,staffRows,`<button class="btn green" onclick="openRecord('staff')">＋ Staff</button><button class="btn blue" onclick="createInvite()">Buat Invite</button>`)}</div><div class="card" style="margin-top:18px"><h3>Invite Staff</h3><p>Staff daftar memakai invite code. Invite terakhir akan muncul di sini.</p><div id="inviteBox" class="box">Belum ada invite baru.</div></div><div class="card" style="margin-top:18px"><h3>Firestore Rules</h3><p>Paste ke Firestore Database &gt; Rules.</p><button class="btn blue" onclick="copyRules()">Copy Rules</button><pre class="code" id="rulesBox">rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /members/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
-    }
-    match /invites/{code} {
-      allow read: if request.auth != null;
-      allow create, update, delete: if request.auth != null;
-    }
-    match /tenants/{tenantId} {
-      allow read, write: if request.auth != null
-        && exists(/databases/$(database)/documents/members/$(request.auth.uid))
-        && get(/databases/$(database)/documents/members/$(request.auth.uid)).data.tenantId == tenantId
-        && get(/databases/$(database)/documents/members/$(request.auth.uid)).data.status == 'Aktif';
-    }
-    match /{document=**} { allow read, write: if false; }
-  }
-}</pre></div>`;applyShell()}
-async function saveSettings(){db.company.name=setName.value;db.company.brand=setBrand.value;db.company.website=setWeb.value;db.company.wa=setWa.value;await save();applyShell();toast('Settings disimpan')}function createCode(){return Math.random().toString(36).slice(2,8).toUpperCase()}async function createInvite(){showModal('Buat Invite Staff',`<div class="fg"><label>Email Staff</label><input id="invEmail" class="ctrl"></div><div class="fg"><label>Nama / Jabatan</label><input id="invJob" class="ctrl" value="Staff"></div><div class="fg"><label>Role</label><select id="invRole" class="ctrl">${Object.keys(access).filter(x=>x!=='Owner').map(r=>`<option>${r}</option>`).join('')}</select></div>`,`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveInvite()">Buat Code</button>`)}async function createInviteFromStaff(i){const r=db.staff[i];await createInvite();setTimeout(()=>{invEmail.value=r[1];invJob.value=r[2];invRole.value=r[3]},50)}async function saveInvite(){const code=createCode();await fb.setDoc(fb.doc(fb.db,'invites',code),{tenantId,role:invRole.value,email:invEmail.value.trim(),jabatan:invJob.value.trim(),status:'Aktif',createdAt:fb.serverTimestamp()});db.invites.unshift([code,invEmail.value.trim(),invRole.value,'Aktif',today()]);await save();closeModal();renderSettings();inviteBox.innerHTML=`<b>Kode Invite:</b> <span class="pill">${code}</span><p class="mini">Kirim kode ini ke staff untuk registrasi.</p>`;toast('Invite code dibuat')}
-function openRecord(mod,i=null){editModule=mod;editIndex=i;const row=i!=null?db[mod][i]:schemas[mod].map(()=> '');showModal((i!=null?'Edit ':'Tambah ')+(mod),schemas[mod].map((f,j)=>`<div class="fg ${j===0?'full':''}"><label>${f}</label><input class="ctrl rec" value="${safe(row[j]||'')}"></div>`).join(''),`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveRecord()">Simpan</button>`)}async function saveRecord(){const r=[...document.querySelectorAll('.rec')].map(x=>x.value.trim()||'-');if(editIndex!=null)db[editModule][editIndex]=r;else db[editModule].unshift(r);await save();closeModal();setModule(active);toast('Data tersimpan')}async function del(mod,i){if(confirm('Hapus data ini?')){db[mod].splice(i,1);await save();setModule(active);toast('Data dihapus')}}function detail(mod,i){const r=db[mod][i];showModal('Detail',`<div class="full">${schemas[mod].map((c,j)=>`<div class="box"><b>${c}</b><p>${safe(r[j]||'-')}</p></div>`).join('')}</div>`,`<button class="btn soft" onclick="closeModal()">Tutup</button><button class="btn primary" onclick="openRecord('${mod}',${i})">Edit</button>`)}
-function showModal(t,b,f,w=''){modal.classList.toggle('wide',w==='wide');modalTitle.textContent=t;modalBody.innerHTML=b;modalFoot.innerHTML=f;modalBg.classList.add('show')}function closeModal(){modalBg.classList.remove('show');modal.classList.remove('wide');editModule=null;editIndex=null}function nextNo(prefix,len){const d=new Date();return `${prefix}/${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}/${String(len+1).padStart(4,'0')}`}
-function printInvoice(i){const r=db.sales[i],items=JSON.parse(r[6]||'[]');const html=`<html><head><title>${r[0]}</title><style>body{font-family:Arial;padding:30px;color:#111}.top{display:flex;justify-content:space-between}.brand{font-size:24px;font-weight:900;color:#6d28d9}table{width:100%;border-collapse:collapse;margin-top:20px}td,th{border-bottom:1px solid #ddd;padding:10px;text-align:left}.total{text-align:right;font-size:20px;font-weight:bold;margin-top:18px}</style></head><body><div class="top"><div><div class="brand">${db.company.brand}</div><p>${db.company.name}<br>${db.company.website}<br>WA: ${db.company.wa}</p></div><div><h2>INVOICE</h2><p>${r[0]}<br>Tanggal: ${r[2]}<br>Jatuh Tempo: ${r[3]}</p></div></div><h3>Customer: ${r[1]}</h3><table><thead><tr><th>Produk</th><th>Qty</th><th>Harga</th><th>Total</th></tr></thead><tbody>${items.map(x=>`<tr><td>${x.name}</td><td>${x.qty}</td><td>${rp(x.price)}</td><td>${rp(x.total)}</td></tr>`).join('')}</tbody></table><div class="total">TOTAL: ${r[4]}</div><script>window.print();<\/script></body></html>`;const w=window.open('','_blank');w.document.write(html);w.document.close()}function sendInvoiceWA(i){const r=db.sales[i],c=db.crm.find(x=>x[0]===r[1]),wa=c?String(c[1]).replace(/[^0-9]/g,''):'';if(!wa)return alert('WA customer belum ada di CRM.');window.open('https://wa.me/62'+wa.replace(/^0/,'')+'?text='+encodeURIComponent(`Halo ${r[1]}, berikut tagihan invoice ${r[0]} sebesar ${r[4]}. Terima kasih.`),'_blank')}function printPOS(i){const r=db.pos[i],items=JSON.parse(r[7]||'[]');const html=`<html><head><title>${r[0]}</title><style>body{font-family:Arial;max-width:320px;margin:auto;padding:18px}.c{text-align:center}.line{border-top:1px dashed #999;margin:10px 0}table{width:100%;font-size:12px}.total{font-size:17px;font-weight:bold}</style></head><body><div class="c"><b>${db.company.name}</b><br><small>${r[2]}</small></div><div class="line"></div><p>No: ${r[0]}<br>Kasir: ${r[1]}<br>Bayar: ${r[5]}<br>Tanggal: ${r[3]}</p><div class="line"></div><table>${items.map(x=>`<tr><td>${x.name} x${x.qty}</td><td style="text-align:right">${rp(x.total)}</td></tr>`).join('')}</table><div class="line"></div><div class="total">TOTAL: ${r[4]}</div><p class="c"><small>Terima kasih</small></p><script>window.print();<\/script></body></html>`;const w=window.open('','_blank');w.document.write(html);w.document.close()}
-function offerPackage(i){const p=db.pricing[i],w=String(db.company.wa||'').replace(/[^0-9]/g,'');if(!w)return alert('WA perusahaan belum diisi.');window.open('https://wa.me/62'+w.replace(/^0/,'')+'?text='+encodeURIComponent(`Halo, saya tertarik dengan ${db.company.brand}\nPaket: ${p[0]}\nHarga: ${p[2]}\nFitur: ${p[3]}`),'_blank')}function quickAdd(){if(active==='sales')openInvoice();else if(active==='pos')openPOS();else if(active==='inventory')openRecord('inventory');else if(schemas[active])openRecord(active);else setModule('crm')}
-function exportCSV(mod){const cols=schemas[mod];if(!cols)return toast('Tidak ada export');const lines=[cols.join(',')].concat((db[mod]||[]).map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')));download(mod+'.csv',lines.join('\n'),'text/csv')}function backupData(){download('backup-kalierp-real-'+tenantId+'.json',JSON.stringify(db,null,2),'application/json')}async function restoreBackup(e){const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!d.company||!d.crm)throw Error();if(confirm('Restore data ke perusahaan ini?')){db=d;normalize();await save();applyShell();setModule('dashboard');toast('Restore berhasil')}}catch{alert('File backup tidak valid')}e.target.value=''}function download(n,c,t){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click();URL.revokeObjectURL(a.href)}async function resetCompanyData(){if(!isPureOwner())return toast('Hanya Owner');if(confirm('Reset semua data perusahaan?')){const c=db.company,s=db.staff;db=clone(defaultDB);db.company=c;db.staff=s;await save();setModule('dashboard');toast('Data reset')}}function copyRules(){navigator.clipboard.writeText(rulesBox.innerText).then(()=>toast('Rules dicopy'))}
-function searchTable(q){const table=document.getElementById('dataTable');if(!table)return;table.querySelectorAll('tbody tr').forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q.toLowerCase())?'':'none')}
-window.addEventListener('load',()=>setTimeout(()=>fb.onAuthStateChanged(fb.auth,u=>{if(u)boot(u)}),300));
-</script>
+  <section class="section pricing" id="harga">
+    <div class="container">
+      <div class="section-head">
+        <span>Paket Harga</span>
+        <h2>Pilih paket sesuai kebutuhan bisnis.</h2>
+        <p>Harga paket ini adalah harga penjualan KaliERP. Data operasional pelanggan tetap kosong saat membuat akun baru.</p>
+      </div>
+      <div class="grid-3">
+        <div class="price-card">
+          <h3>Starter</h3>
+          <p class="desc">Untuk UMKM kecil yang baru mulai merapikan operasional.</p>
+          <div class="price">Rp 23rb <small>/bulan</small></div>
+          <div class="features">
+            <div><span>✓</span>CRM, Sales, Inventory dasar</div>
+            <div><span>✓</span>POS dan Accounting sederhana</div>
+            <div><span>✓</span>Cocok untuk usaha kecil</div>
+            <div><span>✓</span>Support update aplikasi</div>
+          </div>
+          <a class="btn btn-soft" href="https://wa.me/6285150973789?text=Halo%2C%20saya%20mau%20paket%20Starter%20KaliERP%20Rp%2023rb%2Fbulan.">Pilih Starter</a>
+        </div>
+
+        <div class="price-card popular">
+          <span class="tag">Paling Disarankan</span>
+          <h3>Business</h3>
+          <p class="desc">Untuk bisnis berkembang yang butuh modul lengkap dan staff role.</p>
+          <div class="price">Rp 75rb <small>/bulan</small></div>
+          <div class="features">
+            <div><span>✓</span>Semua modul utama aktif</div>
+            <div><span>✓</span>Staff role access</div>
+            <div><span>✓</span>Invoice + WhatsApp</div>
+            <div><span>✓</span>Inventory, POS, Accounting</div>
+            <div><span>✓</span>Cocok untuk toko, jasa, cabang</div>
+          </div>
+          <a class="btn btn-primary" href="https://wa.me/6285150973789?text=Halo%2C%20saya%20mau%20paket%20Business%20KaliERP%20Rp%2075rb%2Fbulan.">Pilih Business</a>
+        </div>
+
+        <div class="price-card">
+          <h3>Lifetime</h3>
+          <p class="desc">Sekali bayar untuk pemakaian jangka panjang tanpa langganan bulanan.</p>
+          <div class="price">Rp 1,5jt</div>
+          <div class="features">
+            <div><span>✓</span>Sekali bayar</div>
+            <div><span>✓</span>Pakai selamanya</div>
+            <div><span>✓</span>Semua modul utama</div>
+            <div><span>✓</span>Cocok untuk bisnis serius</div>
+            <div><span>✓</span>Bisa custom lanjutan</div>
+          </div>
+          <a class="btn btn-soft" href="https://wa.me/6285150973789?text=Halo%2C%20saya%20mau%20paket%20Lifetime%20KaliERP%20Rp%201%2C5jt.">Pilih Lifetime</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <h2>Siap merapikan bisnis dengan KaliERP?</h2>
+          <p>Kirim pesan WhatsApp untuk konsultasi paket, demo, atau bantuan pemasangan aplikasi.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" style="background:white;color:#6d28d9" href="https://wa.me/6285150973789?text=Halo%2C%20saya%20tertarik%20dengan%20KaliERP.%20Mohon%20info%20detail.">Chat WhatsApp</a>
+          <a class="btn btn-soft" href="app.html">Masuk Aplikasi</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <span>FAQ</span>
+        <h2>Pertanyaan yang sering muncul.</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>Apakah akun baru langsung ada data contoh?</summary>
+          <p>Tidak. Untuk versi rilis, akun baru dibuat kosong agar pelanggan memasukkan data bisnisnya sendiri.</p>
+        </details>
+        <details>
+          <summary>Apakah bisa untuk industri dan pabrik?</summary>
+          <p>Bisa. Modul CRM, inventory, invoice, POS, dan accounting cocok untuk industri, pabrik, gudang, distribusi barang, dan operasional produksi.</p>
+        </details>
+        <details>
+          <summary>Apakah bisa login staff berbeda role?</summary>
+          <p>Bisa. KaliERP mendukung role seperti Owner, Admin, Sales, Finance, Gudang, Kasir, dan Staff.</p>
+        </details>
+        <details>
+          <summary>Apakah bisa sekali bayar?</summary>
+          <p>Bisa. Tersedia paket Lifetime Rp 1.500.000 untuk sekali bayar.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-inner">
+      <div><b>KaliERP</b><br><small>Aplikasi ERP bisnis untuk UMKM, jasa, retail, trading, dan service.</small></div>
+      <div><small>Website: www.kalimaja.com • WhatsApp: 085150973789</small></div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/6285150973789?text=Halo%2C%20saya%20tertarik%20dengan%20KaliERP.%20Mohon%20info%20paket.">💬 Order via WhatsApp</a>
 </body>
 </html>
