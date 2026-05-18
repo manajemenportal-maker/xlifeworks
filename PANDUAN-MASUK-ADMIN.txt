@@ -13,12 +13,12 @@ CARA MASUK ADMIN YANG BENAR:
    https://domainmu.com/admin-license.html
 
 2. Login dengan:
-   Email: kalimayasuryaalam@gmail.com
+   Email: irsukin@gmail.com
    Password: password Firebase Authentication untuk email itu
 
 3. Pastikan Firebase:
    Authentication > Sign-in method > Email/Password = Enable
-   Authentication > Users > ada user kalimayasuryaalam@gmail.com
+   Authentication > Users > ada user irsukin@gmail.com
 
 4. Kalau password masih salah:
    klik Reset Password di admin-license.html

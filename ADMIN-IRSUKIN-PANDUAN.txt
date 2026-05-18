@@ -1,0 +1,32 @@
+ADMIN BARU KALIERP
+
+Email admin yang aktif sekarang:
+irsukin@gmail.com
+
+UPLOAD / GANTI FILE INI:
+1. admin-license.html
+2. firestore.rules
+
+PASANG RULES:
+Firebase Console
+> Firestore Database
+> Rules
+> hapus rules lama
+> paste isi firestore.rules baru
+> Publish
+
+LOGIN ADMIN:
+Buka:
+https://domainmu.com/admin-license.html
+
+Login pakai:
+Email: irsukin@gmail.com
+Password: password Firebase Authentication untuk email tersebut
+
+PASTIKAN:
+Firebase Console > Authentication > Users
+harus ada user:
+irsukin@gmail.com
+
+Firebase Console > Authentication > Sign-in method
+Email/Password harus Enable.

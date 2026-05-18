@@ -42,11 +42,11 @@ CARA MEMASTIKAN LOGIN NORMAL BERHASIL:
 
 2. Firebase Console > Authentication > Users
    Pastikan ada user:
-   kalimayasuryaalam@gmail.com
+   irsukin@gmail.com
 
 3. Kalau belum ada:
    Klik Add user
-   Email: kalimayasuryaalam@gmail.com
+   Email: irsukin@gmail.com
    Password: buat password baru minimal 6 karakter
 
 4. Kalau user sudah ada tapi login tetap salah:
