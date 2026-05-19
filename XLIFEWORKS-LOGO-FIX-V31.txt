@@ -1,0 +1,13 @@
+XLifeWorks Logo Fix v31
+
+Perbaikan:
+- Halaman awal aplikasi / login dipaksa memakai logo XLifeWorks.
+- Referensi logo lama dibersihkan dari app.html, index.html, dan admin-license.html.
+- Jika browser masih menampilkan logo lama, lakukan hard refresh (Ctrl+F5) atau upload file v31 ke hosting.
+
+Upload minimal:
+- app.html
+- index.html
+- admin-license.html
+- xlifeworks-logo-3d-transparent.png
+- xlifeworks-logo-3d.png
