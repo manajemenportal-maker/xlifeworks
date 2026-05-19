@@ -129,6 +129,12 @@ const defaultDB={company:{name:'',brand:'KaliERP',plan:'Business',website:'',wa:
 let user=null,tenantId=null,member=null,db=null,active='dashboard',editModule=null,editIndex=null,cart=[];
 function rp(n){return 'Rp '+Number(n||0).toLocaleString('id-ID')}function num(v){return Number(String(v||'').replace(/[^0-9]/g,''))||0}function clone(o){return JSON.parse(JSON.stringify(o))}function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(()=>toastEl.classList.remove('show'),1800)}function safe(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
 function tabAuth(m){['login','owner','staff'].forEach(x=>{document.getElementById('tab'+cap(x)).classList.toggle('active',x===m);document.getElementById('f'+cap(x)).classList.toggle('active',x===m)});authError.style.display='none'}function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}function authMsg(m){authError.textContent=m;authError.style.display='block'}
+
+function showFast(title,text){console.log(title||'Memproses',text||'')}
+function hideFast(){}
+function btnBusy(id,label){const b=document.getElementById(id);if(b){b.dataset.old=b.innerHTML;b.innerHTML=label||'Memproses...';b.disabled=true}}
+function btnDone(id){const b=document.getElementById(id);if(b){b.innerHTML=b.dataset.old||b.innerHTML;b.disabled=false}}
+function fastErr(e){hideFast();btnDone('loginBtn');btnDone('ownerBtn');btnDone('staffBtn');authMsg(readErr(e))}
 async function registerOwner(){try{
 if(!ownLicense.value||!ownCompany.value||!ownName.value||!ownEmail.value||!ownPass.value)return authMsg('Lengkapi kode aktivasi dan semua data.');
 const code=ownLicense.value.trim().toUpperCase();
@@ -170,6 +176,8 @@ await fb.updateDoc(fb.doc(fb.db,'licenses',code),{status:'Used',tenantId:t,usedB
 await boot(c.user);
 }catch(e){authMsg(readErr(e))}}
 async function registerStaff(){try{
+showFast&&showFast('Daftar staff','Mengecek invite dan membuat akses staff...');
+btnBusy&&btnBusy('staffBtn','Mendaftar...');
 if(!staffCode.value||!staffRegName.value||!staffRegEmail.value||!staffRegPass.value)return authMsg('Lengkapi semua data staff.');
 const code=staffCode.value.trim().toUpperCase();
 const inv=await fb.getDoc(fb.doc(fb.db,'invites',code));
@@ -177,25 +185,52 @@ if(!inv.exists())return authMsg('Invite code tidak ditemukan.');
 const invite=inv.data();
 if(invite.status!=='Aktif')return authMsg('Invite code sudah tidak aktif.');
 if(invite.email&&invite.email.toLowerCase()!==staffRegEmail.value.trim().toLowerCase())return authMsg('Email tidak sesuai invite.');
-const snap=await fb.getDoc(fb.doc(fb.db,'tenants',invite.tenantId));
-if(!snap.exists())return authMsg('Perusahaan tidak ditemukan.');
-const raw=snap.data();let d=clone(defaultDB);
-if(raw.erpDataJson){try{d=JSON.parse(raw.erpDataJson)}catch(e){d=raw.erpData||clone(defaultDB)}}else if(raw.erpData){d=raw.erpData}
-const sub=d.company&&d.company.subscription?d.company.subscription:null;
-if(!sub||sub.status!=='Active')return authMsg('Akun perusahaan belum aktif / masa aktif habis.');
-const activeStaff=(d.staff||[]).filter(s=>String(s[4]||'Aktif')==='Aktif').length;
-if(activeStaff>=Number(sub.userLimit||1))return authMsg('Kuota user paket sudah penuh. Silakan upgrade jumlah user.');
+
+// Penting: buat akun Firebase staff dulu.
+// Setelah auth berhasil, UID staff sudah ada dan boleh membuat members/{uidStaff}.
 const c=await fb.createUserWithEmailAndPassword(fb.auth,staffRegEmail.value.trim(),staffRegPass.value.trim());
 await fb.updateProfile(c.user,{displayName:staffRegName.value.trim()});
-await fb.setDoc(fb.doc(fb.db,'members',c.user.uid),{tenantId:invite.tenantId,role:invite.role,name:staffRegName.value.trim(),email:c.user.email,status:'Aktif',createdAt:fb.serverTimestamp()});
-await fb.updateDoc(fb.doc(fb.db,'invites',code),{status:'Dipakai',usedBy:c.user.uid});
+
+await fb.setDoc(fb.doc(fb.db,'members',c.user.uid),{
+  tenantId:invite.tenantId,
+  role:invite.role,
+  name:staffRegName.value.trim(),
+  email:c.user.email,
+  status:'Aktif',
+  createdAt:fb.serverTimestamp()
+});
+
+// Setelah member dibuat, rules sameTenant() mengizinkan baca/update tenants/{tenantId}.
+const snap=await fb.getDoc(fb.doc(fb.db,'tenants',invite.tenantId));
+if(!snap.exists())return authMsg('Perusahaan tidak ditemukan.');
+
+const raw=snap.data();let d=clone(defaultDB);
+if(raw.erpDataJson){try{d=JSON.parse(raw.erpDataJson)}catch(e){d=raw.erpData||clone(defaultDB)}}else if(raw.erpData){d=raw.erpData}
+
+const sub=d.company&&d.company.subscription?d.company.subscription:(raw.subscription||null);
+if(!sub||sub.status!=='Active')return authMsg('Akun perusahaan belum aktif / masa aktif habis.');
+
 d.staff=d.staff||[];
+const activeStaff=d.staff.filter(s=>String(s[4]||'Aktif')==='Aktif').length;
+if(activeStaff>=Number(sub.userLimit||1))return authMsg('Kuota user paket sudah penuh. Silakan upgrade jumlah user.');
+
 d.staff.unshift([staffRegName.value.trim(),c.user.email,invite.jabatan||invite.role,invite.role,'Aktif']);
-d.company.subscription.activeUsers=(d.staff||[]).filter(s=>String(s[4]||'Aktif')==='Aktif').length;
-d.company.subscription.monthlyAmount=d.company.subscription.billingCycle==='monthly'?Number(d.company.subscription.pricePerUser||0)*Number(d.company.subscription.userLimit||1):0;
-await fb.setDoc(fb.doc(fb.db,'tenants',invite.tenantId),{subscription:d.company.subscription,erpDataJson:JSON.stringify(d),updatedAt:fb.serverTimestamp()},{merge:true});
-await boot(c.user)
-}catch(e){authMsg(readErr(e))}}
+d.company=d.company||{};
+d.company.subscription=sub;
+d.company.subscription.activeUsers=d.staff.filter(s=>String(s[4]||'Aktif')==='Aktif').length;
+d.company.subscription.monthlyAmount=d.company.subscription.billingCycle==='monthly'
+  ? Number(d.company.subscription.pricePerUser||0)*Number(d.company.subscription.userLimit||1)
+  : 0;
+
+await fb.updateDoc(fb.doc(fb.db,'invites',code),{status:'Dipakai',usedBy:c.user.uid});
+await fb.setDoc(fb.doc(fb.db,'tenants',invite.tenantId),{
+  subscription:d.company.subscription,
+  erpDataJson:JSON.stringify(d),
+  updatedAt:fb.serverTimestamp()
+},{merge:true});
+
+await boot(c.user);
+}catch(e){fastErr?fastErr(e):authMsg(readErr(e))}}
 async function login(){try{await fb.signInWithEmailAndPassword(fb.auth,loginEmail.value.trim(),loginPass.value.trim())}catch(e){authMsg(readErr(e))}}async function logout(){await fb.signOut(fb.auth);location.reload()}function readErr(e){if(e.code==='auth/email-already-in-use')return'Email sudah terdaftar.';if(e.code==='auth/weak-password')return'Password minimal 6 karakter.';if(e.code==='auth/invalid-credential')return'Email atau password salah.';return e.message||'Terjadi error.'}
 async function boot(u){user=u;let ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));if(!ms.exists()){await new Promise(r=>setTimeout(r,700));ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));}if(!ms.exists()){authMsg('Akun belum punya akses perusahaan. Coba klik Login lagi atau cek dokumen members di Firestore.');return}member=ms.data();tenantId=member.tenantId;const ts=await fb.getDoc(fb.doc(fb.db,'tenants',tenantId));db=clone(defaultDB);if(ts.exists()){const raw=ts.data();if(raw.erpDataJson){try{db=JSON.parse(raw.erpDataJson)}catch(e){db=raw.erpData||clone(defaultDB)}}else if(raw.erpData){db=raw.erpData}}normalize();if(!subscriptionOK()){showSubscriptionLock();return}await save();authScreen.classList.add('hidden');app.classList.remove('hidden');applyShell();setModule('dashboard')}
 
