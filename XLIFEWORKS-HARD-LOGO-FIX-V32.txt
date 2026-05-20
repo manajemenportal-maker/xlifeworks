@@ -1,0 +1,18 @@
+XLifeWorks Hard Logo Fix v32
+
+Perbaikan:
+- File logo XLifeWorks dibuat ulang dari nol.
+- HTML dipaksa memakai xlifeworks-logo-3d-transparent.png?v=32.
+- Query ?v=32 ditambahkan agar browser tidak menampilkan cache logo lama.
+- Firebase internal project ID kalierp-d4905 tetap dibiarkan agar koneksi aplikasi tidak rusak.
+
+Upload wajib:
+- app.html
+- index.html
+- admin-license.html
+- xlifeworks-logo-3d-transparent.png
+- xlifeworks-logo-3d.png
+- favicon/app icon files
+
+Setelah upload:
+- lakukan Ctrl+F5 / clear cache.
