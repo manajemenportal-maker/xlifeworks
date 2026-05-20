@@ -1,0 +1,17 @@
+XLifeWorks Sidebar X Emblem v35
+
+Perubahan:
+- Logo halaman aplikasi kiri atas/sidebar diganti menjadi emblem X saja.
+- Emblem tanpa frame, background transparan.
+- Splash/login/landing tetap memakai logo lengkap XLifeWorks.
+- Sidebar tetap menampilkan tulisan:
+  XLifeWorks
+  Business Operating System
+
+Upload minimal:
+- app.html
+- xlifeworks-x-emblem-transparent.png
+- logo/icon file yang sudah ada bila belum ada di hosting.
+
+Setelah upload:
+- lakukan Ctrl+F5.

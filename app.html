@@ -239,7 +239,29 @@
 @media(max-width:1100px){.mig-grid{grid-template-columns:repeat(2,1fr)}.mig-flow{grid-template-columns:1fr}}
 @media(max-width:640px){.mig-grid{grid-template-columns:1fr}.mig-hero{border-radius:22px;padding:18px}}
 
-  </style>
+  
+/* v35: Sidebar X emblem tanpa frame */
+.side .brand .mark{
+  width:54px!important;
+  height:54px!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0!important;
+  overflow:visible!important;
+}
+.side .brand .mark img{
+  width:54px!important;
+  height:54px!important;
+  object-fit:contain!important;
+  filter:drop-shadow(0 8px 16px rgba(37,99,235,.18))!important;
+}
+.side .brand{align-items:center!important}
+
+</style>
 </head>
 <body>
   <div class="splash-screen" id="splashScreen">
@@ -294,7 +316,7 @@
   <div class="trial-ribbon hidden" id="trialRibbon">TRIAL READ-ONLY • Upgrade untuk menyimpan data</div>
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
   <div class="app hidden" id="app">
-    <aside class="side" id="side"><div class="brand"><div class="mark"><img src="xlifeworks-logo-3d-transparent.png?v=34" alt="XLifeWorks" /></div><div><h1 id="brandName">XLifeWorks</h1><p>Business Operating System</p></div></div><div class="tenant"><b id="tenantName"></b><span id="tenantInfo"></span></div><nav class="nav" id="nav"></nav><div class="side-card"><strong>XLifeWorks Cloud</strong><span>Data tersimpan aman dan akses menu mengikuti role user.</span></div></aside>
+    <aside class="side" id="side"><div class="brand"><div class="mark"><img src="xlifeworks-x-emblem-transparent.png?v=35" alt="XLifeWorks" /></div><div><h1 id="brandName">XLifeWorks</h1><p>Business Operating System</p></div></div><div class="tenant"><b id="tenantName"></b><span id="tenantInfo"></span></div><nav class="nav" id="nav"></nav><div class="side-card"><strong>XLifeWorks Cloud</strong><span>Data tersimpan aman dan akses menu mengikuti role user.</span></div></aside>
     <main class="main"><header class="top"><div class="top-left"><button class="menu" onclick="openMenu()">☰</button><div><div class="small-label">ERP Online</div><div class="title" id="pageTitle">Dashboard</div></div></div><div class="search">🔎 <input id="searchInput" placeholder="Cari data..." onkeyup="searchTable(this.value)"></div><div class="actions"><button class="round owner-only admin-only" data-icon="💾" onclick="backupData()">Backup</button><button class="round owner-only admin-only" data-icon="📥" onclick="restoreInput.click()">Restore</button><button class="round owner-only" data-icon="⚠️" onclick="resetCompanyData()">Reset</button><button class="profile"><span class="avatar">KS</span><span id="userLabel">User</span></button><button class="round" data-icon="⎋" onclick="logout()">Keluar</button></div></header>
       <section class="content"><section class="hero"><span class="badge">✨ ERP terintegrasi untuk bisnis</span><h2>Operasional, penjualan, stok, kasir, dan keuangan dalam satu sistem.</h2><p>Semua transaksi saling terhubung: invoice dan POS mengurangi stok, pemasukan masuk ke accounting, customer punya riwayat transaksi, dan staff hanya melihat menu sesuai role.</p><div class="hero-row"><button class="btn primary" onclick="quickAdd()">＋ Tambah Cepat</button><button class="btn dark" onclick="window.print()">Print Laporan</button></div></section>
       <section class="mobile-tools"><button class="mitem" onclick="setModule('crm')"><span class="micon">👥</span>CRM</button><button class="mitem" onclick="setModule('sales')"><span class="micon">🧾</span>Sales</button><button class="mitem" onclick="setModule('inventory')"><span class="micon">📦</span>Stok</button><button class="mitem" onclick="setModule('pos')"><span class="micon">🏪</span>POS</button><button class="mitem" onclick="setModule('accounting')"><span class="micon">💰</span>Finance</button></section>
