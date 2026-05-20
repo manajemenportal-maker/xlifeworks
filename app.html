@@ -261,6 +261,41 @@
 }
 .side .brand{align-items:center!important}
 
+
+/* v36: Advanced Accounting */
+.acc-adv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}
+.acc-adv-card{background:white;border:1px solid #e2e8f0;border-radius:24px;padding:16px;box-shadow:0 14px 34px rgba(15,23,42,.06);transition:.2s ease}
+.acc-adv-card:hover{transform:translateY(-2px);box-shadow:0 24px 54px rgba(15,23,42,.10)}
+.acc-adv-card small{display:block;color:#64748b;font-weight:900;text-transform:uppercase;font-size:11px;letter-spacing:.05em}
+.acc-adv-card b{display:block;color:#0f172a;font-size:22px;margin-top:7px}
+.acc-adv-card span{display:block;color:#64748b;font-size:12px;margin-top:4px;line-height:1.45}
+.acc-tabs{display:flex;gap:8px;flex-wrap:wrap;background:#f8fafc;border:1px solid #e2e8f0;border-radius:22px;padding:8px;margin:16px 0}
+.acc-tab{border:1px solid #e2e8f0;background:white;color:#475569;border-radius:15px;padding:10px 12px;font-weight:900;cursor:pointer}
+.acc-tab.active{background:linear-gradient(135deg,#2563eb,#6d28d9);color:white;border-color:#6d28d9;box-shadow:0 12px 26px rgba(37,99,235,.18)}
+.acc-panel-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+.acc-mini-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:12px 0}
+.acc-mini-step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:12px;text-align:center}
+.acc-mini-step b{display:block;color:#0f172a;font-size:13px}.acc-mini-step small{color:#64748b;line-height:1.4}
+.acc-note{background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;border-radius:18px;padding:14px;margin-top:12px;line-height:1.65}
+.acc-warn{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:18px;padding:14px;margin-top:12px;line-height:1.65}
+.acc-ok{background:#ecfdf5;border:1px solid #a7f3d0;color:#047857;border-radius:18px;padding:14px;margin-top:12px;line-height:1.65}
+.acc-bad{background:#fff1f2;border:1px solid #fecdd3;color:#be123c;border-radius:18px;padding:14px;margin-top:12px;line-height:1.65}
+.acc-status{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:900;background:#f1f5f9;color:#475569}
+.acc-status.ok{background:#ecfdf5;color:#047857}.acc-status.warn{background:#fffbeb;color:#92400e}.acc-status.bad{background:#fff1f2;color:#be123c}
+@media(max-width:1100px){.acc-adv-grid{grid-template-columns:repeat(2,1fr)}.acc-panel-grid,.acc-mini-flow{grid-template-columns:1fr}}
+@media(max-width:640px){.acc-adv-grid{grid-template-columns:1fr}.acc-tabs{display:grid}}
+
+
+/* v37: Tax/Coretax module restored */
+.tax-hero{background:linear-gradient(135deg,#0f172a,#0f766e,#2563eb);color:white;border-radius:30px;padding:24px;margin-bottom:18px;box-shadow:0 24px 60px rgba(15,118,110,.22)}
+.tax-hero h2{font-size:28px;margin-bottom:8px}.tax-hero p{color:#dbeafe;line-height:1.75;max-width:900px}
+.tax-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}.tax-card{background:white;border:1px solid #e2e8f0;border-radius:24px;padding:16px;box-shadow:0 14px 34px rgba(15,23,42,.06)}.tax-card small{display:block;color:#64748b;font-weight:900;text-transform:uppercase;font-size:11px;letter-spacing:.05em}.tax-card b{display:block;color:#0f172a;font-size:22px;margin-top:7px}.tax-card span{display:block;color:#64748b;font-size:12px;margin-top:4px;line-height:1.45}
+.tax-tabs{display:flex;gap:8px;flex-wrap:wrap;background:#f8fafc;border:1px solid #e2e8f0;border-radius:22px;padding:8px;margin:16px 0}.tax-tab{border:1px solid #e2e8f0;background:white;color:#475569;border-radius:15px;padding:10px 12px;font-weight:900;cursor:pointer}.tax-tab.active{background:linear-gradient(135deg,#0f766e,#2563eb);color:white;border-color:#2563eb;box-shadow:0 12px 26px rgba(15,118,110,.18)}
+.tax-badge{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:900;background:#f1f5f9;color:#475569}.tax-badge.ok{background:#ecfdf5;color:#047857}.tax-badge.warn{background:#fffbeb;color:#92400e}.tax-badge.bad{background:#fff1f2;color:#be123c}
+.tax-note{background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;border-radius:18px;padding:14px;margin-top:12px;line-height:1.65}.tax-warn{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:18px;padding:14px;margin-top:12px;line-height:1.65}
+.tax-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}.tax-step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:12px;text-align:center}.tax-step b{display:block;color:#0f172a;font-size:13px}.tax-step small{color:#64748b;line-height:1.4}
+@media(max-width:1100px){.tax-grid{grid-template-columns:repeat(2,1fr)}.tax-flow{grid-template-columns:1fr}}@media(max-width:640px){.tax-grid{grid-template-columns:1fr}.tax-tabs{display:grid}}
+
 </style>
 </head>
 <body>
@@ -336,8 +371,8 @@ window.firebaseLoaded=true;
 </script>
 <script>
 const STORAGE='xlifeworks_launch_v1';
-const modules=[{id:'dashboard',label:'Dashboard',icon:'📊',title:'Dashboard',sub:'Ringkasan kondisi bisnis hari ini.'},{id:'migration',label:'Migrasi',icon:'🔁',title:'Migrasi Data',sub:'Pindahkan data dari Odoo, Trello, Circle, Asana, Basecamp, Excel/CSV, dan aplikasi lama lainnya.'},{id:'crm',label:'CRM',icon:'👥',title:'CRM & Customer',sub:'Kelola customer, follow up, WhatsApp, dan riwayat transaksi.'},{id:'sales',label:'Sales',icon:'🧾',title:'Sales & Invoice',sub:'Buat invoice profesional dan kirim tagihan.'},{id:'inventory',label:'Inventory',icon:'📦',title:'Inventory & Gudang',sub:'Produk, stok masuk, stok keluar, mutasi, dan alert stok.'},{id:'pos',label:'POS',icon:'🏪',title:'POS Kasir',sub:'Keranjang multi-item, struk, dan stok otomatis.'},{id:'accounting',label:'Accounting',icon:'💰',title:'Accounting',sub:'Pemasukan, pengeluaran, piutang, dan laba/rugi.'},{id:'project',label:'Project',icon:'🗂️',title:'Project',sub:'Kelola pekerjaan dan progress tim.'},{id:'hr',label:'HR',icon:'🧑‍💼',title:'HR',sub:'Data karyawan dan absensi.'},{id:'website',label:'Website',icon:'🌐',title:'Website',sub:'Halaman website dan katalog.'},{id:'pricing',label:'Paket',icon:'💎',title:'Paket Harga',sub:'Paket produk dan penawaran.'},{id:'settings',label:'Settings',icon:'⚙️',title:'Settings',sub:'Perusahaan, staff, role, backup, dan keamanan.'}];
-const access={Owner:['migration','dashboard','crm','sales','inventory','pos','accounting','tax','project','hr','website','pricing','settings'],Admin:['migration','dashboard','crm','sales','inventory','pos','accounting','tax','project','hr','website','pricing','settings'],Sales:['dashboard','crm','sales','pricing'],Finance:['migration','dashboard','sales','accounting','pricing'],Gudang:['dashboard','inventory'],Kasir:['dashboard','pos','inventory'],Staff:['dashboard','project','hr'],Trial:['dashboard','migration','crm','sales','inventory','pos','accounting','tax','project','hr','website','settings']};
+const modules=[{id:'dashboard',label:'Dashboard',icon:'📊',title:'Dashboard',sub:'Ringkasan kondisi bisnis hari ini.'},{id:'migration',label:'Migrasi',icon:'🔁',title:'Migrasi Data',sub:'Pindahkan data dari Odoo, Trello, Circle, Asana, Basecamp, Excel/CSV, dan aplikasi lama lainnya.'},{id:'crm',label:'CRM',icon:'👥',title:'CRM & Customer',sub:'Kelola customer, follow up, WhatsApp, dan riwayat transaksi.'},{id:'sales',label:'Sales',icon:'🧾',title:'Sales & Invoice',sub:'Buat invoice profesional dan kirim tagihan.'},{id:'inventory',label:'Inventory',icon:'📦',title:'Inventory & Gudang',sub:'Produk, stok masuk, stok keluar, mutasi, dan alert stok.'},{id:'pos',label:'POS',icon:'🏪',title:'POS Kasir',sub:'Keranjang multi-item, struk, dan stok otomatis.'},{id:'accounting',label:'Accounting',icon:'💰',title:'Accounting',sub:'Pemasukan, pengeluaran, piutang, dan laba/rugi.'},{id:'tax',label:'Tax',icon:'🧾',title:'Tax / Coretax',sub:'PPN keluaran, PPN masukan, rekap masa pajak, dan export draft Coretax.'},{id:'project',label:'Project',icon:'🗂️',title:'Project',sub:'Kelola pekerjaan dan progress tim.'},{id:'hr',label:'HR',icon:'🧑‍💼',title:'HR',sub:'Data karyawan dan absensi.'},{id:'website',label:'Website',icon:'🌐',title:'Website',sub:'Halaman website dan katalog.'},{id:'pricing',label:'Paket',icon:'💎',title:'Paket Harga',sub:'Paket produk dan penawaran.'},{id:'settings',label:'Settings',icon:'⚙️',title:'Settings',sub:'Perusahaan, staff, role, backup, dan keamanan.'}];
+const access={Owner:['migration','dashboard','crm','sales','inventory','pos','accounting','tax','project','hr','website','pricing','settings'],Admin:['migration','dashboard','crm','sales','inventory','pos','accounting','tax','project','hr','website','pricing','settings'],Sales:['dashboard','crm','sales','pricing'],Finance:['tax','migration','dashboard','sales','accounting','pricing'],Gudang:['dashboard','inventory'],Kasir:['dashboard','pos','inventory'],Staff:['dashboard','project','hr'],Trial:['dashboard','migration','crm','sales','inventory','pos','accounting','tax','project','hr','website','settings']};
 const schemas={crm:['Customer','WhatsApp','Alamat','Kategori','Status','Catatan'],sales:['No Invoice','Customer','Tanggal','Jatuh Tempo','Total','Status','Items'],inventory:['SKU','Produk','Stok','Lokasi','Harga Jual','Min Stok'],pos:['No POS','Kasir','Cabang','Tanggal','Total','Metode','Status','Items'],accounting:['No','Keterangan','Tanggal','Jumlah','Status','Tipe'],expenses:['No','Keterangan','Kategori','Tanggal','Jumlah','Status'],project:['Proyek','Progress','Deadline','Tim','Status'],hr:['Karyawan','Jabatan','Absensi','Payroll','Status'],website:['Halaman','Visitor','Conversion','Status','PIC'],pricing:['Paket','Deskripsi','Harga','Fitur','Status'],staff:['Nama','Email','Jabatan','Role','Status']};
 function today(){return new Date().toISOString().slice(0,10)}
 const defaultDB={company:{name:'',brand:'XLifeWorks',plan:'Business',website:'www.xlifeworks.web.id',wa:'085150973789',email:''},crm:[],inventory:[],sales:[],pos:[],accounting:[],expenses:[],stockMoves:[],project:[],hr:[],website:[],pricing:[],staff:[],invites:[]};
@@ -716,7 +751,7 @@ function renderDashboard(){
     <div class="quick-card" onclick="setModule('crm')"><div class="qico">🤝</div><b>CRM</b><small>Kelola customer dan prospek.</small></div>
     <div class="quick-card" onclick="setModule('sales')"><div class="qico">🧾</div><b>Invoice</b><small>Tagihan dan penjualan.</small></div>
     <div class="quick-card" onclick="setModule('inventory')"><div class="qico">📦</div><b>Inventory</b><small>Stok dan gudang.</small></div>
-    <div class="quick-card" onclick="setModule('accounting')"><div class="qico">📊</div><b>Accounting</b><small>Jurnal dan laporan.</small></div>
+    <div class="quick-card" onclick="setModule('accounting')"><div class="qico">📊</div><b>Accounting</b><small>Jurnal dan laporan.</small></div><div class="quick-card" onclick="setModule('tax')"><div class="qico">🧾</div><b>Tax/Coretax</b><small>PPN, PPh, SPT dan export Coretax.</small></div>
   </div>
   <div class="dash-grid">
     <div class="dash-card"><h3>Grafik Penjualan 6 Bulan</h3>${miniBarChart()}</div>
@@ -1127,12 +1162,465 @@ function renderTax(){
   renderTaxTab('dashboard');
 }
 
+
+// =======================
+// v36 Advanced Accounting
+// =======================
+function ensureAccountingAdvanced(){
+  ensureAccountingPro&&ensureAccountingPro();
+  db.bankAccounts=db.bankAccounts&&db.bankAccounts.length?db.bankAccounts:[
+    ['BANK-001','Bank Utama','1100 - Bank','Rp 125.000.000','Aktif'],
+    ['CASH-001','Kas Kecil','1000 - Kas','Rp 12.500.000','Aktif']
+  ];
+  db.bankTransactions=db.bankTransactions||[
+    ['2026-05-20','BANK-001','Masuk','INV-2026-001','Pembayaran invoice customer','Rp 22.500.000','Matched'],
+    ['2026-05-23','CASH-001','Keluar','EXP-2026-004','Pembayaran ATK training','Rp 650.000','Matched']
+  ];
+  db.reconciliations=db.reconciliations||[
+    ['2026-05','Bank Utama','Rp 125.000.000','Rp 125.000.000','Rp 0','Closed'],
+    ['2026-05','Kas Kecil','Rp 12.500.000','Rp 12.500.000','Rp 0','Closed']
+  ];
+  db.receivables=db.receivables||deriveReceivables();
+  db.payables=db.payables||derivePayables();
+  db.fixedAssets=db.fixedAssets||[
+    ['FA-001','Laptop Operasional','Peralatan Kantor','2026-01-10','Rp 12.000.000','36','Rp 333.333','Aktif'],
+    ['FA-002','Printer Invoice','Peralatan Kantor','2026-02-15','Rp 3.600.000','36','Rp 100.000','Aktif']
+  ];
+  db.budgets=db.budgets||[
+    ['2026-05','Pendapatan Penjualan','Rp 75.000.000','Rp 103.750.000','+38%'],
+    ['2026-05','Beban Operasional','Rp 20.000.000','Rp 19.800.000','-1%'],
+    ['2026-05','Marketing','Rp 8.000.000','Rp 6.500.000','-19%']
+  ];
+  db.recurringJournals=db.recurringJournals||[
+    ['RJ-001','Sewa Kantor Bulanan','Beban Sewa','Kas','Rp 5.000.000','Monthly','Aktif'],
+    ['RJ-002','Penyusutan Peralatan','Beban Penyusutan','Akumulasi Penyusutan','Rp 433.333','Monthly','Aktif']
+  ];
+  db.closingPeriods=db.closingPeriods||[
+    ['2026-04','Closed','Owner Demo','2026-05-01','Periode April dikunci'],
+    ['2026-05','Open','-','-','Periode berjalan']
+  ];
+  db.accountingAudit=db.accountingAudit||[
+    [today(),'System','Auto Check','Accounting module initialized','Info'],
+    [today(),'Finance','Review','Jurnal dan laporan siap dicek','Info']
+  ];
+}
+function accMoney(v){return Number(String(v||'').replace(/[^0-9-]/g,''))||0}
+function deriveReceivables(){
+  return (db.sales||[]).filter(r=>String(r[5]||'').toLowerCase()!=='lunas').map(r=>[
+    r[0],r[1],r[2],r[3],r[4],'Belum Lunas',agingBucket(r[3]||r[2])
+  ]);
+}
+function derivePayables(){
+  return (db.expenses||[]).filter(r=>String(r[5]||'').toLowerCase()!=='lunas').map(r=>[
+    r[0],r[1],r[3],r[4],'Belum Lunas',agingBucket(r[3]||today())
+  ]);
+}
+function agingBucket(dateStr){
+  const d=new Date(String(dateStr||today()).slice(0,10));
+  const n=new Date(today());
+  const days=Math.max(0,Math.floor((n-d)/(1000*60*60*24)));
+  if(days<=30)return '0-30 hari';
+  if(days<=60)return '31-60 hari';
+  if(days<=90)return '61-90 hari';
+  return '>90 hari';
+}
+function accStatus(s){
+  const x=String(s||'').toLowerCase();
+  const cls=x.includes('closed')||x.includes('matched')||x.includes('aktif')||x.includes('lunas')?'ok':(x.includes('open')||x.includes('draft')?'warn':'bad');
+  return `<span class="acc-status ${cls}">${safe(s||'-')}</span>`;
+}
+function accAdvancedSummary(){
+  ensureAccountingAdvanced();
+  const ar=(db.receivables||[]).reduce((s,r)=>s+accMoney(r[4]),0);
+  const ap=(db.payables||[]).reduce((s,r)=>s+accMoney(r[3]),0);
+  const bank=(db.bankAccounts||[]).reduce((s,r)=>s+accMoney(r[3]),0);
+  const assets=(db.fixedAssets||[]).reduce((s,r)=>s+accMoney(r[4]),0);
+  return {ar,ap,bank,assets};
+}
+function setAccTab(tab){
+  document.querySelectorAll('.acc-tab').forEach(b=>b.classList.remove('active'));
+  const btn=document.getElementById('tab-'+tab); if(btn)btn.classList.add('active');
+  renderAccountingTab(tab);
+}
+function tableWrap(headers, rows, actions=''){
+  return `<div class="card"><div class="table-actions">${actions}</div><div class="wrap"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="empty">Belum ada data.</td></tr>`}</tbody></table></div></div>`;
+}
+function renderAccountingTab(tab){
+  ensureAccountingAdvanced();
+  const sm=accAdvancedSummary();
+  if(tab==='dashboard'){
+    const pl=profitLoss?profitLoss():{revenue:0,profit:0,opex:0};
+    const cf=cashFlow?cashFlow():{net:0};
+    accBody.innerHTML=`<div class="acc-adv-grid">
+      <div class="acc-adv-card"><small>Piutang Usaha</small><b>${rp(sm.ar)}</b><span>AR dari invoice belum lunas.</span></div>
+      <div class="acc-adv-card"><small>Hutang Usaha</small><b>${rp(sm.ap)}</b><span>AP dari expense/vendor belum lunas.</span></div>
+      <div class="acc-adv-card"><small>Bank & Kas</small><b>${rp(sm.bank)}</b><span>Saldo rekening dan kas kecil.</span></div>
+      <div class="acc-adv-card"><small>Aset Tetap</small><b>${rp(sm.assets)}</b><span>Nilai perolehan aset tetap.</span></div>
+    </div>
+    <div class="acc-panel-grid">
+      <div class="card"><h3>Accounting Control Center</h3><div class="acc-mini-flow">
+        <div class="acc-mini-step"><b>Transaksi</b><small>Sales, POS, Expense</small></div>
+        <div class="acc-mini-step"><b>Jurnal</b><small>Debit & Kredit</small></div>
+        <div class="acc-mini-step"><b>Ledger</b><small>Buku besar</small></div>
+        <div class="acc-mini-step"><b>Rekonsiliasi</b><small>Bank & kas</small></div>
+        <div class="acc-mini-step"><b>Closing</b><small>Kunci periode</small></div>
+      </div><div class="acc-note">Gunakan dashboard ini untuk cek piutang, hutang, bank, aset, budget, closing, dan audit accounting sebelum laporan dikirim ke manajemen.</div></div>
+      <div class="card"><h3>Status Cepat</h3><p>Revenue: <b>${rp(pl.revenue||0)}</b></p><p>Laba berjalan: <b>${rp(pl.profit||0)}</b></p><p>Cashflow bersih: <b>${rp(cf.net||0)}</b></p><p>Periode berjalan: ${accStatus('Open')}</p></div>
+    </div>`;
+  }
+  if(tab==='ar'){
+    db.receivables=deriveReceivables();
+    const rows=db.receivables.map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${safe(r[4])}</td><td>${accStatus(r[5])}</td><td>${safe(r[6])}</td></tr>`).join('');
+    accBody.innerHTML=tableWrap(['Invoice','Customer','Tanggal','Jatuh Tempo','Nilai','Status','Umur'],rows,`<button class="btn blue" onclick="exportAccAdvanced('receivables')">Export AR</button>`);
+  }
+  if(tab==='ap'){
+    db.payables=derivePayables();
+    const rows=db.payables.map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${accStatus(r[4])}</td><td>${safe(r[5])}</td></tr>`).join('');
+    accBody.innerHTML=tableWrap(['No Expense','Vendor','Tanggal','Nilai','Status','Umur'],rows,`<button class="btn blue" onclick="exportAccAdvanced('payables')">Export AP</button>`);
+  }
+  if(tab==='bank'){
+    const rows=(db.bankAccounts||[]).map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${accStatus(r[4])}</td></tr>`).join('');
+    const trx=(db.bankTransactions||[]).map(r=>`<tr><td>${safe(r[0])}</td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${safe(r[4])}</td><td>${safe(r[5])}</td><td>${accStatus(r[6])}</td></tr>`).join('');
+    accBody.innerHTML=tableWrap(['Kode','Nama Rekening','Akun COA','Saldo','Status'],rows,`<button class="btn green" onclick="openBankModal()">＋ Bank/Kas</button>`)+`<div style="height:16px"></div>`+tableWrap(['Tanggal','Rekening','Jenis','Ref','Keterangan','Nominal','Status'],trx,`<button class="btn blue" onclick="exportAccAdvanced('bank')">Export Mutasi</button>`);
+  }
+  if(tab==='reconcile'){
+    const rows=(db.reconciliations||[]).map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${safe(r[4])}</td><td>${accStatus(r[5])}</td></tr>`).join('');
+    accBody.innerHTML=tableWrap(['Periode','Rekening','Saldo Bank','Saldo Sistem','Selisih','Status'],rows,`<button class="btn green" onclick="runReconciliation()">Jalankan Rekonsiliasi</button>`);
+  }
+  if(tab==='asset'){
+    const rows=(db.fixedAssets||[]).map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${safe(r[4])}</td><td>${safe(r[5])}</td><td>${safe(r[6])}</td><td>${accStatus(r[7])}</td></tr>`).join('');
+    accBody.innerHTML=tableWrap(['Kode','Nama Aset','Kategori','Tanggal Beli','Nilai','Umur Bulan','Penyusutan/Bulan','Status'],rows,`<button class="btn green" onclick="openAssetModal()">＋ Aset</button>`);
+  }
+  if(tab==='budget'){
+    const rows=(db.budgets||[]).map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${safe(r[4])}</td></tr>`).join('');
+    accBody.innerHTML=tableWrap(['Periode','Akun/Divisi','Budget','Realisasi','Variance'],rows,`<button class="btn green" onclick="openBudgetModal()">＋ Budget</button>`);
+  }
+  if(tab==='recurring'){
+    const rows=(db.recurringJournals||[]).map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${safe(r[4])}</td><td>${safe(r[5])}</td><td>${accStatus(r[6])}</td></tr>`).join('');
+    accBody.innerHTML=tableWrap(['Kode','Nama Template','Debit','Kredit','Nominal','Frekuensi','Status'],rows,`<button class="btn green" onclick="postRecurringJournal()">Posting Recurring</button>`);
+  }
+  if(tab==='closing'){
+    const rows=(db.closingPeriods||[]).map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${accStatus(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${safe(r[4])}</td></tr>`).join('');
+    accBody.innerHTML=tableWrap(['Periode','Status','Closed By','Tanggal','Catatan'],rows,`<button class="btn red" onclick="closeCurrentPeriod()">Closing Periode</button>`)+`<div class="acc-warn">Setelah periode ditutup, data accounting pada periode tersebut sebaiknya tidak diubah kecuali oleh Owner/Admin melalui proses koreksi.</div>`;
+  }
+  if(tab==='audit'){
+    const rows=(db.accountingAudit||[]).map(r=>`<tr><td>${safe(r[0])}</td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${accStatus(r[4])}</td></tr>`).join('');
+    accBody.innerHTML=tableWrap(['Tanggal','User','Aktivitas','Keterangan','Level'],rows,`<button class="btn blue" onclick="exportAccAdvanced('audit')">Export Audit</button>`);
+  }
+  if(tab==='coa' && typeof renderAccountingOldTab==='function'){return renderAccountingOldTab('coa')}
+}
+function openBankModal(){
+  if(blockTrial&&blockTrial('Tambah Bank/Kas'))return;
+  showModal('Tambah Bank / Kas',`<div class="fg"><label>Kode</label><input id="bankCode" class="ctrl" value="BANK-${Date.now().toString().slice(-4)}"></div><div class="fg"><label>Nama Rekening</label><input id="bankName" class="ctrl"></div><div class="fg"><label>Akun COA</label><input id="bankCoa" class="ctrl" value="1100 - Bank"></div><div class="fg"><label>Saldo Awal</label><input id="bankBal" class="ctrl" value="Rp 0"></div>`,`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveBankAccount()">Simpan</button>`);
+}
+async function saveBankAccount(){
+  db.bankAccounts=db.bankAccounts||[];
+  db.bankAccounts.push([bankCode.value,bankName.value,bankCoa.value,bankBal.value,'Aktif']);
+  db.accountingAudit.unshift([today(),member?.name||'User','Tambah Bank/Kas',bankName.value,'Info']);
+  await save();closeModal();renderAccountingTab('bank');toast('Bank/Kas disimpan');
+}
+function openAssetModal(){
+  if(blockTrial&&blockTrial('Tambah Aset'))return;
+  showModal('Tambah Aset Tetap',`<div class="fg"><label>Kode Aset</label><input id="faCode" class="ctrl" value="FA-${Date.now().toString().slice(-4)}"></div><div class="fg"><label>Nama Aset</label><input id="faName" class="ctrl"></div><div class="fg"><label>Kategori</label><input id="faCat" class="ctrl" value="Peralatan Kantor"></div><div class="fg"><label>Tanggal Beli</label><input id="faDate" type="date" class="ctrl" value="${today()}"></div><div class="fg"><label>Nilai</label><input id="faVal" class="ctrl" value="Rp 0"></div><div class="fg"><label>Umur Bulan</label><input id="faLife" class="ctrl" value="36"></div>`,`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveFixedAsset()">Simpan</button>`);
+}
+async function saveFixedAsset(){
+  const val=accMoney(faVal.value), life=Number(faLife.value||1), dep=Math.round(val/life);
+  db.fixedAssets=db.fixedAssets||[];
+  db.fixedAssets.push([faCode.value,faName.value,faCat.value,faDate.value,rp(val),life,rp(dep),'Aktif']);
+  db.accountingAudit.unshift([today(),member?.name||'User','Tambah Aset',faName.value,'Info']);
+  await save();closeModal();renderAccountingTab('asset');toast('Aset disimpan');
+}
+function openBudgetModal(){
+  if(blockTrial&&blockTrial('Tambah Budget'))return;
+  showModal('Tambah Budget',`<div class="fg"><label>Periode</label><input id="bdPer" class="ctrl" value="${today().slice(0,7)}"></div><div class="fg"><label>Akun/Divisi</label><input id="bdAcc" class="ctrl"></div><div class="fg"><label>Budget</label><input id="bdAmt" class="ctrl" value="Rp 0"></div>`,`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveBudget()">Simpan</button>`);
+}
+async function saveBudget(){
+  db.budgets=db.budgets||[];
+  db.budgets.push([bdPer.value,bdAcc.value,bdAmt.value,'Rp 0','0%']);
+  db.accountingAudit.unshift([today(),member?.name||'User','Tambah Budget',bdAcc.value,'Info']);
+  await save();closeModal();renderAccountingTab('budget');toast('Budget disimpan');
+}
+async function runReconciliation(){
+  if(blockTrial&&blockTrial('Rekonsiliasi Bank'))return;
+  ensureAccountingAdvanced();
+  db.reconciliations.unshift([today().slice(0,7),'Bank Utama','Rp 125.000.000','Rp 125.000.000','Rp 0','Closed']);
+  db.accountingAudit.unshift([today(),member?.name||'User','Rekonsiliasi','Bank Utama periode '+today().slice(0,7),'Info']);
+  await save();renderAccountingTab('reconcile');toast('Rekonsiliasi selesai');
+}
+async function postRecurringJournal(){
+  if(blockTrial&&blockTrial('Posting Recurring Journal'))return;
+  ensureAccountingAdvanced();
+  db.journal=db.journal||[];
+  (db.recurringJournals||[]).filter(r=>r[6]==='Aktif').forEach(r=>{
+    db.journal.unshift([today(),r[0],r[2],r[3],r[1],accMoney(r[4]),'Auto recurring']);
+  });
+  db.accountingAudit.unshift([today(),member?.name||'User','Posting Recurring','Recurring journal berhasil diposting','Info']);
+  await save();renderAccountingTab('recurring');toast('Recurring journal diposting');
+}
+async function closeCurrentPeriod(){
+  if(blockTrial&&blockTrial('Closing Period'))return;
+  if(!confirm('Tutup periode berjalan?'))return;
+  const per=today().slice(0,7);
+  db.closingPeriods=db.closingPeriods||[];
+  db.closingPeriods.unshift([per,'Closed',member?.name||'Owner',today(),'Closing manual']);
+  db.accountingAudit.unshift([today(),member?.name||'User','Closing Period','Periode '+per+' ditutup','Warn']);
+  await save();renderAccountingTab('closing');toast('Periode ditutup');
+}
+function exportAccAdvanced(type){
+  if(blockTrial&&blockTrial('Export Accounting'))return;
+  ensureAccountingAdvanced();
+  let rows=[], name='accounting-export';
+  if(type==='receivables'){name='receivables-ar';rows=[['Invoice','Customer','Tanggal','Jatuh Tempo','Nilai','Status','Umur'],...(db.receivables||[])];}
+  if(type==='payables'){name='payables-ap';rows=[['No Expense','Vendor','Tanggal','Nilai','Status','Umur'],...(db.payables||[])];}
+  if(type==='bank'){name='bank-transactions';rows=[['Tanggal','Rekening','Jenis','Ref','Keterangan','Nominal','Status'],...(db.bankTransactions||[])];}
+  if(type==='audit'){name='accounting-audit';rows=[['Tanggal','User','Aktivitas','Keterangan','Level'],...(db.accountingAudit||[])];}
+  const csv=rows.map(r=>r.map(c=>`"${String(c??'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  download(name+'.csv',csv,'text/csv');
+}
+
+
+
+// =======================
+// v37 Tax / Coretax Module
+// =======================
+function ensureTaxModule(){
+  db.taxSettings=db.taxSettings||{
+    pkp:true,
+    npwp:'99.999.999.9-999.999',
+    nitku:'000000',
+    nama:db.company?.name||'XLifeWorks Demo',
+    alamat:'Alamat perusahaan',
+    ppnRate:11,
+    pphRate:2,
+    coretaxReady:true
+  };
+  db.taxInvoices=db.taxInvoices||[];
+  db.taxInputs=db.taxInputs||[];
+  db.taxWithholding=db.taxWithholding||[
+    ['PPh-001',today(),'PT Contoh Industri','PPh 23','Jasa Implementasi','Rp 7.500.000','2%','Rp 150.000','Draft'],
+    ['PPh-002',today(),'CV Vendor Support','PPh 21/26','Tenaga ahli','Rp 3.000.000','2%','Rp 60.000','Draft']
+  ];
+  deriveTaxInvoices();
+  deriveTaxInputs();
+}
+let taxFilter={period:today().slice(0,7)};
+function taxNum(v){return Number(String(v||'').replace(/[^0-9-]/g,''))||0}
+function taxRate(){ensureTaxModule();return Number(db.taxSettings.ppnRate||11)}
+function taxPeriodMatch(d){return String(d||today()).slice(0,7)===taxFilter.period}
+function deriveTaxInvoices(){
+  db.taxInvoices=db.taxInvoices||[];
+  const existing=new Set(db.taxInvoices.map(x=>x[0]));
+  (db.sales||[]).forEach(r=>{
+    const no=r[0]||('INV-'+Date.now()), date=r[2]||today(), customer=r[1]||'-', amount=taxNum(r[4]||r[3]);
+    if(!existing.has(no)&&amount>0){
+      const dpp=Math.round(amount/(1+taxRate()/100)), ppn=amount-dpp;
+      db.taxInvoices.push([no,date,customer,'',rp(dpp),rp(ppn),r[5]||'Belum Lunas','Draft','Auto dari Sales/Invoice']);
+    }
+  });
+}
+function deriveTaxInputs(){
+  db.taxInputs=db.taxInputs||[];
+  const existing=new Set(db.taxInputs.map(x=>x[0]));
+  (db.expenses||[]).forEach(r=>{
+    const no=r[0]||('EXP-'+Date.now()), date=r[3]||today(), vendor=r[1]||'-', amount=taxNum(r[4]||r[3]);
+    if(!existing.has(no)&&amount>0){
+      const dpp=Math.round(amount/(1+taxRate()/100)), ppn=amount-dpp;
+      db.taxInputs.push([no,date,vendor,'',rp(dpp),rp(ppn),r[5]||'Belum Lunas','Draft','Auto dari Expense/Vendor']);
+    }
+  });
+}
+function taxStatus(s){
+  const x=String(s||'').toLowerCase();
+  const cls=x.includes('siap')||x.includes('lunas')||x.includes('validated')?'ok':(x.includes('draft')?'warn':'bad');
+  return `<span class="tax-badge ${cls}">${safe(s||'-')}</span>`;
+}
+function taxSummary(){
+  ensureTaxModule();
+  const out=(db.taxInvoices||[]).filter(x=>taxPeriodMatch(x[1]));
+  const inn=(db.taxInputs||[]).filter(x=>taxPeriodMatch(x[1]));
+  const wh=(db.taxWithholding||[]).filter(x=>taxPeriodMatch(x[1]));
+  const dppOut=out.reduce((s,x)=>s+taxNum(x[4]),0), ppnOut=out.reduce((s,x)=>s+taxNum(x[5]),0);
+  const dppIn=inn.reduce((s,x)=>s+taxNum(x[4]),0), ppnIn=inn.reduce((s,x)=>s+taxNum(x[5]),0);
+  const pph=wh.reduce((s,x)=>s+taxNum(x[7]),0);
+  return {out,inn,wh,dppOut,ppnOut,dppIn,ppnIn,pph,payable:ppnOut-ppnIn};
+}
+function setTaxTab(tab){
+  document.querySelectorAll('.tax-tab').forEach(b=>b.classList.remove('active'));
+  const btn=document.getElementById('tax-'+tab); if(btn)btn.classList.add('active');
+  renderTaxTab(tab);
+}
+function taxTable(headers,rows,actions=''){
+  return `<div class="card"><div class="table-actions">${actions}</div><div class="wrap"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="empty">Belum ada data.</td></tr>`}</tbody></table></div></div>`;
+}
+function renderTaxTab(tab){
+  ensureTaxModule();
+  const sm=taxSummary();
+  if(tab==='dashboard'){
+    taxBody.innerHTML=`<div class="tax-hero"><h2>Tax / Coretax Control Center</h2><p>Modul pajak untuk menyiapkan PPN keluaran dari Sales/Invoice, PPN masukan dari Expense/Vendor, PPh potong/pungut, rekap masa pajak, dan export draft XML/CSV untuk persiapan Coretax.</p></div>
+    <div class="tax-grid">
+      <div class="tax-card"><small>PPN Keluaran</small><b>${rp(sm.ppnOut)}</b><span>Dari invoice/sales periode ini.</span></div>
+      <div class="tax-card"><small>PPN Masukan</small><b>${rp(sm.ppnIn)}</b><span>Dari expense/vendor periode ini.</span></div>
+      <div class="tax-card"><small>Kurang/Lebih Bayar</small><b>${rp(sm.payable)}</b><span>PPN keluaran - PPN masukan.</span></div>
+      <div class="tax-card"><small>PPh Potong/Pungut</small><b>${rp(sm.pph)}</b><span>Estimasi PPh dari transaksi.</span></div>
+    </div>
+    <div class="card"><h3>Alur Pajak</h3><div class="tax-flow">
+      <div class="tax-step"><b>1. Setting</b><small>PKP, NPWP, NITKU</small></div>
+      <div class="tax-step"><b>2. Transaksi</b><small>Sales & Expense</small></div>
+      <div class="tax-step"><b>3. Validasi</b><small>DPP, PPN, NPWP</small></div>
+      <div class="tax-step"><b>4. Rekap</b><small>Masa pajak</small></div>
+      <div class="tax-step"><b>5. Export</b><small>Draft Coretax</small></div>
+    </div><div class="tax-warn">Catatan: format final upload Coretax harus tetap dicocokkan dengan template resmi DJP terbaru. Modul ini menyiapkan draft dan rekap agar data lebih siap.</div></div>`;
+  }
+  if(tab==='settings'){
+    const s=db.taxSettings;
+    taxBody.innerHTML=`<div class="card"><h3>Setting Pajak Perusahaan</h3><div class="grid2">
+      <div class="fg"><label>Nama WP/PKP</label><input id="taxName" class="ctrl" value="${safe(s.nama||'')}"></div>
+      <div class="fg"><label>NPWP</label><input id="taxNPWP" class="ctrl" value="${safe(s.npwp||'')}"></div>
+      <div class="fg"><label>NITKU</label><input id="taxNITKU" class="ctrl" value="${safe(s.nitku||'')}"></div>
+      <div class="fg"><label>Tarif PPN %</label><input id="taxPPN" class="ctrl" value="${safe(s.ppnRate||11)}"></div>
+      <div class="fg"><label>Tarif PPh Default %</label><input id="taxPPh" class="ctrl" value="${safe(s.pphRate||2)}"></div>
+      <div class="fg"><label>PKP?</label><label><input id="taxPKP" type="checkbox" ${s.pkp?'checked':''}> Perusahaan PKP</label></div>
+      <div class="fg full"><label>Alamat Pajak</label><input id="taxAddress" class="ctrl" value="${safe(s.alamat||'')}"></div>
+    </div><button class="btn primary" onclick="saveTaxSettings()">Simpan Setting Pajak</button></div>`;
+  }
+  if(tab==='out'){
+    const rows=sm.out.map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3]||'-')}</td><td>${safe(r[4])}</td><td>${safe(r[5])}</td><td>${taxStatus(r[7])}</td><td>${safe(r[8])}</td></tr>`).join('');
+    taxBody.innerHTML=taxTable(['No Dokumen','Tanggal','Customer','NPWP','DPP','PPN','Status','Keterangan'],rows,`<button class="btn green" onclick="addTaxOut()">＋ Pajak Keluaran</button><button class="btn blue" onclick="downloadTaxXML('out')">Export XML Draft</button><button class="btn soft" onclick="downloadTaxCSV('out')">CSV Review</button>`);
+  }
+  if(tab==='in'){
+    const rows=sm.inn.map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3]||'-')}</td><td>${safe(r[4])}</td><td>${safe(r[5])}</td><td>${taxStatus(r[7])}</td><td>${safe(r[8])}</td></tr>`).join('');
+    taxBody.innerHTML=taxTable(['No Dokumen','Tanggal','Vendor','NPWP','DPP','PPN','Status','Keterangan'],rows,`<button class="btn green" onclick="addTaxIn()">＋ Pajak Masukan</button><button class="btn blue" onclick="downloadTaxXML('in')">Export XML Draft</button><button class="btn soft" onclick="downloadTaxCSV('in')">CSV Review</button>`);
+  }
+  if(tab==='pph'){
+    const rows=sm.wh.map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${safe(r[4])}</td><td>${safe(r[5])}</td><td>${safe(r[6])}</td><td>${safe(r[7])}</td><td>${taxStatus(r[8])}</td></tr>`).join('');
+    taxBody.innerHTML=taxTable(['No','Tanggal','Pihak','Jenis PPh','Objek','DPP','Tarif','PPh','Status'],rows,`<button class="btn green" onclick="addPPh()">＋ PPh</button><button class="btn blue" onclick="downloadTaxCSV('pph')">Export PPh</button>`);
+  }
+  if(tab==='spt'){
+    taxBody.innerHTML=`<div class="card"><h3>Rekap Masa Pajak ${safe(taxFilter.period)}</h3><table><tbody>
+      <tr><td>DPP Pajak Keluaran</td><td>${rp(sm.dppOut)}</td></tr>
+      <tr><td>PPN Keluaran</td><td>${rp(sm.ppnOut)}</td></tr>
+      <tr><td>DPP Pajak Masukan</td><td>${rp(sm.dppIn)}</td></tr>
+      <tr><td>PPN Masukan</td><td>${rp(sm.ppnIn)}</td></tr>
+      <tr><td>PPh Potong/Pungut</td><td>${rp(sm.pph)}</td></tr>
+      <tr><td><b>PPN Kurang/Lebih Bayar</b></td><td><b>${rp(sm.payable)}</b></td></tr>
+    </tbody></table><div class="tax-note">Gunakan rekap ini untuk cek masa pajak sebelum membuat file final Coretax.</div></div>`;
+  }
+  if(tab==='coretax'){
+    taxBody.innerHTML=`<div class="card"><h3>Coretax Prep</h3><p>Siapkan file draft pajak dalam bentuk XML/CSV review untuk dicek sebelum upload ke Coretax DJP.</p><div class="head-actions" style="margin-top:14px">
+      <button class="btn blue" onclick="downloadTaxXML('out')">Export XML PPN Keluaran</button>
+      <button class="btn blue" onclick="downloadTaxXML('in')">Export XML PPN Masukan</button>
+      <button class="btn soft" onclick="downloadTaxCSV('summary')">Export Rekap CSV</button>
+    </div><div class="tax-warn">Penting: struktur XML ini adalah draft internal. Upload final wajib menyesuaikan template resmi Coretax DJP yang berlaku.</div></div>`;
+  }
+}
+function saveTaxSettings(){
+  if(blockTrial&&blockTrial('Simpan Setting Pajak'))return;
+  db.taxSettings={pkp:taxPKP.checked,npwp:taxNPWP.value,nitku:taxNITKU.value,nama:taxName.value,alamat:taxAddress.value,ppnRate:Number(taxPPN.value||11),pphRate:Number(taxPPh.value||2),coretaxReady:true};
+  save().then(()=>{toast('Setting pajak tersimpan');renderTax()});
+}
+function addTaxOut(){
+  if(blockTrial&&blockTrial('Tambah Pajak Keluaran'))return;
+  db.taxInvoices=db.taxInvoices||[];
+  db.taxInvoices.unshift(['FPK/'+Date.now(),today(),'Customer Baru','',rp(0),rp(0),'Belum Lunas','Draft','Manual']);
+  save().then(()=>renderTaxTab('out'));
+}
+function addTaxIn(){
+  if(blockTrial&&blockTrial('Tambah Pajak Masukan'))return;
+  db.taxInputs=db.taxInputs||[];
+  db.taxInputs.unshift(['FPM/'+Date.now(),today(),'Vendor Baru','',rp(0),rp(0),'Belum Lunas','Draft','Manual']);
+  save().then(()=>renderTaxTab('in'));
+}
+function addPPh(){
+  if(blockTrial&&blockTrial('Tambah PPh'))return;
+  db.taxWithholding=db.taxWithholding||[];
+  db.taxWithholding.unshift(['PPh/'+Date.now(),today(),'Pihak Baru','PPh 23','Jasa',rp(0),'2%',rp(0),'Draft']);
+  save().then(()=>renderTaxTab('pph'));
+}
+function xmlEsc(v){return String(v??'').replace(/[<>&'"]/g,m=>({'<':'&lt;','>':'&gt;','&':'&amp;',"'":'&apos;','"':'&quot;'}[m]))}
+function buildTaxXML(type='out'){
+  ensureTaxModule();
+  const s=db.taxSettings, rows=type==='out'?taxSummary().out:taxSummary().inn;
+  const label=type==='out'?'PajakKeluaran':'PajakMasukan';
+  const items=rows.map(r=>`  <TaxDocument>
+    <No>${xmlEsc(r[0])}</No>
+    <Date>${xmlEsc(r[1])}</Date>
+    <Counterparty>${xmlEsc(r[2])}</Counterparty>
+    <NPWP>${xmlEsc(r[3]||'')}</NPWP>
+    <DPP>${taxNum(r[4])}</DPP>
+    <PPN>${taxNum(r[5])}</PPN>
+    <Status>${xmlEsc(r[7]||'Draft')}</Status>
+  </TaxDocument>`).join('\n');
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<CoretaxDraft type="${label}">
+  <Taxpayer>
+    <Name>${xmlEsc(s.nama||db.company?.name||'')}</Name>
+    <NPWP>${xmlEsc(s.npwp||'')}</NPWP>
+    <NITKU>${xmlEsc(s.nitku||'')}</NITKU>
+    <Address>${xmlEsc(s.alamat||'')}</Address>
+  </Taxpayer>
+  <Period>${xmlEsc(taxFilter.period)}</Period>
+${items}
+</CoretaxDraft>`;
+}
+function downloadTaxXML(type='out'){
+  if(blockTrial&&blockTrial('Export Coretax XML'))return;
+  download(`coretax-${type}-${taxFilter.period}.xml`,buildTaxXML(type),'application/xml');
+}
+function downloadTaxCSV(type='summary'){
+  if(blockTrial&&blockTrial('Export Pajak CSV'))return;
+  ensureTaxModule();
+  let rows=[['Jenis','No','Tanggal','Pihak','NPWP','DPP','PPN/PPh','Status']];
+  if(type==='out'||type==='summary') taxSummary().out.forEach(r=>rows.push(['PPN Keluaran',r[0],r[1],r[2],r[3],r[4],r[5],r[7]]));
+  if(type==='in'||type==='summary') taxSummary().inn.forEach(r=>rows.push(['PPN Masukan',r[0],r[1],r[2],r[3],r[4],r[5],r[7]]));
+  if(type==='pph'||type==='summary') taxSummary().wh.forEach(r=>rows.push(['PPh',r[0],r[1],r[2],'-',r[5],r[7],r[8]]));
+  const csv=rows.map(r=>r.map(c=>`"${String(c??'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  download(`tax-${type}-${taxFilter.period}.csv`,csv,'text/csv');
+}
+function renderTax(){
+  ensureTaxModule();
+  headActions.innerHTML=`<button class="btn blue" onclick="downloadTaxXML('out')">Export XML Keluaran</button><button class="btn soft" onclick="downloadTaxCSV('summary')">Export Rekap</button>`;
+  const months=Array.from({length:12},(_,i)=>String(i+1).padStart(2,'0')).map(m=>`<option ${taxFilter.period.slice(5)===m?'selected':''}>${m}</option>`).join('');
+  const y=taxFilter.period.slice(0,4);
+  moduleContent.innerHTML=`<div class="acc-period"><div class="fg"><label>Tahun Pajak</label><input id="taxYear" class="ctrl" value="${y}"></div><div class="fg"><label>Masa Pajak</label><select id="taxMonthSel" class="ctrl">${months}</select></div><button class="btn primary" onclick="taxFilter.period=taxYear.value+'-'+taxMonthSel.value;renderTax()">Terapkan</button></div>
+  <div class="tax-tabs">
+    <button id="tax-dashboard" class="tax-tab active" onclick="setTaxTab('dashboard')">Dashboard Pajak</button>
+    <button id="tax-settings" class="tax-tab" onclick="setTaxTab('settings')">Setting</button>
+    <button id="tax-out" class="tax-tab" onclick="setTaxTab('out')">PPN Keluaran</button>
+    <button id="tax-in" class="tax-tab" onclick="setTaxTab('in')">PPN Masukan</button>
+    <button id="tax-pph" class="tax-tab" onclick="setTaxTab('pph')">PPh</button>
+    <button id="tax-spt" class="tax-tab" onclick="setTaxTab('spt')">Rekap SPT</button>
+    <button id="tax-coretax" class="tax-tab" onclick="setTaxTab('coretax')">Coretax Prep</button>
+  </div><div id="taxBody"></div>`;
+  renderTaxTab('dashboard');
+}
+
 function renderAccounting(){
-  ensureAccountingPro();
-  headActions.innerHTML=`<button class="btn green" onclick="openJournalModal()">＋ Jurnal</button><button class="btn blue" onclick="openAccountModal()">＋ Akun</button><button class="btn soft" onclick="exportAccountingReport()">Export Laporan</button>`;
-  moduleContent.innerHTML=`${accPeriodHTML()}<div class="acc-tabs"><button id="tab-dashboard" class="acc-tab active" onclick="setAccTab('dashboard')">Dashboard</button><button id="tab-coa" class="acc-tab" onclick="setAccTab('coa')">COA</button><button id="tab-journal" class="acc-tab" onclick="setAccTab('journal')">Jurnal Umum</button><button id="tab-ledger" class="acc-tab" onclick="setAccTab('ledger')">Buku Besar</button><button id="tab-trial" class="acc-tab" onclick="setAccTab('trial')">Neraca Saldo</button><button id="tab-profit" class="acc-tab" onclick="setAccTab('profit')">Laba/Rugi</button><button id="tab-balance" class="acc-tab" onclick="setAccTab('balance')">Neraca</button><button id="tab-cashflow" class="acc-tab" onclick="setAccTab('cashflow')">Arus Kas</button></div><div id="accBody"></div>`;
+  ensureAccountingAdvanced();
+  headActions.innerHTML=`<button class="btn green" onclick="openJournalModal()">＋ Jurnal</button><button class="btn blue" onclick="openAccountModal()">＋ Akun</button><button class="btn soft" onclick="exportAccountingReport&&exportAccountingReport()">Export Laporan</button>`;
+  moduleContent.innerHTML=`
+    ${typeof accPeriodHTML==='function'?accPeriodHTML():''}
+    <div class="acc-tabs">
+      <button id="tab-dashboard" class="acc-tab active" onclick="setAccTab('dashboard')">Control Center</button>
+      <button id="tab-ar" class="acc-tab" onclick="setAccTab('ar')">AR / Piutang</button>
+      <button id="tab-ap" class="acc-tab" onclick="setAccTab('ap')">AP / Hutang</button>
+      <button id="tab-bank" class="acc-tab" onclick="setAccTab('bank')">Bank & Kas</button>
+      <button id="tab-reconcile" class="acc-tab" onclick="setAccTab('reconcile')">Rekonsiliasi</button>
+      <button id="tab-asset" class="acc-tab" onclick="setAccTab('asset')">Fixed Asset</button>
+      <button id="tab-budget" class="acc-tab" onclick="setAccTab('budget')">Budgeting</button>
+      <button id="tab-recurring" class="acc-tab" onclick="setAccTab('recurring')">Recurring</button>
+      <button id="tab-closing" class="acc-tab" onclick="setAccTab('closing')">Closing</button>
+      <button id="tab-audit" class="acc-tab" onclick="setAccTab('audit')">Audit Trail</button>
+      <button id="tab-journal" class="acc-tab" onclick="setAccTab('journal')">Jurnal</button>
+      <button id="tab-ledger" class="acc-tab" onclick="setAccTab('ledger')">Buku Besar</button>
+      <button id="tab-trial" class="acc-tab" onclick="setAccTab('trial')">Neraca Saldo</button>
+      <button id="tab-profit" class="acc-tab" onclick="setAccTab('profit')">Laba/Rugi</button>
+      <button id="tab-balance" class="acc-tab" onclick="setAccTab('balance')">Neraca</button>
+      <button id="tab-cashflow" class="acc-tab" onclick="setAccTab('cashflow')">Arus Kas</button>
+    </div>
+    <div id="accBody"></div>`;
   renderAccountingTab('dashboard');
 }
+
 
 
 function openExpense(i=null){if(blockTrial('Pengeluaran'))return;const r=i!=null?db.expenses[i]:[nextNo('EXP',db.expenses.length),'','Operasional',today(),'Rp 0','Lunas'];showModal(i!=null?'Edit Pengeluaran':'Catat Pengeluaran',`<div class="fg"><label>No</label><input id="expNo" class="ctrl" value="${safe(r[0])}"></div><div class="fg"><label>Keterangan</label><input id="expDesc" class="ctrl" value="${safe(r[1])}"></div><div class="fg"><label>Kategori</label><select id="expCat" class="ctrl">${['Operasional','Pembelian','Gaji','Transport','Marketing','Lainnya'].map(x=>`<option ${r[2]===x?'selected':''}>${x}</option>`).join('')}</select></div><div class="fg"><label>Tanggal</label><input id="expDate" type="date" class="ctrl" value="${r[3]||today()}"></div><div class="fg"><label>Jumlah</label><input id="expAmt" class="ctrl" value="${safe(r[4])}"></div><div class="fg"><label>Status</label><select id="expStatus" class="ctrl"><option ${r[5]==='Lunas'?'selected':''}>Lunas</option><option ${r[5]==='Pending'?'selected':''}>Pending</option></select></div>`,`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveExpense(${i==null?'null':i})">Simpan</button>`)}async function saveExpense(i){if(blockTrial('Simpan Pengeluaran'))return;const r=[expNo.value,expDesc.value,expCat.value,expDate.value,expAmt.value,expStatus.value];if(i===null){db.expenses.unshift(r);ensureAccountingPro();db.journal.unshift([expDate.value,expNo.value,'Beban Operasional','Kas',expDesc.value,accNum(expAmt.value),'Auto dari pengeluaran'])}else db.expenses[i]=r;await save();closeModal();renderAccounting();toast('Pengeluaran tersimpan')}

@@ -1,0 +1,19 @@
+XLifeWorks Accounting Advanced v36
+
+Modul lanjutan Accounting:
+1. Accounting Control Center
+2. AR / Piutang Usaha
+3. AP / Hutang Usaha
+4. Bank & Kas
+5. Rekonsiliasi Bank
+6. Fixed Asset & Penyusutan
+7. Budgeting
+8. Recurring Journal
+9. Closing Period
+10. Audit Trail Accounting
+11. Export AR/AP/Bank/Audit
+12. Tetap membawa Jurnal, Buku Besar, Neraca Saldo, Laba/Rugi, Neraca, dan Arus Kas
+
+Upload minimal:
+- app.html
+- aset logo/icon bila belum ada di hosting

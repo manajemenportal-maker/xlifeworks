@@ -1,0 +1,18 @@
+XLifeWorks Tax/Coretax Restored v37
+
+Perbaikan:
+- Menu Tax/Coretax ditambahkan kembali ke navigasi aplikasi.
+- Role Owner/Admin/Finance/Trial diberi akses menu tax.
+- Route setModule('tax') dipastikan aktif.
+- Dashboard pajak.
+- Setting PKP, NPWP, NITKU, tarif PPN/PPh.
+- PPN Keluaran dari Sales/Invoice.
+- PPN Masukan dari Expense/Vendor.
+- PPh potong/pungut.
+- Rekap SPT masa pajak.
+- Coretax Prep.
+- Export XML Draft Coretax.
+- Export CSV Review Pajak.
+
+Catatan:
+- File XML masih draft internal dan harus dicocokkan dengan template resmi Coretax DJP terbaru sebelum upload final.
