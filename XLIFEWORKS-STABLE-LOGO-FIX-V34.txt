@@ -1,0 +1,21 @@
+XLifeWorks Stable Logo Fix v34
+
+Perbaikan:
+- Rollback dari v33 force-brand yang bisa membuat loading gantung.
+- Logo XLifeWorks kembali memakai aset awal dari versi stabil.
+- Tidak lagi membuat logo X yang jelek.
+- Sidebar kiri atas tidak membaca brand lama dari Firebase; tampilannya dipaksa XLifeWorks + Business Operating System.
+- Tidak ada await save tambahan di proses boot.
+- Splash diberi fallback auto-hide 2.2 detik agar tidak menggantung di depan aplikasi.
+- Logo memakai cache buster ?v=34.
+
+Upload wajib:
+- app.html
+- index.html
+- admin-license.html
+- xlifeworks-logo-3d-transparent.png
+- xlifeworks-logo-3d.png
+- favicon/app icon files
+
+Setelah upload:
+- lakukan Ctrl+F5.
