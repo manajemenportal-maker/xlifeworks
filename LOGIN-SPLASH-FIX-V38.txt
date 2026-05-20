@@ -1,0 +1,15 @@
+XLifeWorks Login/Splash Fix v38
+
+Perbaikan:
+- Splash/loading "Harap tunggu sebentar" tidak boleh menggantung.
+- Splash pointer-events dimatikan agar tidak menutup aplikasi.
+- Auto hide splash setelah 2.6 detik saat load dan 5 detik saat proses login.
+- Error login/boot ditampilkan jelas di bawah layar.
+- boot() dibungkus try/catch/finally.
+- setModule() dibungkus try/catch agar error menu tidak menahan loading.
+- Tax/Coretax dari v37 tetap dipertahankan.
+- Accounting Advanced dari v36 tetap dipertahankan.
+
+Upload minimal:
+- app.html
+- file logo/icon jika belum ada.

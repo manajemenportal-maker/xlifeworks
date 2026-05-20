@@ -296,9 +296,20 @@
 .tax-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}.tax-step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:12px;text-align:center}.tax-step b{display:block;color:#0f172a;font-size:13px}.tax-step small{color:#64748b;line-height:1.4}
 @media(max-width:1100px){.tax-grid{grid-template-columns:repeat(2,1fr)}.tax-flow{grid-template-columns:1fr}}@media(max-width:640px){.tax-grid{grid-template-columns:1fr}.tax-tabs{display:grid}}
 
+
+/* v39 stable login fix */
+.splash-screen{pointer-events:none!important}
+.splash-screen.hidden{display:none!important}
+.login-error-box{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:10000;background:#fff1f2;color:#be123c;border:1px solid #fecdd3;border-radius:18px;padding:12px 16px;box-shadow:0 18px 45px rgba(15,23,42,.18);font-weight:800;max-width:min(92vw,680px);display:none}
+.login-error-box.show{display:block}
+.force-enter-btn{position:fixed;right:18px;bottom:18px;z-index:10001;border:0;border-radius:999px;background:#0f172a;color:white;padding:10px 14px;font-weight:900;box-shadow:0 16px 40px rgba(15,23,42,.25);display:none}
+.force-enter-btn.show{display:block}
+
 </style>
 </head>
 <body>
+  <div id="loginErrorBox" class="login-error-box"></div>
+  <button id="forceEnterBtn" class="force-enter-btn" onclick="safeHideSplash()">Lewati Loading</button>
   <div class="splash-screen" id="splashScreen">
     <div class="splash-card">
       <img src="xlifeworks-logo-3d-transparent.png?v=34" alt="XLifeWorks" class="splash-logo" />
@@ -380,21 +391,51 @@ let user=null,tenantId=null,member=null,db=null,active='dashboard',editModule=nu
 function rp(n){return 'Rp '+Number(n||0).toLocaleString('id-ID')}function num(v){return Number(String(v||'').replace(/[^0-9]/g,''))||0}function clone(o){return JSON.parse(JSON.stringify(o))}function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(()=>toastEl.classList.remove('show'),1800)}function safe(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
 function tabAuth(m){['login','owner','trial','staff'].forEach(x=>{document.getElementById('tab'+cap(x)).classList.toggle('active',x===m);document.getElementById('f'+cap(x)).classList.toggle('active',x===m)});authError.style.display='none'}function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}function authMsg(m){authError.textContent=m;authError.style.display='block'}
 
+
+function showLoginError(msg){
+  try{
+    const box=document.getElementById('loginErrorBox');
+    if(box){box.textContent=msg||'Terjadi error saat membuka aplikasi.';box.classList.add('show');setTimeout(()=>box.classList.remove('show'),9000)}
+  }catch(e){}
+}
+function safeHideSplash(){
+  try{
+    const el=document.getElementById('splashScreen');
+    if(el){el.classList.add('hidden');el.style.display='none'}
+  }catch(e){}
+  try{
+    const fb=document.getElementById('forceEnterBtn');
+    if(fb)fb.classList.remove('show');
+  }catch(e){}
+  try{btnDone&&btnDone('loginBtn');btnDone&&btnDone('ownerBtn');btnDone&&btnDone('staffBtn');btnDone&&btnDone('trialBtn')}catch(e){}
+}
+function scheduleSplashSafety(ms=3500){
+  clearTimeout(window.__xlwSplashSafety);
+  window.__xlwSplashSafety=setTimeout(safeHideSplash,ms);
+  setTimeout(()=>{const b=document.getElementById('forceEnterBtn'); if(b)b.classList.add('show')},2200);
+}
+window.addEventListener('error',function(e){
+  safeHideSplash();
+  showLoginError('Error aplikasi: '+(e.message||'Tidak diketahui'));
+});
+window.addEventListener('unhandledrejection',function(e){
+  safeHideSplash();
+  showLoginError('Error proses: '+((e.reason&&e.reason.message)||e.reason||'Tidak diketahui'));
+});
+window.addEventListener('load',function(){scheduleSplashSafety(2800)});
+
 function showFast(title,text){
   const el=document.getElementById('splashScreen');
-  if(el){el.classList.remove('hidden')}
+  if(el){el.classList.remove('hidden');el.style.display='flex'}
   if(document.getElementById('splashTitle')) splashTitle.textContent=title||'Memproses...';
   if(document.getElementById('splashText')) splashText.textContent=text||'Mohon tunggu sebentar';
   if(document.getElementById('splashStatus')) splashStatus.textContent='Sedang memproses';
+  scheduleSplashSafety(5500);
 }
-function hideFast(){
-  const el=document.getElementById('splashScreen');
-  if(el){el.classList.add('hidden')}
-  btnDone&&btnDone('loginBtn');btnDone&&btnDone('ownerBtn');btnDone&&btnDone('staffBtn');btnDone&&btnDone('trialBtn');
-}
+function safeHideSplash(){safeHideSplash()}
 function btnBusy(id,label){const b=document.getElementById(id);if(b){b.dataset.old=b.innerHTML;b.innerHTML=label||'Memproses...';b.disabled=true}}
 function btnDone(id){const b=document.getElementById(id);if(b){b.innerHTML=b.dataset.old||b.innerHTML;b.disabled=false}}
-function fastErr(e){hideFast();btnDone('loginBtn');btnDone('ownerBtn');btnDone('staffBtn');authMsg(readErr(e))}
+function fastErr(e){safeHideSplash();const m=readErr?readErr(e):((e&&e.message)||'Terjadi error');authMsg&&authMsg(m);showLoginError(m)}
 
 const TRIAL_DEMO_DB={company:{name:'Trial XLifeWorks Demo',brand:'XLifeWorks',plan:'Trial',website:'www.xlifeworks.web.id',wa:'085150973789',email:'',subscription:{plan:'Trial',status:'Trial',userLimit:1,activeUsers:1,pricePerUser:0,billingCycle:'trial',monthlyAmount:0,validUntil:'Trial Read-Only'}},crm:[['PT Contoh Industri','081200000001','Kawasan Industri','Pabrik','Hot','Contoh customer trial'],['CV Distribusi Nusantara','081200000002','Jakarta','Distributor','Warm','Contoh lead trial']],inventory:[['MAT-001','Bahan Baku Utama',120,'Gudang Utama','Rp 250.000',20],['FG-001','Produk Jadi A',48,'Gudang Barang Jadi','Rp 750.000',10],['SP-001','Sparepart Mesin',18,'Gudang Maintenance','Rp 125.000',5]],sales:[['INV/TRIAL/001','PT Contoh Industri','2026-05-01','2026-05-15','Rp 7.500.000','Lunas','[]']],pos:[['POS/TRIAL/001','Kasir Demo','Cabang Utama','2026-05-02','Rp 750.000','QRIS','Lunas','[]']],accounting:[['INV/TRIAL/001','PT Contoh Industri','2026-05-01','Rp 7.500.000','Lunas','Pemasukan']],expenses:[['EXP/TRIAL/001','Biaya Operasional Demo','Operasional','2026-05-03','Rp 1.250.000','Lunas']],stockMoves:[['2026-05-01','Masuk','MAT-001','Bahan Baku Utama',120,'Gudang Utama','Data trial']],project:[['Implementasi Produksi','65%','2026-06-30','Tim Operasional','Berjalan']],hr:[['Staff Demo','Supervisor Gudang','Hadir','-','Aktif']],website:[],pricing:[],staff:[['Trial User','trial@example.com','Owner Trial','Trial','Aktif']],invites:[],accounts:[['1000','Kas','Aset','Debit'],['1100','Bank','Aset','Debit'],['1200','Piutang Usaha','Aset','Debit'],['1300','Persediaan','Aset','Debit'],['2000','Hutang Usaha','Liabilitas','Kredit'],['3000','Modal Pemilik','Ekuitas','Kredit'],['4000','Pendapatan Penjualan','Pendapatan','Kredit'],['6000','Beban Operasional','Beban','Debit']],journal:[['2026-05-01','JR/TRIAL/001','Kas','Pendapatan Penjualan','Penjualan demo trial',7500000,'Trial'],['2026-05-03','JR/TRIAL/002','Beban Operasional','Kas','Biaya operasional demo',1250000,'Trial']]};
 function isTrialMode(){return (member&&member.role==='Trial')||(db&&db.company&&db.company.subscription&&db.company.subscription.status==='Trial')}
@@ -501,8 +542,8 @@ await fb.setDoc(fb.doc(fb.db,'tenants',invite.tenantId),{
 
 await boot(c.user);
 }catch(e){fastErr?fastErr(e):authMsg(readErr(e))}}
-async function login(){try{showFast&&showFast('Masuk ke XLifeWorks','Memverifikasi akun dan menyiapkan workspace...');btnBusy&&btnBusy('loginBtn','Memproses...');await fb.signInWithEmailAndPassword(fb.auth,loginEmail.value.trim(),loginPass.value.trim())}catch(e){fastErr?fastErr(e):authMsg(readErr(e))}}async function logout(){await fb.signOut(fb.auth);location.reload()}function readErr(e){if(e.code==='auth/email-already-in-use')return'Email sudah terdaftar.';if(e.code==='auth/weak-password')return'Password minimal 6 karakter.';if(e.code==='auth/invalid-credential')return'Email atau password salah.';return e.message||'Terjadi error.'}
-async function boot(u){showFast&&showFast('Memuat workspace','Menyiapkan dashboard dan data perusahaan...');user=u;let ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));if(!ms.exists()){await new Promise(r=>setTimeout(r,700));ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));}if(!ms.exists()){hideFast&&hideFast();authMsg('Akun belum punya akses perusahaan. Coba klik Login lagi atau cek dokumen members di Firestore.');return}member=ms.data();tenantId=member.tenantId;const ts=await fb.getDoc(fb.doc(fb.db,'tenants',tenantId));db=clone(defaultDB);if(ts.exists()){const raw=ts.data();if(raw.erpDataJson){try{db=JSON.parse(raw.erpDataJson)}catch(e){db=raw.erpData||clone(defaultDB)}}else if(raw.erpData){db=raw.erpData}}normalize();if(!subscriptionOK()){hideFast&&hideFast();showSubscriptionLock();return}await save();authScreen.classList.add('hidden');app.classList.remove('hidden');applyShell();setModule('dashboard');setTimeout(()=>hideFast&&hideFast(),500);btnDone&&btnDone('loginBtn');btnDone&&btnDone('ownerBtn');btnDone&&btnDone('staffBtn');btnDone&&btnDone('trialBtn')}
+async function login(){try{showFast&&showFast('Masuk ke XLifeWorks','Memverifikasi akun dan menyiapkan workspace...');btnBusy&&btnBusy('loginBtn','Memproses...');await fb.signInWithEmailAndPassword(fb.auth,loginEmail.value.trim(),loginPass.value.trim())}catch(e){safeHideSplash();fastErr?fastErr(e):authMsg(readErr(e));showLoginError(readErr(e))}}async function logout(){await fb.signOut(fb.auth);location.reload()}function readErr(e){if(e.code==='auth/email-already-in-use')return'Email sudah terdaftar.';if(e.code==='auth/weak-password')return'Password minimal 6 karakter.';if(e.code==='auth/invalid-credential')return'Email atau password salah.';return e.message||'Terjadi error.'}
+async function boot(u){showFast&&showFast('Memuat workspace','Menyiapkan dashboard dan data perusahaan...');user=u;let ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));if(!ms.exists()){await new Promise(r=>setTimeout(r,700));ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));}if(!ms.exists()){safeHideSplash();safeHideSplash();authMsg('Akun belum punya akses perusahaan. Coba klik Login lagi atau cek dokumen members di Firestore.');return}member=ms.data();tenantId=member.tenantId;const ts=await fb.getDoc(fb.doc(fb.db,'tenants',tenantId));db=clone(defaultDB);if(ts.exists()){const raw=ts.data();if(raw.erpDataJson){try{db=JSON.parse(raw.erpDataJson)}catch(e){db=raw.erpData||clone(defaultDB)}}else if(raw.erpData){db=raw.erpData}}normalize();if(!subscriptionOK()){safeHideSplash();safeHideSplash();showSubscriptionLock();return}await save();authScreen.classList.add('hidden');app.classList.remove('hidden');applyShell();setModule('dashboard');setTimeout(()=>safeHideSplash(),500);btnDone&&btnDone('loginBtn');btnDone&&btnDone('ownerBtn');btnDone&&btnDone('staffBtn');btnDone&&btnDone('trialBtn')}
 
 function subscriptionOK(){
   if(member&&member.role==='Owner'){
@@ -1034,7 +1075,7 @@ function ensureTax(){
 function taxPeriodDefault(){
   const d=new Date(); return {year:d.getFullYear(),month:String(d.getMonth()+1).padStart(2,'0')};
 }
-let taxFilter=taxPeriodDefault();
+var taxFilter=window.taxFilter||taxPeriodDefault();window.taxFilter=taxFilter;
 function taxMonth(date){return String(date||today()).slice(0,7)}
 function taxPeriod(){return `${taxFilter.year}-${taxFilter.month}`}
 function taxRate(){ensureTax();return Number(db.taxSettings.ppnRate||11)}
@@ -1403,7 +1444,7 @@ function ensureTaxModule(){
   deriveTaxInvoices();
   deriveTaxInputs();
 }
-let taxFilter={period:today().slice(0,7)};
+var taxFilter=window.taxFilter||{period:today().slice(0,7)};window.taxFilter=taxFilter;
 function taxNum(v){return Number(String(v||'').replace(/[^0-9-]/g,''))||0}
 function taxRate(){ensureTaxModule();return Number(db.taxSettings.ppnRate||11)}
 function taxPeriodMatch(d){return String(d||today()).slice(0,7)===taxFilter.period}
@@ -1663,7 +1704,7 @@ function printInvoice(i){const r=db.sales[i],items=JSON.parse(r[6]||'[]');const 
 function offerPackage(i){const p=db.pricing[i],w=String(db.company.wa||'').replace(/[^0-9]/g,'');if(!w)return alert('WA perusahaan belum diisi.');window.open('https://wa.me/62'+w.replace(/^0/,'')+'?text='+encodeURIComponent(`Halo, saya tertarik dengan ${db.company.brand}\nPaket: ${p[0]}\nHarga: ${p[2]}\nFitur: ${p[3]}`),'_blank')}function quickAdd(){if(active==='sales')openInvoice();else if(active==='pos')openPOS();else if(active==='inventory')openRecord('inventory');else if(schemas[active])openRecord(active);else setModule('crm')}
 function exportCSV(mod){if(blockTrial('Export Data'))return;if(mod==='journal'){ensureAccountingPro();const lines=['Tanggal,Ref,Debit,Kredit,Keterangan,Nominal,Catatan'].concat(db.journal.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')));download('journal.csv',lines.join('\n'),'text/csv');return}const cols=schemas[mod];if(!cols)return toast('Tidak ada export');const lines=[cols.join(',')].concat((db[mod]||[]).map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')));download(mod+'.csv',lines.join('\n'),'text/csv')}function backupData(){if(blockTrial('Backup'))return;download('backup-xlifeworks-real-'+tenantId+'.json',JSON.stringify(db,null,2),'application/json')}async function restoreBackup(e){if(blockTrial('Restore'))return;const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!d.company||!d.crm)throw Error();if(confirm('Restore data ke perusahaan ini?')){db=d;normalize();await save();applyShell();setModule('dashboard');toast('Restore berhasil')}}catch{alert('File backup tidak valid')}e.target.value=''}function download(n,c,t){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click();URL.revokeObjectURL(a.href)}async function resetCompanyData(){if(blockTrial('Reset Data'))return;if(!isPureOwner())return toast('Hanya Owner');if(confirm('Reset semua data perusahaan?')){const c=db.company,s=db.staff;db=clone(defaultDB);db.company=c;db.staff=s;await save();setModule('dashboard');toast('Data reset')}}function copyRules(){navigator.clipboard.writeText(rulesBox.innerText).then(()=>toast('Rules dicopy'))}
 function searchTable(q){const table=document.getElementById('dataTable');if(!table)return;table.querySelectorAll('tbody tr').forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q.toLowerCase())?'':'none')}
-window.addEventListener('load',()=>{if(new URLSearchParams(location.search).get('trial')==='1'){setTimeout(()=>tabAuth('trial'),250)}setTimeout(()=>hideFast&&hideFast(),1200)});window.addEventListener('load',()=>setTimeout(()=>fb.onAuthStateChanged(fb.auth,u=>{if(u)boot(u)}),300));
+window.addEventListener('load',()=>{if(new URLSearchParams(location.search).get('trial')==='1'){setTimeout(()=>tabAuth('trial'),250)}setTimeout(()=>safeHideSplash(),1200)});window.addEventListener('load',()=>setTimeout(()=>fb.onAuthStateChanged(fb.auth,u=>{if(u)boot(u)}),300));
 </script>
 </body>
 </html>

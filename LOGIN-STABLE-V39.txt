@@ -1,0 +1,16 @@
+XLifeWorks Login Stable v39
+
+Perbaikan:
+- Dibangun ulang dari v37 stabil.
+- JavaScript sudah dicek dengan node --check.
+- Splash/loading otomatis hilang dan tidak menutup klik.
+- Ada tombol Lewati Loading jika koneksi Firebase lambat.
+- Error login/boot ditampilkan jelas.
+- Tax/Coretax tetap ada.
+- Accounting Advanced tetap ada.
+- Sidebar logo X tetap ada.
+- Duplicate taxFilter declaration diperbaiki.
+
+Upload minimal:
+- app.html
+- logo/icon jika belum ada
