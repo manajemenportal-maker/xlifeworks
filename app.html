@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>XLifeWorks App</title>
+  <title>XLifeWorks Real Launch</title>
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -222,31 +222,23 @@
     @media(max-width:640px){.premium-kpis,.quick-grid{grid-template-columns:1fr}.premium-hero{border-radius:24px;padding:20px}.premium-hero h2{font-size:24px}.sub-premium{display:block}.sub-premium .head-actions{margin-top:12px}}
 
   
-.mig-hero{background:linear-gradient(135deg,#0f172a,#2563eb,#6d28d9);color:white;border-radius:30px;padding:24px;margin-bottom:18px;position:relative;overflow:hidden;box-shadow:0 24px 60px rgba(37,99,235,.22)}
-.mig-hero h2{font-size:28px;margin-bottom:8px}.mig-hero p{color:#e0e7ff;line-height:1.7;max-width:860px}
-.mig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}
-.mig-card{background:white;border:1px solid #e2e8f0;border-radius:24px;padding:18px;box-shadow:0 14px 34px rgba(15,23,42,.06);cursor:pointer;transition:.18s ease}
-.mig-card:hover{transform:translateY(-3px);box-shadow:0 24px 55px rgba(15,23,42,.11);border-color:#a5b4fc}
-.mig-card .micon{font-size:32px;margin-bottom:10px}.mig-card b{display:block;color:#0f172a;font-size:16px}.mig-card small{display:block;color:#64748b;line-height:1.5;margin-top:6px}
-.mig-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}
-.mig-step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:20px;padding:14px;text-align:center}
-.mig-step span{width:32px;height:32px;border-radius:999px;background:linear-gradient(135deg,#6d28d9,#2563eb);color:white;display:grid;place-items:center;margin:0 auto 8px;font-weight:900}
-.mig-step b{display:block;color:#0f172a}.mig-step small{color:#64748b;line-height:1.45}
-.map-table{width:100%;border-collapse:collapse;margin-top:10px}.map-table th,.map-table td{border-bottom:1px solid #e2e8f0;padding:10px;text-align:left;font-size:13px}.map-table th{background:#f8fafc;color:#475569;text-transform:uppercase;font-size:11px}
-.mig-drop{border:2px dashed #a5b4fc;border-radius:24px;padding:24px;background:#f8fafc;text-align:center;margin-top:12px}
-.mig-drop h3{margin-bottom:8px}.mig-drop p{color:#64748b;line-height:1.6}
-.mig-result{background:#ecfdf5;border:1px solid #a7f3d0;color:#047857;border-radius:18px;padding:14px;margin-top:12px;font-weight:800;white-space:pre-wrap}
-@media(max-width:1100px){.mig-grid{grid-template-columns:repeat(2,1fr)}.mig-flow{grid-template-columns:1fr}}
-@media(max-width:640px){.mig-grid{grid-template-columns:1fr}.mig-hero{border-radius:22px;padding:18px}}
+/* v44 diagnostic login patch */
+.splash-screen{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}
+.xlw-diag{position:fixed;z-index:99999;left:50%;top:14px;transform:translateX(-50%);background:#fff;color:#0f172a;border:1px solid #cbd5e1;border-radius:16px;box-shadow:0 16px 40px rgba(15,23,42,.18);padding:12px 14px;font-weight:800;max-width:min(92vw,780px);display:none}
+.xlw-diag.show{display:block}
+.xlw-diag.err{background:#fff1f2;color:#be123c;border-color:#fecdd3}
+.xlw-diag.ok{background:#ecfdf5;color:#047857;border-color:#a7f3d0}
+.xlw-diag button{margin-left:8px;border:0;border-radius:10px;background:#2563eb;color:white;padding:7px 10px;font-weight:900;cursor:pointer}
 
-  </style>
+</style>
 </head>
 <body>
+<div id="xlwDiag" class="xlw-diag"></div>
   <div class="splash-screen" id="splashScreen">
     <div class="splash-card">
-      <img src="xlifeworks-logo-3d-transparent.png?v=33" alt="XLifeWorks" class="splash-logo" />
+      <img src="xlifeworks-logo-3d-transparent.png?v=43" alt="XLifeWorks" class="splash-logo" />
       <div class="splash-title" id="splashTitle">Menyiapkan XLifeWorks...</div>
-      <div class="splash-sub" id="splashText">Memuat sistem XLifeWorks, akses pengguna, dan workspace bisnis Anda.</div>
+      <div class="splash-sub" id="splashText">Memuat branding, sistem login, dan workspace bisnis Anda.</div>
       <div class="splash-bar"><span></span></div>
       <div class="splash-status" id="splashStatus">Harap tunggu sebentar</div>
     </div>
@@ -256,10 +248,10 @@
   <section class="auth" id="authScreen">
     <div class="auth-card">
       <div class="auth-left">
-        <div class="login-badge">Enterprise Cloud Workflow ERP</div>
-        <div class="logo"><img src="xlifeworks-logo-3d-transparent.png?v=33" alt="XLifeWorks" /></div>
-        <h1>XLifeWorks untuk workflow bisnis yang rapi, cepat, dan profesional.</h1>
-        <p>Kelola workflow customer, vendor, inventory, sales, POS, accounting, tax, project, dan staff dalam satu sistem cloud yang modern.</p>
+        <div class="login-badge">Enterprise Cloud ERP</div>
+        <div class="logo"><img src="xlifeworks-logo-3d-transparent.png?v=43" alt="XLifeWorks" /></div>
+        <h1>XLifeWorks untuk operasional bisnis yang rapi, cepat, dan profesional.</h1>
+        <p>Kelola customer, vendor, penjualan, inventory, POS, accounting, tax, dan staff dalam satu sistem yang modern dan saling terhubung.</p>
         <div class="hero-metrics">
           <div class="hero-metric"><b>Multi User</b><small>Role akses owner, admin, sales, finance, gudang, kasir, dan trial.</small></div>
           <div class="hero-metric"><b>Realtime</b><small>Data operasional, laporan, dan kontrol bisnis lebih cepat dibaca.</small></div>
@@ -294,7 +286,7 @@
   <div class="trial-ribbon hidden" id="trialRibbon">TRIAL READ-ONLY • Upgrade untuk menyimpan data</div>
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
   <div class="app hidden" id="app">
-    <aside class="side" id="side"><div class="brand"><div class="mark"><img src="xlifeworks-logo-3d-transparent.png?v=33" alt="XLifeWorks" /></div><div><h1 id="brandName">XLifeWorks</h1><p>Business Operating System</p></div></div><div class="tenant"><b id="tenantName"></b><span id="tenantInfo"></span></div><nav class="nav" id="nav"></nav><div class="side-card"><strong>XLifeWorks Cloud</strong><span>Data tersimpan aman dan akses menu mengikuti role user.</span></div></aside>
+    <aside class="side" id="side"><div class="brand"><div class="mark"><img src="xlifeworks-logo-3d-transparent.png?v=43" alt="XLifeWorks" /></div><div><h1 id="brandName">XLifeWorks</h1><p>Business Operating System</p></div></div><div class="tenant"><b id="tenantName"></b><span id="tenantInfo"></span></div><nav class="nav" id="nav"></nav><div class="side-card"><strong>Cloud ERP</strong><span>Data tersimpan di Firebase dan akses menu mengikuti role user.</span></div></aside>
     <main class="main"><header class="top"><div class="top-left"><button class="menu" onclick="openMenu()">☰</button><div><div class="small-label">ERP Online</div><div class="title" id="pageTitle">Dashboard</div></div></div><div class="search">🔎 <input id="searchInput" placeholder="Cari data..." onkeyup="searchTable(this.value)"></div><div class="actions"><button class="round owner-only admin-only" data-icon="💾" onclick="backupData()">Backup</button><button class="round owner-only admin-only" data-icon="📥" onclick="restoreInput.click()">Restore</button><button class="round owner-only" data-icon="⚠️" onclick="resetCompanyData()">Reset</button><button class="profile"><span class="avatar">KS</span><span id="userLabel">User</span></button><button class="round" data-icon="⎋" onclick="logout()">Keluar</button></div></header>
       <section class="content"><section class="hero"><span class="badge">✨ ERP terintegrasi untuk bisnis</span><h2>Operasional, penjualan, stok, kasir, dan keuangan dalam satu sistem.</h2><p>Semua transaksi saling terhubung: invoice dan POS mengurangi stok, pemasukan masuk ke accounting, customer punya riwayat transaksi, dan staff hanya melihat menu sesuai role.</p><div class="hero-row"><button class="btn primary" onclick="quickAdd()">＋ Tambah Cepat</button><button class="btn dark" onclick="window.print()">Print Laporan</button></div></section>
       <section class="mobile-tools"><button class="mitem" onclick="setModule('crm')"><span class="micon">👥</span>CRM</button><button class="mitem" onclick="setModule('sales')"><span class="micon">🧾</span>Sales</button><button class="mitem" onclick="setModule('inventory')"><span class="micon">📦</span>Stok</button><button class="mitem" onclick="setModule('pos')"><span class="micon">🏪</span>POS</button><button class="mitem" onclick="setModule('accounting')"><span class="micon">💰</span>Finance</button></section>
@@ -314,26 +306,17 @@ window.firebaseLoaded=true;
 </script>
 <script>
 const STORAGE='xlifeworks_launch_v1';
-const modules=[{id:'dashboard',label:'Dashboard',icon:'📊',title:'Dashboard',sub:'Ringkasan kondisi bisnis hari ini.'},{id:'migration',label:'Migrasi',icon:'🔁',title:'Migrasi Data',sub:'Pindahkan data dari Odoo, Trello, Circle, Asana, Basecamp, Excel/CSV, dan aplikasi lama lainnya.'},{id:'crm',label:'CRM',icon:'👥',title:'CRM & Customer',sub:'Kelola customer, follow up, WhatsApp, dan riwayat transaksi.'},{id:'sales',label:'Sales',icon:'🧾',title:'Sales & Invoice',sub:'Buat invoice profesional dan kirim tagihan.'},{id:'inventory',label:'Inventory',icon:'📦',title:'Inventory & Gudang',sub:'Produk, stok masuk, stok keluar, mutasi, dan alert stok.'},{id:'pos',label:'POS',icon:'🏪',title:'POS Kasir',sub:'Keranjang multi-item, struk, dan stok otomatis.'},{id:'accounting',label:'Accounting',icon:'💰',title:'Accounting',sub:'Pemasukan, pengeluaran, piutang, dan laba/rugi.'},{id:'project',label:'Project',icon:'🗂️',title:'Project',sub:'Kelola pekerjaan dan progress tim.'},{id:'hr',label:'HR',icon:'🧑‍💼',title:'HR',sub:'Data karyawan dan absensi.'},{id:'website',label:'Website',icon:'🌐',title:'Website',sub:'Halaman website dan katalog.'},{id:'pricing',label:'Paket',icon:'💎',title:'Paket Harga',sub:'Paket produk dan penawaran.'},{id:'settings',label:'Settings',icon:'⚙️',title:'Settings',sub:'Perusahaan, staff, role, backup, dan keamanan.'}];
-const access={Owner:['migration','dashboard','crm','sales','inventory','pos','accounting','tax','project','hr','website','pricing','settings'],Admin:['migration','dashboard','crm','sales','inventory','pos','accounting','tax','project','hr','website','pricing','settings'],Sales:['dashboard','crm','sales','pricing'],Finance:['migration','dashboard','sales','accounting','pricing'],Gudang:['dashboard','inventory'],Kasir:['dashboard','pos','inventory'],Staff:['dashboard','project','hr'],Trial:['dashboard','migration','crm','sales','inventory','pos','accounting','tax','project','hr','website','settings']};
+const modules=[{id:'dashboard',label:'Dashboard',icon:'📊',title:'Dashboard',sub:'Ringkasan kondisi bisnis hari ini.'},{id:'crm',label:'CRM',icon:'👥',title:'CRM & Customer',sub:'Kelola customer, follow up, WhatsApp, dan riwayat transaksi.'},{id:'sales',label:'Sales',icon:'🧾',title:'Sales & Invoice',sub:'Buat invoice profesional dan kirim tagihan.'},{id:'inventory',label:'Inventory',icon:'📦',title:'Inventory & Gudang',sub:'Produk, stok masuk, stok keluar, mutasi, dan alert stok.'},{id:'pos',label:'POS',icon:'🏪',title:'POS Kasir',sub:'Keranjang multi-item, struk, dan stok otomatis.'},{id:'accounting',label:'Accounting',icon:'💰',title:'Accounting',sub:'Pemasukan, pengeluaran, piutang, dan laba/rugi.'},{id:'project',label:'Project',icon:'🗂️',title:'Project',sub:'Kelola pekerjaan dan progress tim.'},{id:'hr',label:'HR',icon:'🧑‍💼',title:'HR',sub:'Data karyawan dan absensi.'},{id:'website',label:'Website',icon:'🌐',title:'Website',sub:'Halaman website dan katalog.'},{id:'pricing',label:'Paket',icon:'💎',title:'Paket Harga',sub:'Paket produk dan penawaran.'},{id:'settings',label:'Settings',icon:'⚙️',title:'Settings',sub:'Perusahaan, staff, role, backup, dan keamanan.'}];
+const access={Owner:['dashboard','crm','sales','inventory','pos','accounting','tax','project','hr','website','pricing','settings'],Admin:['dashboard','crm','sales','inventory','pos','accounting','tax','project','hr','website','pricing','settings'],Sales:['dashboard','crm','sales','pricing'],Finance:['dashboard','sales','accounting','pricing'],Gudang:['dashboard','inventory'],Kasir:['dashboard','pos','inventory'],Staff:['dashboard','project','hr'],Trial:['dashboard','crm','sales','inventory','pos','accounting','tax','project','hr','website','settings']};
 const schemas={crm:['Customer','WhatsApp','Alamat','Kategori','Status','Catatan'],sales:['No Invoice','Customer','Tanggal','Jatuh Tempo','Total','Status','Items'],inventory:['SKU','Produk','Stok','Lokasi','Harga Jual','Min Stok'],pos:['No POS','Kasir','Cabang','Tanggal','Total','Metode','Status','Items'],accounting:['No','Keterangan','Tanggal','Jumlah','Status','Tipe'],expenses:['No','Keterangan','Kategori','Tanggal','Jumlah','Status'],project:['Proyek','Progress','Deadline','Tim','Status'],hr:['Karyawan','Jabatan','Absensi','Payroll','Status'],website:['Halaman','Visitor','Conversion','Status','PIC'],pricing:['Paket','Deskripsi','Harga','Fitur','Status'],staff:['Nama','Email','Jabatan','Role','Status']};
 function today(){return new Date().toISOString().slice(0,10)}
-const defaultDB={company:{name:'',brand:'XLifeWorks',plan:'Business',website:'www.xlifeworks.web.id',wa:'085150973789',email:''},crm:[],inventory:[],sales:[],pos:[],accounting:[],expenses:[],stockMoves:[],project:[],hr:[],website:[],pricing:[],staff:[],invites:[]};
+const defaultDB={company:{name:'',brand:'XLifeWorks',plan:'Business',website:'',wa:'',email:''},crm:[],inventory:[],sales:[],pos:[],accounting:[],expenses:[],stockMoves:[],project:[],hr:[],website:[],pricing:[],staff:[],invites:[]};
 let user=null,tenantId=null,member=null,db=null,active='dashboard',editModule=null,editIndex=null,cart=[];
 function rp(n){return 'Rp '+Number(n||0).toLocaleString('id-ID')}function num(v){return Number(String(v||'').replace(/[^0-9]/g,''))||0}function clone(o){return JSON.parse(JSON.stringify(o))}function toast(m){toastEl.textContent=m;toastEl.classList.add('show');setTimeout(()=>toastEl.classList.remove('show'),1800)}function safe(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;')}
 function tabAuth(m){['login','owner','trial','staff'].forEach(x=>{document.getElementById('tab'+cap(x)).classList.toggle('active',x===m);document.getElementById('f'+cap(x)).classList.toggle('active',x===m)});authError.style.display='none'}function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}function authMsg(m){authError.textContent=m;authError.style.display='block'}
 
-function showFast(title,text){
-  const el=document.getElementById('splashScreen');
-  if(el){el.classList.remove('hidden')}
-  if(document.getElementById('splashTitle')) splashTitle.textContent=title||'Memproses...';
-  if(document.getElementById('splashText')) splashText.textContent=text||'Mohon tunggu sebentar';
-  if(document.getElementById('splashStatus')) splashStatus.textContent='Sedang memproses';
-}
-function hideFast(){
-  const el=document.getElementById('splashScreen');
-  if(el){el.classList.add('hidden')}
-}
+function showFast(title,text){xlwNoSplash();console.log(title||'',text||'')}
+function hideFast(){xlwNoSplash()}
 function btnBusy(id,label){const b=document.getElementById(id);if(b){b.dataset.old=b.innerHTML;b.innerHTML=label||'Memproses...';b.disabled=true}}
 function btnDone(id){const b=document.getElementById(id);if(b){b.innerHTML=b.dataset.old||b.innerHTML;b.disabled=false}}
 function fastErr(e){hideFast();btnDone('loginBtn');btnDone('ownerBtn');btnDone('staffBtn');authMsg(readErr(e))}
@@ -444,27 +427,65 @@ await fb.setDoc(fb.doc(fb.db,'tenants',invite.tenantId),{
 await boot(c.user);
 }catch(e){fastErr?fastErr(e):authMsg(readErr(e))}}
 
-function forceXLifeWorksBrand(){
+function xlwDiag(msg,type='ok',buttons=''){
   try{
-    if(!db) return;
-    db.company=db.company||{};
-    if(!db.company.brand || String(db.company.brand).toLowerCase().includes('kalierp')) db.company.brand='XLifeWorks';
-    if(!db.company.website || String(db.company.website).toLowerCase().includes('kalimaja')) db.company.website='www.xlifeworks.web.id';
-    document.querySelectorAll('img').forEach(img=>{
-      const s=String(img.getAttribute('src')||'');
-      if(s.toLowerCase().includes('kalierp') || s.toLowerCase().includes('logo')){
-        if(!s.includes('xlifeworks-logo-3d-transparent.png')) img.setAttribute('src','xlifeworks-logo-3d-transparent.png?v=33');
-      }
-    });
-    const brandTitle=document.getElementById('brandName');
-    if(brandTitle) brandTitle.textContent='XLifeWorks';
-    const brandSub=document.querySelector('.brand p');
-    if(brandSub) brandSub.textContent='Business Operating System';
-  }catch(e){console.warn('force brand skipped',e)}
+    const b=document.getElementById('xlwDiag');
+    if(!b) return;
+    b.className='xlw-diag show '+(type||'');
+    b.innerHTML=(msg||'')+buttons;
+    console.log('[XLifeWorks]',msg);
+  }catch(e){console.log(msg)}
+}
+function xlwHideDiag(){try{const b=document.getElementById('xlwDiag');if(b)b.classList.remove('show')}catch(e){}}
+function xlwNoSplash(){try{const s=document.getElementById('splashScreen');if(s){s.classList.add('hidden');s.style.display='none';s.style.visibility='hidden';s.style.opacity='0'}}catch(e){}}
+window.addEventListener('error',e=>{xlwNoSplash();xlwDiag('Error aplikasi: '+(e.message||'Tidak diketahui'),'err')});
+window.addEventListener('unhandledrejection',e=>{xlwNoSplash();xlwDiag('Error proses: '+((e.reason&&e.reason.message)||e.reason||'Tidak diketahui'),'err')});
+window.addEventListener('load',()=>{setTimeout(()=>{xlwNoSplash();},300)});
+async function xlwRepairOwner(){
+  try{
+    xlwNoSplash();
+    const u=fb.auth.currentUser;
+    if(!u){xlwDiag('Belum login. Isi email/password lalu klik Masuk.','err');return}
+    xlwDiag('Membuat akses owner untuk akun '+(u.email||''),'ok');
+    await fb.setDoc(fb.doc(fb.db,'members',u.uid),{tenantId:u.uid,role:'Owner',name:u.displayName||u.email||'Owner',email:u.email||'',status:'Aktif',createdAt:fb.serverTimestamp(),repairedAt:fb.serverTimestamp()},{merge:true});
+    let tSnap=await fb.getDoc(fb.doc(fb.db,'tenants',u.uid));
+    if(!tSnap.exists()){
+      const data=clone(defaultDB);
+      data.company.name='XLifeWorks Workspace';
+      data.company.email=u.email||'';
+      data.company.adminName=u.displayName||u.email||'Owner';
+      data.company.brand='XLifeWorks';
+      data.company.website='www.xlifeworks.web.id';
+      data.company.subscription={plan:'Business',status:'Active',userLimit:1,activeUsers:1,pricePerUser:75000,billingCycle:'monthly',monthlyAmount:75000,validUntil:''};
+      await fb.setDoc(fb.doc(fb.db,'tenants',u.uid),{ownerUid:u.uid,companyName:data.company.name,subscription:data.company.subscription,erpDataJson:JSON.stringify(data),updatedAt:fb.serverTimestamp()},{merge:true});
+    }
+    xlwDiag('Akses owner dibuat. Membuka workspace...','ok');
+    await boot(u);
+  }catch(e){
+    console.error(e);
+    xlwDiag('Gagal repair akses: '+((e&&e.message)||e),'err');
+  }
+}
+async function xlwLoginDirect(){
+  try{
+    xlwNoSplash();xlwHideDiag();
+    const email=(document.getElementById('loginEmail')||{}).value||'';
+    const pass=(document.getElementById('loginPass')||{}).value||'';
+    if(!email||!pass){authMsg&&authMsg('Isi email dan password.');xlwDiag('Isi email dan password.','err');return}
+    xlwDiag('Memproses login '+email+'...','ok');
+    const cred=await fb.signInWithEmailAndPassword(fb.auth,email.trim(),pass.trim());
+    xlwDiag('Login berhasil. Membuka workspace...','ok');
+    await boot(cred.user);
+  }catch(e){
+    xlwNoSplash();
+    const m=(typeof readErr==='function')?readErr(e):((e&&e.message)||'Login gagal');
+    try{authMsg&&authMsg(m)}catch(_){}
+    xlwDiag(m,'err');
+  }
 }
 
-async function login(){try{showFast&&showFast('Masuk ke XLifeWorks','Memverifikasi akun dan menyiapkan workspace...');btnBusy&&btnBusy('loginBtn','Memproses...');await fb.signInWithEmailAndPassword(fb.auth,loginEmail.value.trim(),loginPass.value.trim())}catch(e){fastErr?fastErr(e):authMsg(readErr(e))}}async function logout(){await fb.signOut(fb.auth);location.reload()}function readErr(e){if(e.code==='auth/email-already-in-use')return'Email sudah terdaftar.';if(e.code==='auth/weak-password')return'Password minimal 6 karakter.';if(e.code==='auth/invalid-credential')return'Email atau password salah.';return e.message||'Terjadi error.'}
-async function boot(u){showFast&&showFast('Memuat workspace','Menyiapkan dashboard dan data perusahaan...');user=u;let ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));if(!ms.exists()){await new Promise(r=>setTimeout(r,700));ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));}if(!ms.exists()){hideFast&&hideFast();authMsg('Akun belum punya akses perusahaan. Coba klik Login lagi atau cek dokumen members di Firestore.');return}member=ms.data();tenantId=member.tenantId;const ts=await fb.getDoc(fb.doc(fb.db,'tenants',tenantId));db=clone(defaultDB);if(ts.exists()){const raw=ts.data();if(raw.erpDataJson){try{db=JSON.parse(raw.erpDataJson)}catch(e){db=raw.erpData||clone(defaultDB)}}else if(raw.erpData){db=raw.erpData}}normalize();if(!subscriptionOK()){hideFast&&hideFast();showSubscriptionLock();return}forceXLifeWorksBrand();await save();forceXLifeWorksBrand();authScreen.classList.add('hidden');app.classList.remove('hidden');applyShell();setModule('dashboard');setTimeout(()=>hideFast&&hideFast(),500);btnDone&&btnDone('loginBtn');btnDone&&btnDone('ownerBtn');btnDone&&btnDone('staffBtn');btnDone&&btnDone('trialBtn')}
+async function login(){return xlwLoginDirect()}async function logout(){await fb.signOut(fb.auth);location.reload()}function readErr(e){if(e.code==='auth/email-already-in-use')return'Email sudah terdaftar.';if(e.code==='auth/weak-password')return'Password minimal 6 karakter.';if(e.code==='auth/invalid-credential')return'Email atau password salah.';return e.message||'Terjadi error.'}
+async function boot(u){showFast&&showFast('Memuat workspace','Menyiapkan dashboard dan data perusahaan...');user=u;let ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));if(!ms.exists()){await new Promise(r=>setTimeout(r,700));ms=await fb.getDoc(fb.doc(fb.db,'members',u.uid));}if(!ms.exists()){hideFast&&hideFast();authMsg('Akun belum punya akses perusahaan. Klik Perbaiki Akses Owner bila ini akun owner.');xlwDiag('Akun berhasil login, tapi akses perusahaan belum ada.','err',' <button onclick="xlwRepairOwner()">Perbaiki Akses Owner</button>');return}member=ms.data();tenantId=member.tenantId;const ts=await fb.getDoc(fb.doc(fb.db,'tenants',tenantId));db=clone(defaultDB);if(ts.exists()){const raw=ts.data();if(raw.erpDataJson){try{db=JSON.parse(raw.erpDataJson)}catch(e){db=raw.erpData||clone(defaultDB)}}else if(raw.erpData){db=raw.erpData}}normalize();if(!subscriptionOK()){hideFast&&hideFast();showSubscriptionLock();return}await save();authScreen.classList.add('hidden');app.classList.remove('hidden');applyShell();setModule('dashboard');setTimeout(()=>hideFast&&hideFast(),500);btnDone&&btnDone('loginBtn');btnDone&&btnDone('ownerBtn');btnDone&&btnDone('staffBtn');btnDone&&btnDone('trialBtn')}
 
 function subscriptionOK(){
   if(member&&member.role==='Owner'){
@@ -529,7 +550,7 @@ function validateStaffInput(name,email,job,role,status){
 
 function normalize(){db.company=db.company||clone(defaultDB.company);['crm','inventory','sales','pos','accounting','expenses','stockMoves','project','hr','website','pricing','staff','invites'].forEach(k=>{if(!db[k])db[k]=clone(defaultDB[k]||[])});normalizeAllRows();db.pricing=(db.pricing||[]).map(p=>{if(String(p[0]).toLowerCase()==='starter')p[2]='Rp 23.000/bulan';if(String(p[0]).toLowerCase()==='business')p[2]='Rp 75.000/bulan';if(String(p[0]).toLowerCase()==='lifetime')p[2]='Rp 1.500.000';return p})}
 async function save(){localStorage.setItem(STORAGE+'_'+tenantId,JSON.stringify(db));await fb.setDoc(fb.doc(fb.db,'tenants',tenantId),{companyName:db.company.name,erpDataJson:JSON.stringify(db),updatedAt:fb.serverTimestamp()},{merge:true})}
-function isOwner(){return ['Owner','Admin'].includes(member?.role)}function isPureOwner(){return member?.role==='Owner'}function can(id){return (access[member?.role]||[]).includes(id)}function applyShell(){forceXLifeWorksBrand();brandName.textContent='XLifeWorks';const brandSub=document.querySelector('.brand p');if(brandSub)brandSub.textContent='Business Operating System';tenantName.textContent=db.company.name;tenantInfo.textContent='Role: '+member.role+' • '+user.email;userLabel.textContent=(member.name||user.displayName||'User')+' / '+member.role;document.querySelectorAll('.owner-only').forEach(e=>e.classList.toggle('hidden',!isPureOwner()));document.querySelectorAll('.admin-only').forEach(e=>e.classList.toggle('hidden',!isOwner()));renderNav()}
+function isOwner(){return ['Owner','Admin'].includes(member?.role)}function isPureOwner(){return member?.role==='Owner'}function can(id){return (access[member?.role]||[]).includes(id)}function applyShell(){brandName.textContent=db.company.brand;tenantName.textContent=db.company.name;tenantInfo.textContent='Role: '+member.role+' • '+user.email;userLabel.textContent=(member.name||user.displayName||'User')+' / '+member.role;document.querySelectorAll('.owner-only').forEach(e=>e.classList.toggle('hidden',!isPureOwner()));document.querySelectorAll('.admin-only').forEach(e=>e.classList.toggle('hidden',!isOwner()));renderNav()}
 function renderNav(){nav.innerHTML=modules.filter(m=>can(m.id)).map(m=>`<button class="${m.id===active?'active':''}" onclick="setModule('${m.id}')"><i>${m.icon}</i>${m.label}</button>`).join('')}
 function setModule(id){
   if(!can(id)){toast('Role tidak punya akses');id='dashboard'}
@@ -539,7 +560,6 @@ function setModule(id){
   renderNav();closeMenu();updateBottom();headActions.innerHTML='';
   moduleContent.classList.remove('module-anim');void moduleContent.offsetWidth;moduleContent.classList.add('module-anim');
   if(id==='dashboard')return renderDashboard();
-  if(id==='migration')return renderMigration();
   if(id==='crm')return renderCRM();
   if(id==='sales')return renderSales();
   if(id==='inventory')return renderInventory();
@@ -591,100 +611,6 @@ function subscriptionNotice(){
   const status=s.status||'-', valid=s.validUntil||'-', amount=s.monthlyAmount?rp(s.monthlyAmount):'Rp 0';
   return `<div class="sub-premium"><div><span class="status-pill">💎 Paket ${safe(s.plan||'-')}</span><h3>Paket Saya</h3><p>Status: <b>${safe(status)}</b> • Valid sampai: <b>${safe(valid)}</b> • Estimasi tagihan: <b>${amount}</b></p></div><div class="head-actions"><a class="btn green" href="https://wa.me/6285150973789?text=Halo%2C%20saya%20mau%20perpanjang%20atau%20upgrade%20XLifeWorks.">Perpanjang / Upgrade</a></div></div>`;
 }
-
-const migrationSources=[
-  ['odoo','Odoo','ERP lama: customer, vendor, produk, invoice, purchase, accounting','🟣'],
-  ['trello','Trello','Board, list, card, task, checklist, label, member','🔵'],
-  ['circle','Circle','Project, workspace, task, team, conversation, status','🟢'],
-  ['asana','Asana','Project, task, section, assignee, due date, status','🟠'],
-  ['basecamp','Basecamp','Project, todo, message, schedule, document','🟡'],
-  ['excel','Excel / CSV','Data customer, vendor, inventory, invoice, jurnal, project','📄'],
-  ['accurate','Accurate / Jurnal.id','COA, jurnal, customer, vendor, invoice, expense','🧾'],
-  ['other','Aplikasi Lain','Import berbasis template mapping universal','⚙️']
-];
-const migrationMaps={
-  odoo:[['res.partner','CRM / Vendor','customer, vendor, PIC, alamat, NPWP'],['product.template','Inventory','SKU, nama produk, harga, stok'],['account.move','Sales / Accounting','invoice, jurnal, piutang, hutang'],['project.project','Project','nama project, customer, deadline, status']],
-  trello:[['Board','Project','nama board menjadi project'],['List','Status / Tahap','list menjadi status workflow'],['Card','Task / Pekerjaan','card menjadi aktivitas atau pekerjaan'],['Member & Label','Staff / Prioritas','member dan label menjadi PIC/prioritas']],
-  circle:[['Workspace','Project / Departemen','workspace menjadi area kerja'],['Task','Project Task','judul, PIC, status, deadline'],['Member','Staff','nama, email, role'],['Discussion','Activity Note','catatan aktivitas']],
-  asana:[['Project','Project','project menjadi pekerjaan/proyek'],['Task','Task','task, assignee, due date, status'],['Section','Tahap','section menjadi pipeline/status'],['Custom Field','Field Tambahan','prioritas, nilai, kategori']],
-  basecamp:[['Project','Project','nama proyek'],['Todo','Task','pekerjaan dan PIC'],['Message','Activity Note','catatan diskusi'],['Schedule','Deadline','tanggal dan agenda']],
-  excel:[['Customers.csv','CRM','customer, PIC, WA, email, kategori'],['Vendors.csv','Vendor / Expense','vendor, term, NPWP, kategori'],['Inventory.csv','Inventory','SKU, stok, gudang, harga'],['Journal.csv','Accounting','tanggal, debit, kredit, nominal']],
-  accurate:[['Chart of Accounts','COA','kode akun, nama akun, tipe'],['Journal','Jurnal Umum','tanggal, debit, kredit, nominal'],['Sales Invoice','Sales','customer, invoice, total, status'],['Purchase / Expense','Expense','vendor, biaya, hutang']],
-  other:[['Export CSV/Excel','Template Universal','kolom lama dipetakan ke kolom XLifeWorks'],['API Export','Data JSON','diproses ke struktur modul'],['Manual Template','Data Training','input cepat dari spreadsheet']]
-};
-let migrationState={source:'excel',preview:[]};
-function setMigrationSource(src){migrationState.source=src;renderMigration()}
-function migrationTemplateCSV(){
-  const rows=[
-    ['module','old_field','xlifeworks_field','sample'],
-    ['crm','company_name','Nama Customer','PT Contoh Industri'],
-    ['crm','phone','WhatsApp','081200000001'],
-    ['crm','email','Email','admin@contoh.co.id'],
-    ['inventory','sku','SKU','SKU-001'],
-    ['inventory','product_name','Produk/Jasa','Bahan Baku Utama'],
-    ['sales','invoice_no','No Invoice','INV-001'],
-    ['sales','amount','Total','7500000'],
-    ['project','task_name','Nama Proyek/Pekerjaan','Implementasi ERP'],
-    ['accounting','debit_account','Debit','Kas'],
-    ['accounting','credit_account','Kredit','Pendapatan Penjualan']
-  ];
-  return rows.map(r=>r.map(x=>`"${String(x).replace(/"/g,'""')}"`).join(',')).join('\n');
-}
-function downloadMigrationTemplate(){
-  if(blockTrial&&blockTrial('Download Template Migrasi'))return;
-  download('template-migrasi-xlifeworks.csv',migrationTemplateCSV(),'text/csv');
-}
-function simulateMigration(){
-  if(blockTrial&&blockTrial('Simulasi Migrasi'))return;
-  const src=migrationState.source;
-  const map=migrationMaps[src]||migrationMaps.other;
-  migrationState.preview=map.map((r,i)=>({no:i+1,source:r[0],target:r[1],field:r[2],status:'Siap Mapping'}));
-  migrationResult.innerHTML='Simulasi selesai. Data lama berhasil dibaca secara contoh dan siap dipetakan ke modul XLifeWorks.\\n\\nCatatan: untuk migrasi asli, export data dari aplikasi lama ke CSV/Excel/JSON lalu gunakan template mapping.';
-  renderMigrationPreview();
-}
-function renderMigrationPreview(){
-  const rows=(migrationState.preview||[]).map(r=>`<tr><td>${r.no}</td><td><b>${safe(r.source)}</b></td><td>${safe(r.target)}</td><td>${safe(r.field)}</td><td><span class="pill">${safe(r.status)}</span></td></tr>`).join('')||'<tr><td colspan="5">Belum ada preview. Klik Simulasi Mapping.</td></tr>';
-  if(document.getElementById('migrationPreview')) migrationPreview.innerHTML=`<table class="map-table"><thead><tr><th>No</th><th>Data Lama</th><th>Masuk ke Modul</th><th>Field Mapping</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table>`;
-}
-function renderMigration(){
-  headActions.innerHTML=`<button class="btn green" onclick="downloadMigrationTemplate()">Download Template</button><button class="btn blue" onclick="simulateMigration()">Simulasi Mapping</button>`;
-  const src=migrationState.source||'excel';
-  const cards=migrationSources.map(x=>`<div class="mig-card" onclick="setMigrationSource('${x[0]}')" style="${src===x[0]?'border-color:#6d28d9;box-shadow:0 24px 55px rgba(109,40,217,.18)':''}"><div class="micon">${x[3]}</div><b>${x[1]}</b><small>${x[2]}</small></div>`).join('');
-  const mapRows=(migrationMaps[src]||migrationMaps.other).map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('');
-  moduleContent.innerHTML=`
-    <div class="mig-hero">
-      <h2>Migrasi Data dari Aplikasi Lama</h2>
-      <p>XLifeWorks bukan hanya untuk perusahaan yang baru mulai memakai ERP. Perusahaan yang sudah menggunakan Odoo, Trello, Circle, Asana, Basecamp, Accurate, Jurnal.id, Excel/CSV, atau aplikasi sejenis bisa pindah lebih mudah melalui template mapping dan proses migrasi terarah.</p>
-      <div class="hero-actions">
-        <button class="btn primary" style="background:white;color:#2563eb" onclick="downloadMigrationTemplate()">Download Template Migrasi</button>
-        <button class="btn soft" onclick="simulateMigration()">Coba Simulasi Mapping</button>
-      </div>
-    </div>
-    <div class="card"><h3>Pilih Sumber Data Lama</h3><p class="mini">Pilih aplikasi lama customer, lalu XLifeWorks menampilkan rekomendasi mapping ke modul yang sesuai.</p><div class="mig-grid">${cards}</div></div>
-    <div class="card"><h3>Alur Migrasi yang Ditawarkan ke Customer</h3><div class="mig-flow">
-      <div class="mig-step"><span>1</span><b>Export Data</b><small>Ambil data dari aplikasi lama dalam CSV, Excel, atau JSON.</small></div>
-      <div class="mig-step"><span>2</span><b>Mapping</b><small>Samakan kolom lama dengan struktur XLifeWorks.</small></div>
-      <div class="mig-step"><span>3</span><b>Validasi</b><small>Cek customer, vendor, produk, invoice, project, dan jurnal.</small></div>
-      <div class="mig-step"><span>4</span><b>Import</b><small>Masukkan data ke modul XLifeWorks.</small></div>
-      <div class="mig-step"><span>5</span><b>Go Live</b><small>Customer mulai memakai sistem baru.</small></div>
-    </div></div>
-    <div class="grid2">
-      <div class="card"><h3>Rekomendasi Mapping: ${safe((migrationSources.find(x=>x[0]===src)||[])[1]||src)}</h3>
-        <table class="map-table"><thead><tr><th>Data Lama</th><th>Masuk ke XLifeWorks</th><th>Catatan Field</th></tr></thead><tbody>${mapRows}</tbody></table>
-      </div>
-      <div class="card"><h3>Import / Upload Data</h3>
-        <div class="mig-drop"><h3>Drop CSV / Excel / JSON di sini</h3><p>Untuk versi awal, gunakan template CSV. Fitur ini disiapkan sebagai menu penjualan migrasi; import final bisa dilakukan dari backup/template yang sudah divalidasi.</p><button class="btn green" onclick="downloadMigrationTemplate()">Download Template</button><button class="btn blue" onclick="simulateMigration()">Simulasi Mapping</button></div>
-        <div id="migrationResult" class="mig-result">Belum ada simulasi.</div>
-      </div>
-    </div>
-    <div class="card"><h3>Preview Hasil Mapping</h3><div id="migrationPreview"></div></div>
-    <div class="card"><h3>Materi Jualan untuk Merebut Customer Aplikasi Lain</h3>
-      <p><b>Kalimat penawaran:</b> “Sudah pakai aplikasi lain? Tidak perlu mulai dari nol. Tim XLifeWorks membantu migrasi data lama Anda agar customer, vendor, inventory, invoice, project, dan accounting tetap bisa dibawa ke sistem baru.”</p>
-      <p class="mini">Gunakan menu ini saat presentasi ke customer yang sudah memakai Odoo, Trello, Circle, Asana, Basecamp, Accurate, Jurnal.id, atau spreadsheet internal.</p>
-    </div>`;
-  renderMigrationPreview();
-}
-
 function renderDashboard(){
   headActions.innerHTML=`<button class="btn green" onclick="quickAdd()">＋ Quick Add</button><button class="btn blue" onclick="setModule('accounting')">Accounting</button><button class="btn soft" onclick="setModule('settings')">Settings</button>`;
   const salesTotal=sumModuleAmount('sales',4)+sumModuleAmount('pos',4);
@@ -709,7 +635,6 @@ function renderDashboard(){
     <div class="premium-kpi"><div class="ico">📈</div><small>Estimasi Laba</small><b class="${profit>=0?'balance-positive':'balance-negative'}">${rp(profit)}</b><span>Penjualan dikurangi pengeluaran.</span></div>
   </div>
   <div class="quick-grid">
-    <div class="quick-card" onclick="setModule('migration')"><div class="qico">🔁</div><b>Migrasi Data</b><small>Pindah dari Odoo, Trello, Circle, Excel, dan aplikasi lain.</small></div>
     <div class="quick-card" onclick="setModule('crm')"><div class="qico">🤝</div><b>CRM</b><small>Kelola customer dan prospek.</small></div>
     <div class="quick-card" onclick="setModule('sales')"><div class="qico">🧾</div><b>Invoice</b><small>Tagihan dan penjualan.</small></div>
     <div class="quick-card" onclick="setModule('inventory')"><div class="qico">📦</div><b>Inventory</b><small>Stok dan gudang.</small></div>
@@ -1168,27 +1093,24 @@ async function auditFixStaff(){
 async function saveSettings(){if(blockTrial('Simpan Settings'))return;db.company.name=setName.value;db.company.brand=setBrand.value;db.company.website=setWeb.value;db.company.wa=setWa.value;await save();applyShell();toast('Settings disimpan')}function createCode(){return Math.random().toString(36).slice(2,8).toUpperCase()}async function createInvite(){if(blockTrial('Invite Staff'))return;const sub=db.company.subscription;if(sub&&Number(sub.activeUsers||0)>=Number(sub.userLimit||1)){alert('Kuota user sudah penuh. Silakan upgrade jumlah user.');return}showModal('Buat Invite Staff',`<div class="fg"><label>Email Staff</label><input id="invEmail" class="ctrl"></div><div class="fg"><label>Nama / Jabatan</label><input id="invJob" class="ctrl" value="Staff"></div><div class="fg"><label>Role</label><select id="invRole" class="ctrl">${Object.keys(access).filter(x=>x!=='Owner').map(r=>`<option>${r}</option>`).join('')}</select></div>`,`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveInvite()">Buat Code</button>`)}async function createInviteFromStaff(i){const r=db.staff[i];await createInvite();setTimeout(()=>{invEmail.value=r[1];invJob.value=r[2];invRole.value=r[3]},50)}async function saveInvite(){const code=createCode();await fb.setDoc(fb.doc(fb.db,'invites',code),{tenantId,role:invRole.value,email:invEmail.value.trim(),jabatan:invJob.value.trim(),status:'Aktif',createdAt:fb.serverTimestamp()});db.invites.unshift([code,invEmail.value.trim(),invRole.value,'Aktif',today()]);await save();closeModal();renderSettings();inviteBox.innerHTML=`<b>Kode Invite:</b> <span class="pill">${code}</span><p class="mini">Kirim kode ini ke staff untuk registrasi.</p>`;toast('Invite code dibuat')}
 function openRecord(mod,i=null){if(blockTrial('Tambah/Edit Data'))return;editModule=mod;editIndex=i;const row=i!=null?db[mod][i]:schemas[mod].map(()=> '');showModal((i!=null?'Edit ':'Tambah ')+(mod),schemas[mod].map((f,j)=>`<div class="fg ${j===0?'full':''}"><label>${f}</label><input class="ctrl rec" value="${safe(row[j]||'')}"></div>`).join(''),`<button class="btn soft" onclick="closeModal()">Batal</button><button class="btn primary" onclick="saveRecord()">Simpan</button>`)}async function saveRecord(){if(blockTrial('Simpan Data'))return;let r=[...document.querySelectorAll('.rec')].map(x=>x.value.trim()||'-');if(editModule==='staff'){const msg=validateStaffInput(r[0],r[1],r[2],r[3],r[4]);if(msg){alert(msg);return}r=normalizeStaffRow(r)}if(editIndex!=null)db[editModule][editIndex]=r;else db[editModule].unshift(r);normalizeAllRows();await save();closeModal();setModule(active);toast('Data tersimpan')}async function del(mod,i){if(blockTrial('Hapus Data'))return;if(confirm('Hapus data ini?')){db[mod].splice(i,1);await save();setModule(active);toast('Data dihapus')}}function detail(mod,i){const r=db[mod][i];showModal('Detail',`<div class="full">${schemas[mod].map((c,j)=>`<div class="box"><b>${c}</b><p>${safe(r[j]||'-')}</p></div>`).join('')}</div>`,`<button class="btn soft" onclick="closeModal()">Tutup</button><button class="btn primary" onclick="openRecord('${mod}',${i})">Edit</button>`)}
 function showModal(t,b,f,w=''){modal.classList.toggle('wide',w==='wide');modalTitle.textContent=t;modalBody.innerHTML=b;modalFoot.innerHTML=f;modalBg.classList.add('show')}function closeModal(){modalBg.classList.remove('show');modal.classList.remove('wide');editModule=null;editIndex=null}function nextNo(prefix,len){const d=new Date();return `${prefix}/${d.getFullYear()}/${String(d.getMonth()+1).padStart(2,'0')}${String(d.getDate()).padStart(2,'0')}/${String(len+1).padStart(4,'0')}`}
-function printInvoice(i){const r=db.sales[i],items=JSON.parse(r[6]||'[]');const html=`<html><head><title>${r[0]}</title><style>body{font-family:Arial;padding:30px;color:#111}.top{display:flex;justify-content:space-between}.brand{font-size:24px;font-weight:900;color:#6d28d9}table{width:100%;border-collapse:collapse;margin-top:20px}td,th{border-bottom:1px solid #ddd;padding:10px;text-align:left}.total{text-align:right;font-size:20px;font-weight:bold;margin-top:18px}</style></head><body><div class="top"><div><div class="brand">${db.company.brand}</div><p>${db.company.name}<br>${db.company.website}<br>WA: ${db.company.wa}</p></div><div><h2>INVOICE</h2><p>${r[0]}<br>Tanggal: ${r[2]}<br>Jatuh Tempo: ${r[3]}</p></div></div><h3>Customer: ${r[1]}</h3><table><thead><tr><th>Produk</th><th>Qty</th><th>Harga</th><th>Total</th></tr></thead><tbody>${items.map(x=>`<tr><td>${x.name}</td><td>${x.qty}</td><td>${rp(x.price)}</td><td>${rp(x.total)}</td></tr>`).join('')}</tbody></table><div class="total">TOTAL: ${r[4]}</div><script>window.print();<\/script>
-<script>
-window.addEventListener('load',function(){
-  setTimeout(function(){
-    document.querySelectorAll('img').forEach(function(img){
-      var s=(img.getAttribute('src')||'').toLowerCase();
-      if(s.indexOf('kalierp')>=0 || s.indexOf('logo')>=0){
-        if(s.indexOf('xlifeworks-logo-3d-transparent.png')<0) img.setAttribute('src','xlifeworks-logo-3d-transparent.png?v=33');
-      }
-    });
-    var b=document.getElementById('brandName'); if(b) b.textContent='XLifeWorks';
-    var sub=document.querySelector('.brand p'); if(sub) sub.textContent='Business Operating System';
-  },300);
-});
-</script>
-
-</body></html>`;const w=window.open('','_blank');w.document.write(html);w.document.close()}function sendInvoiceWA(i){const r=db.sales[i],c=db.crm.find(x=>x[0]===r[1]),wa=c?String(c[1]).replace(/[^0-9]/g,''):'';if(!wa)return alert('WA customer belum ada di CRM.');window.open('https://wa.me/62'+wa.replace(/^0/,'')+'?text='+encodeURIComponent(`Halo ${r[1]}, berikut tagihan invoice ${r[0]} sebesar ${r[4]}. Terima kasih.`),'_blank')}function printPOS(i){const r=db.pos[i],items=JSON.parse(r[7]||'[]');const html=`<html><head><title>${r[0]}</title><style>body{font-family:Arial;max-width:320px;margin:auto;padding:18px}.c{text-align:center}.line{border-top:1px dashed #999;margin:10px 0}table{width:100%;font-size:12px}.total{font-size:17px;font-weight:bold}</style></head><body><div class="c"><b>${db.company.name}</b><br><small>${r[2]}</small></div><div class="line"></div><p>No: ${r[0]}<br>Kasir: ${r[1]}<br>Bayar: ${r[5]}<br>Tanggal: ${r[3]}</p><div class="line"></div><table>${items.map(x=>`<tr><td>${x.name} x${x.qty}</td><td style="text-align:right">${rp(x.total)}</td></tr>`).join('')}</table><div class="line"></div><div class="total">TOTAL: ${r[4]}</div><p class="c"><small>Terima kasih</small></p><script>window.print();<\/script></body></html>`;const w=window.open('','_blank');w.document.write(html);w.document.close()}
+function printInvoice(i){const r=db.sales[i],items=JSON.parse(r[6]||'[]');const html=`<html><head><title>${r[0]}</title><style>body{font-family:Arial;padding:30px;color:#111}.top{display:flex;justify-content:space-between}.brand{font-size:24px;font-weight:900;color:#6d28d9}table{width:100%;border-collapse:collapse;margin-top:20px}td,th{border-bottom:1px solid #ddd;padding:10px;text-align:left}.total{text-align:right;font-size:20px;font-weight:bold;margin-top:18px}</style></head><body><div class="top"><div><div class="brand">${db.company.brand}</div><p>${db.company.name}<br>${db.company.website}<br>WA: ${db.company.wa}</p></div><div><h2>INVOICE</h2><p>${r[0]}<br>Tanggal: ${r[2]}<br>Jatuh Tempo: ${r[3]}</p></div></div><h3>Customer: ${r[1]}</h3><table><thead><tr><th>Produk</th><th>Qty</th><th>Harga</th><th>Total</th></tr></thead><tbody>${items.map(x=>`<tr><td>${x.name}</td><td>${x.qty}</td><td>${rp(x.price)}</td><td>${rp(x.total)}</td></tr>`).join('')}</tbody></table><div class="total">TOTAL: ${r[4]}</div><script>window.print();<\/script></body></html>`;const w=window.open('','_blank');w.document.write(html);w.document.close()}function sendInvoiceWA(i){const r=db.sales[i],c=db.crm.find(x=>x[0]===r[1]),wa=c?String(c[1]).replace(/[^0-9]/g,''):'';if(!wa)return alert('WA customer belum ada di CRM.');window.open('https://wa.me/62'+wa.replace(/^0/,'')+'?text='+encodeURIComponent(`Halo ${r[1]}, berikut tagihan invoice ${r[0]} sebesar ${r[4]}. Terima kasih.`),'_blank')}function printPOS(i){const r=db.pos[i],items=JSON.parse(r[7]||'[]');const html=`<html><head><title>${r[0]}</title><style>body{font-family:Arial;max-width:320px;margin:auto;padding:18px}.c{text-align:center}.line{border-top:1px dashed #999;margin:10px 0}table{width:100%;font-size:12px}.total{font-size:17px;font-weight:bold}</style></head><body><div class="c"><b>${db.company.name}</b><br><small>${r[2]}</small></div><div class="line"></div><p>No: ${r[0]}<br>Kasir: ${r[1]}<br>Bayar: ${r[5]}<br>Tanggal: ${r[3]}</p><div class="line"></div><table>${items.map(x=>`<tr><td>${x.name} x${x.qty}</td><td style="text-align:right">${rp(x.total)}</td></tr>`).join('')}</table><div class="line"></div><div class="total">TOTAL: ${r[4]}</div><p class="c"><small>Terima kasih</small></p><script>window.print();<\/script></body></html>`;const w=window.open('','_blank');w.document.write(html);w.document.close()}
 function offerPackage(i){const p=db.pricing[i],w=String(db.company.wa||'').replace(/[^0-9]/g,'');if(!w)return alert('WA perusahaan belum diisi.');window.open('https://wa.me/62'+w.replace(/^0/,'')+'?text='+encodeURIComponent(`Halo, saya tertarik dengan ${db.company.brand}\nPaket: ${p[0]}\nHarga: ${p[2]}\nFitur: ${p[3]}`),'_blank')}function quickAdd(){if(active==='sales')openInvoice();else if(active==='pos')openPOS();else if(active==='inventory')openRecord('inventory');else if(schemas[active])openRecord(active);else setModule('crm')}
 function exportCSV(mod){if(blockTrial('Export Data'))return;if(mod==='journal'){ensureAccountingPro();const lines=['Tanggal,Ref,Debit,Kredit,Keterangan,Nominal,Catatan'].concat(db.journal.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')));download('journal.csv',lines.join('\n'),'text/csv');return}const cols=schemas[mod];if(!cols)return toast('Tidak ada export');const lines=[cols.join(',')].concat((db[mod]||[]).map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')));download(mod+'.csv',lines.join('\n'),'text/csv')}function backupData(){if(blockTrial('Backup'))return;download('backup-xlifeworks-real-'+tenantId+'.json',JSON.stringify(db,null,2),'application/json')}async function restoreBackup(e){if(blockTrial('Restore'))return;const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!d.company||!d.crm)throw Error();if(confirm('Restore data ke perusahaan ini?')){db=d;normalize();await save();applyShell();setModule('dashboard');toast('Restore berhasil')}}catch{alert('File backup tidak valid')}e.target.value=''}function download(n,c,t){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click();URL.revokeObjectURL(a.href)}async function resetCompanyData(){if(blockTrial('Reset Data'))return;if(!isPureOwner())return toast('Hanya Owner');if(confirm('Reset semua data perusahaan?')){const c=db.company,s=db.staff;db=clone(defaultDB);db.company=c;db.staff=s;await save();setModule('dashboard');toast('Data reset')}}function copyRules(){navigator.clipboard.writeText(rulesBox.innerText).then(()=>toast('Rules dicopy'))}
 function searchTable(q){const table=document.getElementById('dataTable');if(!table)return;table.querySelectorAll('tbody tr').forEach(r=>r.style.display=r.innerText.toLowerCase().includes(q.toLowerCase())?'':'none')}
 window.addEventListener('load',()=>{if(new URLSearchParams(location.search).get('trial')==='1'){setTimeout(()=>tabAuth('trial'),250)}setTimeout(()=>hideFast&&hideFast(),1200)});window.addEventListener('load',()=>setTimeout(()=>fb.onAuthStateChanged(fb.auth,u=>{if(u)boot(u)}),300));
+
+try{
+Object.assign(window,{login,xlwLoginDirect,xlwRepairOwner,xlwDiag,xlwNoSplash,tabAuth,registerOwner,registerStaff,logout,setModule});
+}catch(e){console.error(e)}
+window.addEventListener('load',function(){
+  setTimeout(function(){
+    try{
+      const b=document.getElementById('loginBtn');
+      if(b){b.onclick=function(ev){ev.preventDefault();return xlwLoginDirect()}}
+    }catch(e){xlwDiag('Binding tombol Masuk gagal: '+(e.message||e),'err')}
+  },300);
+});
+
 </script>
 </body>
 </html>

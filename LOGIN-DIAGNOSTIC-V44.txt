@@ -1,0 +1,19 @@
+XLifeWorks v44 - Login Diagnostic dari basis v43
+
+Perbaikan:
+- Tetap basis v43/v25 normal.
+- Tombol Masuk dipaksa memanggil xlwLoginDirect().
+- Fungsi login diekspos ke window.
+- Splash dimatikan total.
+- Banner diagnostik menampilkan status login/error.
+- Jika members/{uid} belum ada, muncul tombol Perbaiki Akses Owner.
+- Perbaiki Akses Owner membuat members/{uid} dan tenants/{uid}.
+- JavaScript lolos node --check.
+
+Upload minimal:
+- app.html
+
+Setelah upload:
+- Ctrl+F5
+- Klik Masuk
+- Bila muncul 'akses perusahaan belum ada', klik Perbaiki Akses Owner.

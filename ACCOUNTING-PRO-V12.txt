@@ -1,4 +1,4 @@
-XLifeWorks Accounting Pro V12
+KaliERP Accounting Pro V12
 
 Fitur baru:
 1. COA / Daftar Akun

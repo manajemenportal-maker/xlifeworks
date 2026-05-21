@@ -1,0 +1,22 @@
+XLifeWorks v43 - Rollback ke basis normal v25
+
+Basis:
+- xlifeworks-rebrand-main-v25.zip
+
+Perubahan yang dilakukan:
+- Tidak mengubah mesin login.
+- Tidak menambah patch v36-v42.
+- Hanya mengganti branding/logo menjadi XLifeWorks.
+- Website diganti menjadi www.xlifeworks.web.id.
+- Firebase internal project ID tetap kalierp-d4905 agar koneksi tidak rusak.
+- Logo diberi cache buster ?v=43.
+
+Syntax check app script:
+- True
+
+Upload minimal:
+- app.html
+- index.html jika landing juga mau ikut
+- admin-license.html jika admin panel dipakai
+- xlifeworks-logo-3d-transparent.png
+- favicon/icon bila belum ada
