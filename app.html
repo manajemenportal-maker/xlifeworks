@@ -271,6 +271,36 @@
 @media(max-width:1100px){.acc-pro-grid{grid-template-columns:repeat(2,1fr)}.acc-pro-flow{grid-template-columns:1fr}}
 @media(max-width:640px){.acc-pro-grid{grid-template-columns:1fr}.acc-pro-tabs{display:grid}}
 
+
+/* v47 Finance & Accounting Pro UI */
+.fin-hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#07111f,#1d4ed8,#6d28d9);color:white;border-radius:32px;padding:26px;margin-bottom:18px;box-shadow:0 28px 70px rgba(37,99,235,.25)}
+.fin-hero:before{content:"";position:absolute;right:-80px;top:-90px;width:260px;height:260px;border-radius:999px;background:rgba(255,255,255,.14)}
+.fin-hero:after{content:"";position:absolute;right:120px;bottom:-80px;width:170px;height:170px;border-radius:999px;background:rgba(34,211,238,.16)}
+.fin-hero h2{font-size:30px;line-height:1.15;margin-bottom:8px;position:relative;z-index:1}.fin-hero p{color:#dbeafe;line-height:1.7;max-width:960px;position:relative;z-index:1}
+.fin-hero .hero-actions{position:relative;z-index:1;margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+.fin-kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}
+.fin-card{background:linear-gradient(180deg,#fff,#f8fafc);border:1px solid #e2e8f0;border-radius:26px;padding:17px;box-shadow:0 16px 40px rgba(15,23,42,.07);position:relative;overflow:hidden}
+.fin-card:before{content:"";position:absolute;right:-40px;top:-50px;width:120px;height:120px;border-radius:999px;background:linear-gradient(135deg,rgba(37,99,235,.12),rgba(109,40,217,.10))}
+.fin-card small{display:block;color:#64748b;font-weight:900;text-transform:uppercase;font-size:11px;letter-spacing:.05em}
+.fin-card b{display:block;color:#0f172a;font-size:23px;margin-top:8px}.fin-card span{display:block;color:#64748b;font-size:12px;margin-top:5px;line-height:1.45}
+.fin-card.good b{color:#047857}.fin-card.warn b{color:#92400e}.fin-card.bad b{color:#be123c}
+.fin-tabs{display:flex;gap:8px;flex-wrap:wrap;background:#f8fafc;border:1px solid #e2e8f0;border-radius:24px;padding:8px;margin:16px 0;position:sticky;top:76px;z-index:8}
+.fin-tab{border:1px solid #e2e8f0;background:white;color:#475569;border-radius:16px;padding:10px 12px;font-weight:900;cursor:pointer;transition:.18s ease}
+.fin-tab:hover{transform:translateY(-1px);box-shadow:0 12px 24px rgba(15,23,42,.08)}
+.fin-tab.active{background:linear-gradient(135deg,#2563eb,#6d28d9);color:white;border-color:#6d28d9;box-shadow:0 12px 26px rgba(37,99,235,.20)}
+.fin-grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+.fin-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}
+.fin-step{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:12px;text-align:center}
+.fin-step b{display:block;color:#0f172a;font-size:13px}.fin-step small{color:#64748b;line-height:1.4}
+.fin-status{display:inline-flex;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:900;background:#f1f5f9;color:#475569}
+.fin-status.ok{background:#ecfdf5;color:#047857}.fin-status.warn{background:#fffbeb;color:#92400e}.fin-status.bad{background:#fff1f2;color:#be123c}
+.fin-note{background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;border-radius:18px;padding:14px;margin-top:12px;line-height:1.65}
+.fin-warn{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:18px;padding:14px;margin-top:12px;line-height:1.65}
+.fin-mini{color:#64748b;font-size:12px;line-height:1.55}
+.fin-chart{height:10px;border-radius:999px;background:#e2e8f0;overflow:hidden;margin-top:8px}.fin-chart span{display:block;height:100%;background:linear-gradient(90deg,#2563eb,#22d3ee,#6d28d9)}
+@media(max-width:1150px){.fin-kpi{grid-template-columns:repeat(2,1fr)}.fin-grid2{grid-template-columns:1fr}.fin-flow{grid-template-columns:repeat(2,1fr)}.fin-tabs{position:static}}
+@media(max-width:640px){.fin-kpi{grid-template-columns:1fr}.fin-flow{grid-template-columns:1fr}.fin-tabs{display:grid}.fin-hero{border-radius:24px;padding:20px}}
+
 </style>
 </head>
 <body>
@@ -1082,7 +1112,7 @@ function renderTaxTab(tab){
   }
 }
 
-function renderTax(){renderAccounting();setTimeout(()=>setAccProTab('tax'),50)}
+function renderTax(){renderAccounting();setTimeout(()=>setFinanceTab('tax'),50)}
 
 
 
@@ -1208,12 +1238,35 @@ function downloadCoretaxCSV(){
 }
 
 
+
 function renderAccounting(){
-  ensureAccTaxPro();
+  ensureFinancePro();
   headActions.innerHTML=`<button class="btn green" onclick="openJournalModal()">＋ Jurnal</button><button class="btn blue" onclick="openAccountModal()">＋ Akun</button><button class="btn soft" onclick="downloadCoretaxCSV()">Export Tax Review</button>`;
-  moduleContent.innerHTML=`<div class="acc-pro-tabs"><button id="accpro-control" class="acc-pro-tab active" onclick="setAccProTab('control')">Control Center</button><button id="accpro-ar" class="acc-pro-tab" onclick="setAccProTab('ar')">AR / Piutang</button><button id="accpro-ap" class="acc-pro-tab" onclick="setAccProTab('ap')">AP / Hutang</button><button id="accpro-bank" class="acc-pro-tab" onclick="setAccProTab('bank')">Bank & Kas</button><button id="accpro-asset" class="acc-pro-tab" onclick="setAccProTab('asset')">Fixed Asset</button><button id="accpro-budget" class="acc-pro-tab" onclick="setAccProTab('budget')">Budgeting</button><button id="accpro-closing" class="acc-pro-tab" onclick="setAccProTab('closing')">Closing</button><button id="accpro-tax" class="acc-pro-tab" onclick="setAccProTab('tax')">Tax / PPN-PPh</button><button id="accpro-coretax" class="acc-pro-tab" onclick="setAccProTab('coretax')">Coretax Prep</button></div><div id="accProBody"></div>`;
-  renderAccProTab('control');
+  moduleContent.innerHTML=`
+    <div class="fin-tabs">
+      <button id="fin-dashboard" class="fin-tab active" onclick="setFinanceTab('dashboard')">Dashboard Pro</button>
+      <button id="fin-coa" class="fin-tab" onclick="setFinanceTab('coa')">COA</button>
+      <button id="fin-journal" class="fin-tab" onclick="setFinanceTab('journal')">Jurnal</button>
+      <button id="fin-ledger" class="fin-tab" onclick="setFinanceTab('ledger')">Buku Besar</button>
+      <button id="fin-trial" class="fin-tab" onclick="setFinanceTab('trial')">Neraca Saldo</button>
+      <button id="fin-profit" class="fin-tab" onclick="setFinanceTab('profit')">Laba/Rugi</button>
+      <button id="fin-balance" class="fin-tab" onclick="setFinanceTab('balance')">Neraca</button>
+      <button id="fin-cashflow" class="fin-tab" onclick="setFinanceTab('cashflow')">Arus Kas</button>
+      <button id="fin-ar" class="fin-tab" onclick="setFinanceTab('ar')">AR/Piutang</button>
+      <button id="fin-ap" class="fin-tab" onclick="setFinanceTab('ap')">AP/Hutang</button>
+      <button id="fin-bank" class="fin-tab" onclick="setFinanceTab('bank')">Bank & Kas</button>
+      <button id="fin-reconcile" class="fin-tab" onclick="setFinanceTab('reconcile')">Rekonsiliasi</button>
+      <button id="fin-asset" class="fin-tab" onclick="setFinanceTab('asset')">Aset Tetap</button>
+      <button id="fin-budget" class="fin-tab" onclick="setFinanceTab('budget')">Budgeting</button>
+      <button id="fin-closing" class="fin-tab" onclick="setFinanceTab('closing')">Closing</button>
+      <button id="fin-audit" class="fin-tab" onclick="setFinanceTab('audit')">Audit Trail</button>
+      <button id="fin-tax" class="fin-tab" onclick="setFinanceTab('tax')">Tax PPN/PPh</button>
+      <button id="fin-coretax" class="fin-tab" onclick="setFinanceTab('coretax')">Coretax Prep</button>
+    </div>
+    <div id="financeBody"></div>`;
+  renderFinanceTab('dashboard');
 }
+
 
 
 
@@ -1273,6 +1326,7 @@ window.addEventListener('load',function(){
 });
 
 try{Object.assign(window,{setAccProTab,downloadCoretaxXML,downloadCoretaxCSV,renderAccounting,renderTax});}catch(e){}
+try{Object.assign(window,{setFinanceTab,downloadCoretaxXML,downloadCoretaxCSV,renderAccounting,renderTax});}catch(e){}
 </script>
 </body>
 </html>

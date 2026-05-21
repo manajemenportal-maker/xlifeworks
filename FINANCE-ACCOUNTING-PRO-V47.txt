@@ -1,0 +1,31 @@
+XLifeWorks v47 - Finance & Accounting Pro
+
+Perubahan:
+- Basis tetap v46/v45 yang login sudah stabil.
+- Logo kiri atas aplikasi tetap X transparan.
+- UI Accounting dibuat lebih premium.
+- Menu Finance & Accounting lengkap:
+  1. Dashboard Pro
+  2. COA
+  3. Jurnal
+  4. Buku Besar
+  5. Neraca Saldo
+  6. Laba/Rugi
+  7. Neraca
+  8. Arus Kas
+  9. AR/Piutang
+  10. AP/Hutang
+  11. Bank & Kas
+  12. Rekonsiliasi
+  13. Aset Tetap
+  14. Budgeting
+  15. Closing
+  16. Audit Trail
+  17. Tax PPN/PPh
+  18. Coretax Prep
+- Export XML Draft Coretax
+- Export CSV Review Pajak
+- JavaScript lolos node --check
+
+Catatan:
+- Export Coretax masih draft internal dan harus disesuaikan dengan template resmi DJP terbaru sebelum upload final.
