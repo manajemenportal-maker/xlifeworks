@@ -267,6 +267,43 @@
 @media(max-width:1100px){.finance-v50-kpis{grid-template-columns:repeat(2,1fr)}.finance-v50-grid{grid-template-columns:1fr 1fr}.finance-v50-tabs{position:static}}
 @media(max-width:640px){.finance-v50-kpis,.finance-v50-grid{grid-template-columns:1fr}.finance-v50-tabs{display:grid}.finance-v50-hero{border-radius:24px;padding:20px}.finance-v50-hero h2{font-size:26px}}
 
+
+/* v51 screenshot-like finance dashboard */
+.finance-v51-shell{background:#eef2f7;border:1px solid #dbe3ee;border-radius:28px;padding:18px}
+.finance-v51-head{margin-bottom:12px}
+.finance-v51-head h2{font-size:30px;line-height:1.1;color:#14213d;margin:0 0 6px;font-weight:900}
+.finance-v51-head p{margin:0;color:#60708a;line-height:1.6}
+.finance-v51-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 16px}
+.finance-v51-tab{border:1px solid #c9d3e2;background:#f3f6fb;color:#334155;border-radius:999px;padding:10px 14px;font-weight:800;font-size:14px;cursor:pointer;transition:.18s}
+.finance-v51-tab.active{background:#ffffff;border-color:#9ab0d3;box-shadow:0 8px 18px rgba(15,23,42,.08);color:#1e293b}
+.finance-v51-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.finance-v51-card{background:#fff;border:1px solid #d4dde9;border-radius:22px;padding:18px;min-height:170px;box-shadow:0 1px 0 rgba(255,255,255,.7) inset}
+.finance-v51-card.active{border-color:#a9bff1;box-shadow:0 0 0 3px rgba(99,102,241,.08)}
+.finance-v51-card .ico{font-size:31px;line-height:1;margin-bottom:10px}
+.finance-v51-card h3{margin:0 0 6px;font-size:18px;color:#1e293b}
+.finance-v51-card p{margin:0;color:#60708a;line-height:1.55}
+.finance-v51-bottom{display:grid;grid-template-columns:1.35fr .95fr;gap:14px;margin-top:14px}
+.finance-v51-panel{background:#fff;border:1px solid #d4dde9;border-radius:24px;padding:18px}
+.finance-v51-panel h3{margin:0;color:#1e293b;font-size:18px}
+.finance-v51-panel .sub{color:#60708a;margin:6px 0 14px;font-size:13px}
+.finance-v51-mini-actions{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.finance-v51-mini-actions .btn,.finance-v51-mini-actions button{padding:10px 14px;border-radius:14px}
+.finance-v51-list{display:grid;gap:10px}
+.finance-v51-row{display:grid;grid-template-columns:1.2fr .9fr .8fr auto;gap:10px;align-items:center;padding:11px 12px;border:1px solid #e6edf6;border-radius:16px;background:#fbfcfe}
+.finance-v51-row b{color:#152238}
+.finance-v51-chip{display:inline-flex;align-items:center;gap:8px;border-radius:14px;padding:10px 12px;background:#f8fafc;border:1px solid #e2e8f0;margin:0 8px 8px 0;font-weight:700;color:#334155}
+.finance-v51-statgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.finance-v51-stat{border:1px solid #e6edf6;background:#fbfcfe;border-radius:18px;padding:14px}
+.finance-v51-stat small{display:block;color:#64748b;font-weight:800;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.finance-v51-stat b{display:block;color:#0f172a;font-size:22px;margin-top:8px}
+.finance-v51-note{margin-top:12px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:12px;border-radius:16px;line-height:1.55}
+.finance-v51-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}
+.finance-v51-kpi{background:#fff;border:1px solid #d4dde9;border-radius:18px;padding:14px}
+.finance-v51-kpi small{display:block;color:#64748b;font-weight:800;text-transform:uppercase;font-size:11px;letter-spacing:.06em}
+.finance-v51-kpi b{display:block;color:#0f172a;font-size:22px;margin-top:8px}
+@media(max-width:1100px){.finance-v51-grid{grid-template-columns:repeat(2,1fr)}.finance-v51-bottom{grid-template-columns:1fr}.finance-v51-kpis{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.finance-v51-grid,.finance-v51-kpis,.finance-v51-statgrid{grid-template-columns:1fr}.finance-v51-row{grid-template-columns:1fr}.finance-v51-shell{padding:14px}.finance-v51-head h2{font-size:24px}}
+
 </style>
 </head>
 <body>
@@ -903,10 +940,103 @@ function renderFinanceV50Tab(tab){
     body.innerHTML=`<div class="finance-v50-hero"><span class="finance-v50-badge">🧾 Coretax Prep</span><h2>Export Draft Coretax.</h2><p>Siapkan file review XML/CSV dari data pajak sebelum disesuaikan dengan template final DJP.</p><div class="finance-v50-actions"><button class="btn primary" style="background:white;color:#6d28d9" onclick="downloadTaxXML&&downloadTaxXML('out')">Export XML PPN Keluaran</button><button class="btn soft" onclick="downloadTaxCSV&&downloadTaxCSV('summary')">Export CSV Review</button></div></div><div class="finance-v50-warn">Output masih draft internal. Final upload wajib mengikuti template resmi Coretax DJP terbaru.</div>`;
   }
 }
-function renderFinanceV50(){
+function renderFinanceV50Legacy(){
   headActions.innerHTML=`<button class="btn green" onclick="openJournalModal&&openJournalModal()">＋ Jurnal</button><button class="btn blue" onclick="openAccountModal&&openAccountModal()">＋ Akun</button><button class="btn soft" onclick="downloadTaxCSV&&downloadTaxCSV('summary')">Export Tax Review</button>`;
   moduleContent.innerHTML=`<div class="finance-v50-tabs"><button id="finv50-overview" class="finance-v50-tab active" onclick="setFinanceV50Tab('overview')">Dashboard Baru</button><button id="finv50-flow" class="finance-v50-tab" onclick="setFinanceV50Tab('flow')">Business Flow</button><button id="finv50-invoice" class="finance-v50-tab" onclick="setFinanceV50Tab('invoice')">Invoice Flow</button><button id="finv50-pos" class="finance-v50-tab" onclick="setFinanceV50Tab('pos')">POS Finance</button><button id="finv50-inventory" class="finance-v50-tab" onclick="setFinanceV50Tab('inventory')">Inventory Value</button><button id="finv50-arap" class="finance-v50-tab" onclick="setFinanceV50Tab('arap')">AR/AP</button><button id="finv50-reports" class="finance-v50-tab" onclick="setFinanceV50Tab('reports')">Financial Reports</button><button id="finv50-tax" class="finance-v50-tab" onclick="setFinanceV50Tab('tax')">Tax PPN/PPh</button><button id="finv50-coretax" class="finance-v50-tab" onclick="setFinanceV50Tab('coretax')">Coretax Prep</button></div><div id="financeV50Body"></div>`;
   renderFinanceV50Tab('overview');
+}
+
+
+// =======================
+// v51 Screenshot-like Finance Dashboard
+// =======================
+function moneyV51(v){return Number(String(v||'').replace(/[^0-9-]/g,''))||0}
+function financeV51Summary(){
+  const revenue=(db.sales||[]).reduce((s,r)=>s+moneyV51(r[4]),0)+(db.pos||[]).reduce((s,r)=>s+moneyV51(r[4]),0);
+  const expense=(db.expenses||[]).reduce((s,r)=>s+moneyV51(r[4]),0);
+  const ar=(db.sales||[]).filter(r=>String(r[5]||'').toLowerCase()!=='lunas').reduce((s,r)=>s+moneyV51(r[4]),0);
+  const ap=(db.expenses||[]).filter(r=>String(r[5]||'').toLowerCase()!=='lunas').reduce((s,r)=>s+moneyV51(r[4]),0);
+  const ppnOut=Math.round(revenue*11/111), ppnIn=Math.round(expense*11/111), ppnPay=ppnOut-ppnIn;
+  return {revenue,expense,profit:revenue-expense,ar,ap,ppnOut,ppnIn,ppnPay};
+}
+function financeV51Cards(){
+  return [
+    {id:'gl',ico:'📚',title:'Chart of Accounts',desc:'Kode akun, jurnal umum, buku besar, trial balance, dan mapping akun per cabang/divisi.'},
+    {id:'bank',ico:'🏦',title:'Kas & Bank',desc:'Kas kecil, transfer bank, rekonsiliasi bank, mutasi rekening, dan approval pembayaran.'},
+    {id:'ar',ico:'🧾',title:'Invoice & Piutang',desc:'Invoice customer, termin, aging piutang, reminder tagihan, pelunasan, dan retur penjualan.'},
+    {id:'ap',ico:'📥',title:'Hutang Vendor',desc:'Tagihan vendor, purchase invoice, aging hutang, jatuh tempo, pembayaran, dan potong pajak.'},
+    {id:'purch',ico:'🛒',title:'Pembelian',desc:'PR, PO, penerimaan barang/jasa, biaya pengiriman, dan pencocokan invoice vendor.'},
+    {id:'prod',ico:'🏭',title:'Biaya Produksi',desc:'HPP, bahan baku, tenaga kerja langsung, overhead pabrik, WIP, dan costing per batch/proyek.'},
+    {id:'stock',ico:'📦',title:'Persediaan & HPP',desc:'Stock valuation, moving average/FIFO, opname, penyesuaian stok, dan COGS otomatis.'},
+    {id:'asset',ico:'🏗️',title:'Aset Tetap',desc:'Daftar aset, depresiasi, nilai buku, disposal, mutasi aset, dan jadwal penyusutan.'},
+    {id:'payroll',ico:'👥',title:'Payroll Finance',desc:'Gaji, tunjangan, potongan, reimburse, kasbon, BPJS, dan jurnal payroll.'},
+    {id:'tax',ico:'🧮',title:'Pajak',desc:'PPN keluaran/masukan, PPh 21/23/25/29, bukti potong, e-Faktur, dan rekap SPT.'},
+    {id:'budget',ico:'📊',title:'Budgeting',desc:'Anggaran divisi, project budget, kontrol realisasi, variance, dan limit approval.'},
+    {id:'report',ico:'📈',title:'Laporan Keuangan',desc:'Laba rugi, neraca, arus kas, perubahan modal, profit per cabang, dan audit trail.'}
+  ];
+}
+function financeV51Grid(activeTab){
+  return `<div class="finance-v51-grid">${financeV51Cards().map(c=>`<div class="finance-v51-card ${activeTab===c.id?'active':''}" onclick="setFinanceV51Tab('${c.id}')"><div class="ico">${c.ico}</div><h3>${c.title}</h3><p>${c.desc}</p></div>`).join('')}</div>`;
+}
+function financeV51Recent(){
+  const sales=(db.sales||[]).slice(0,4).map(r=>`<div class="finance-v51-row"><div><b>${safe(r[0])}</b><div>${safe(r[1])}</div></div><div>${safe(r[2])}</div><div>${safe(r[4])}</div><div>${statusV50(r[5])}</div></div>`).join('');
+  const expenses=(db.expenses||[]).slice(0,4).map(r=>`<div class="finance-v51-row"><div><b>${safe(r[0])}</b><div>${safe(r[1])}</div></div><div>${safe(r[2]||r[3]||'-')}</div><div>${safe(r[4]||'-')}</div><div>${statusV50(r[5]||'Open')}</div></div>`).join('');
+  return `<div class="finance-v51-bottom"><div class="finance-v51-panel"><h3>Transaksi Keuangan Terbaru</h3><div class="sub">Jurnal kas-bank, invoice, pembayaran vendor, dan biaya operasional terbaru.</div><div class="finance-v51-mini-actions"><button class="btn green" onclick="openJournalModal&&openJournalModal()">+ Jurnal</button><button class="btn blue" onclick="setFinanceV51Tab('gl')">General Ledger</button><button class="btn soft" onclick="setFinanceV51Tab('bank')">Kas & Bank</button></div><div class="finance-v51-list">${sales||''}${expenses||'' || '<div class="empty">Belum ada transaksi.</div>'}</div></div><div class="finance-v51-panel"><h3>Pajak & Compliance</h3><div class="sub">Ringkasan pajak bulanan, kesiapan Coretax, dan kontrol kepatuhan.</div><div class="finance-v51-statgrid"><div class="finance-v51-stat"><small>PPN Keluaran</small><b>${rp(financeV51Summary().ppnOut)}</b></div><div class="finance-v51-stat"><small>PPN Masukan</small><b>${rp(financeV51Summary().ppnIn)}</b></div><div class="finance-v51-stat"><small>PPN Payable</small><b>${rp(financeV51Summary().ppnPay)}</b></div><div class="finance-v51-stat"><small>Piutang</small><b>${rp(financeV51Summary().ar)}</b></div></div><div style="margin-top:12px"><span class="finance-v51-chip">🧾 e-Faktur</span><span class="finance-v51-chip">📄 Bukti Potong</span><span class="finance-v51-chip">☁️ Coretax Prep</span><span class="finance-v51-chip">🔎 Audit Trail</span></div><div class="finance-v51-note">Output pajak dan Coretax di aplikasi ini tetap perlu disesuaikan dengan format resmi DJP terbaru sebelum upload final.</div></div></div>`;
+}
+function renderFinanceV51Home(activeTab){
+  const s=financeV51Summary();
+  return `<div class="finance-v51-shell"><div class="finance-v51-head"><h2>Finance Center</h2><p>Manajemen keuangan bisnis/pabrikan: transaksi, jurnal, kas-bank, AR/AP, biaya produksi, aset, payroll, pajak, dan laporan.</p></div><div class="finance-v51-tabs"><button id="fin51-home" class="finance-v51-tab ${activeTab==='home'?'active':''}" onclick="setFinanceV51Tab('home')">General Ledger</button><button id="fin51-bank" class="finance-v51-tab ${activeTab==='bank'?'active':''}" onclick="setFinanceV51Tab('bank')">Kas & Bank</button><button id="fin51-ar" class="finance-v51-tab ${activeTab==='ar'?'active':''}" onclick="setFinanceV51Tab('ar')">AR / Piutang</button><button id="fin51-ap" class="finance-v51-tab ${activeTab==='ap'?'active':''}" onclick="setFinanceV51Tab('ap')">AP / Hutang</button><button id="fin51-purch" class="finance-v51-tab ${activeTab==='purch'?'active':''}" onclick="setFinanceV51Tab('purch')">Purchasing</button><button id="fin51-prod" class="finance-v51-tab ${activeTab==='prod'?'active':''}" onclick="setFinanceV51Tab('prod')">Produksi</button><button id="fin51-asset" class="finance-v51-tab ${activeTab==='asset'?'active':''}" onclick="setFinanceV51Tab('asset')">Aset Tetap</button><button id="fin51-payroll" class="finance-v51-tab ${activeTab==='payroll'?'active':''}" onclick="setFinanceV51Tab('payroll')">Payroll</button><button id="fin51-tax" class="finance-v51-tab ${activeTab==='tax'?'active':''}" onclick="setFinanceV51Tab('tax')">Pajak</button><button id="fin51-report" class="finance-v51-tab ${activeTab==='report'?'active':''}" onclick="setFinanceV51Tab('report')">Laporan</button></div><div class="finance-v51-kpis"><div class="finance-v51-kpi"><small>Revenue</small><b>${rp(s.revenue)}</b></div><div class="finance-v51-kpi"><small>Biaya</small><b>${rp(s.expense)}</b></div><div class="finance-v51-kpi"><small>Laba / Rugi</small><b>${rp(s.profit)}</b></div><div class="finance-v51-kpi"><small>AR / AP</small><b>${rp(s.ar)} / ${rp(s.ap)}</b></div></div>${financeV51Grid(activeTab)}${financeV51Recent()}</div>`;
+}
+function setFinanceV51Tab(tab){
+  document.querySelectorAll('.finance-v51-tab').forEach(b=>b.classList.remove('active'));
+  const m={home:'home',bank:'bank',ar:'ar',ap:'ap',purch:'purch',prod:'prod',asset:'asset',payroll:'payroll',tax:'tax',report:'report'};
+  const btn=document.getElementById('fin51-'+(m[tab]||tab)); if(btn)btn.classList.add('active');
+  renderFinanceV51(tab);
+}
+function renderFinanceV51(tab='home'){
+  headActions.innerHTML=`<button class="btn green" onclick="openJournalModal&&openJournalModal()">＋ Jurnal</button><button class="btn blue" onclick="openAccountModal&&openAccountModal()">＋ Akun</button><button class="btn soft" onclick="downloadTaxCSV&&downloadTaxCSV('summary')">Export Pajak</button>`;
+  if(['home'].includes(tab)) { moduleContent.innerHTML=renderFinanceV51Home(tab); return; }
+  if(tab==='bank'){
+    const rows=(db.accounting||[]).filter(r=>String(r[5]||'').toLowerCase().includes('pemasukan')||String(r[5]||'').toLowerCase().includes('pengeluaran')).slice(0,12).map(r=>`<tr><td><strong>${safe(r[0])}</strong></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${safe(r[3])}</td><td>${statusV50(r[4])}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada transaksi kas/bank.</td></tr>';
+    moduleContent.innerHTML=renderFinanceV51Home(tab)+`<div class="card" style="margin-top:14px"><div class="acc-report-title"><h3>Kas & Bank</h3><small>Mutasi kas kecil, bank, dan pembayaran.</small></div><table><thead><tr><th>Ref</th><th>Keterangan</th><th>Tanggal</th><th>Nilai</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    return;
+  }
+  if(tab==='ar'){
+    const rows=(db.sales||[]).map(r=>`<tr><td><strong>${safe(r[0])}</strong></td><td>${safe(r[1])}</td><td>${safe(r[3])}</td><td>${safe(r[4])}</td><td>${statusV50(r[5])}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada invoice.</td></tr>';
+    moduleContent.innerHTML=renderFinanceV51Home(tab)+`<div class="card" style="margin-top:14px"><div class="acc-report-title"><h3>AR / Piutang</h3><small>Invoice customer, jatuh tempo, aging piutang, dan reminder.</small></div><table><thead><tr><th>Invoice</th><th>Customer</th><th>Jatuh Tempo</th><th>Nilai</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    return;
+  }
+  if(tab==='ap'){
+    const rows=(db.expenses||[]).map(r=>`<tr><td><strong>${safe(r[0])}</strong></td><td>${safe(r[1])}</td><td>${safe(r[3]||r[2])}</td><td>${safe(r[4]||'-')}</td><td>${statusV50(r[5]||'Open')}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">Belum ada hutang vendor.</td></tr>';
+    moduleContent.innerHTML=renderFinanceV51Home(tab)+`<div class="card" style="margin-top:14px"><div class="acc-report-title"><h3>AP / Hutang Vendor</h3><small>Purchase invoice, aging hutang, due date, dan pembayaran vendor.</small></div><table><thead><tr><th>Ref</th><th>Vendor / Keterangan</th><th>Tanggal</th><th>Nilai</th><th>Status</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    return;
+  }
+  if(tab==='purch'){
+    moduleContent.innerHTML=renderFinanceV51Home(tab)+`<div class="grid2" style="margin-top:14px"><div class="card"><h3>Purchasing Workflow</h3><p>Alur pembelian yang disiapkan: PR → PO → Penerimaan Barang/Jasa → Invoice Vendor → Pembayaran.</p><div class="finance-v51-mini-actions"><button class="btn soft" onclick="setModule('vendor')">Vendor</button><button class="btn soft" onclick="setModule('inventory')">Inventory</button></div></div><div class="card"><h3>Kontrol Purchasing</h3><ul><li>Permintaan pembelian / PR</li><li>Purchase order</li><li>Penerimaan barang & jasa</li><li>Biaya kirim & biaya tambahan</li><li>3-way matching PO, GR, Invoice</li></ul></div></div>`;
+    return;
+  }
+  if(tab==='prod'){
+    moduleContent.innerHTML=renderFinanceV51Home(tab)+`<div class="grid2" style="margin-top:14px"><div class="card"><h3>Biaya Produksi</h3><p>Pengendalian bahan baku, tenaga kerja langsung, overhead pabrik, work in process, dan costing per batch/project.</p><div style="margin-top:12px"><span class="finance-v51-chip">Bahan Baku</span><span class="finance-v51-chip">Tenaga Kerja</span><span class="finance-v51-chip">Overhead</span><span class="finance-v51-chip">WIP</span></div></div><div class="card"><h3>Output Produksi</h3><p>Siap untuk HPP produksi, costing produk jadi, dan analisa margin per batch / proyek.</p></div></div>`;
+    return;
+  }
+  if(tab==='asset'){
+    moduleContent.innerHTML=renderFinanceV51Home(tab)+`<div class="card" style="margin-top:14px"><div class="acc-report-title"><h3>Aset Tetap</h3><small>Daftar aset, penyusutan, nilai buku, mutasi, dan disposal.</small></div><div class="finance-v51-mini-actions"><button class="btn soft">Tambah Aset</button><button class="btn soft">Jadwal Depresiasi</button><button class="btn soft">Laporan Nilai Buku</button></div><div class="finance-v51-note">Modul ini disiapkan untuk kendaraan, mesin, bangunan, alat kerja, dan aset operasional lainnya.</div></div>`;
+    return;
+  }
+  if(tab==='payroll'){
+    moduleContent.innerHTML=renderFinanceV51Home(tab)+`<div class="grid2" style="margin-top:14px"><div class="card"><h3>Payroll Finance</h3><p>Penggajian, tunjangan, potongan, BPJS, kasbon, reimburse, dan jurnal payroll.</p><div style="margin-top:12px"><span class="finance-v51-chip">Gaji Pokok</span><span class="finance-v51-chip">Tunjangan</span><span class="finance-v51-chip">Potongan</span><span class="finance-v51-chip">BPJS</span></div></div><div class="card"><h3>Integrasi HRD</h3><p>Payroll bisa disinkronkan dengan data HRD untuk status karyawan, jabatan, dan unit kerja.</p><button class="btn soft" onclick="setModule('hr')">Buka HRD</button></div></div>`;
+    return;
+  }
+  if(tab==='tax'){
+    moduleContent.innerHTML=renderFinanceV51Home(tab)+`<div class="card" style="margin-top:14px"><div class="acc-report-title"><h3>Pajak & Coretax</h3><small>PPN, PPh, e-Faktur, bukti potong, rekap masa pajak, dan persiapan upload Coretax.</small></div><div id="taxBody" style="margin-top:12px"></div></div>`;
+    setTimeout(()=>renderTaxTab&&renderTaxTab('dashboard'),50);
+    return;
+  }
+  if(tab==='report'){
+    moduleContent.innerHTML=renderFinanceV51Home(tab)+`<div class="card" style="margin-top:14px"><div class="acc-report-title"><h3>Laporan Keuangan Lengkap</h3><small>Pilih laporan yang ingin dilihat.</small></div><div class="finance-v51-mini-actions"><button class="btn blue" onclick="renderAccountingTab('dashboard')">Dashboard</button><button class="btn blue" onclick="renderAccountingTab('journal')">Jurnal</button><button class="btn blue" onclick="renderAccountingTab('ledger')">General Ledger</button><button class="btn blue" onclick="renderAccountingTab('trial')">Trial Balance</button><button class="btn blue" onclick="renderAccountingTab('profit')">Laba Rugi</button><button class="btn blue" onclick="renderAccountingTab('balance')">Neraca</button><button class="btn blue" onclick="renderAccountingTab('cashflow')">Arus Kas</button></div><div id="accBody" style="margin-top:12px"></div></div>`;
+    setTimeout(()=>renderAccountingTab&&renderAccountingTab('dashboard'),50);
+    return;
+  }
 }
 
 function renderAccountingTab(tab){
@@ -1180,9 +1310,9 @@ try{
 }catch(e){console.warn('Expose handlers skipped',e)}
 
 
-function renderAccounting(){renderFinanceV50()}
-function renderTax(){renderFinanceV50();setTimeout(()=>setFinanceV50Tab('tax'),50)}
-try{Object.assign(window,{renderAccounting,renderTax,renderFinanceV50,setFinanceV50Tab,renderFinanceV50Tab});}catch(e){}
+function renderAccounting(){renderFinanceV51()}
+function renderTax(){renderFinanceV51('tax')}
+try{Object.assign(window,{renderAccounting,renderTax,renderFinanceV51,setFinanceV51Tab,renderFinanceV50Legacy,setFinanceV50Tab,renderFinanceV50Tab});}catch(e){}
 
 </script>
 </body>
