@@ -1,0 +1,24 @@
+XLifeWorks v50 - Finance Center benar-benar berubah visual
+
+Perubahan utama:
+- Accounting lama disimpan sebagai renderAccountingLegacy.
+- Menu Finance Center sekarang memanggil renderFinanceV50.
+- Tampilan Accounting pasti berubah menjadi Finance Center baru.
+- Tab baru:
+  1. Dashboard Baru
+  2. Business Flow
+  3. Invoice Flow
+  4. POS Finance
+  5. Inventory Value
+  6. AR/AP
+  7. Financial Reports
+  8. Tax PPN/PPh
+  9. Coretax Prep
+- Modul lama tetap dipakai untuk report melalui renderAccountingTab.
+- Modul pajak lama tetap dipakai melalui renderTaxTab.
+- Logo sidebar X transparan.
+- JavaScript lolos node --check.
+
+Upload minimal:
+- app.html
+- xlifeworks-x-emblem-transparent.png
