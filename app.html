@@ -433,6 +433,35 @@
 @media(max-width:1100px){.xp55-grid{grid-template-columns:repeat(2,1fr)}.xp55-kpis{grid-template-columns:repeat(2,1fr)}.xp55-flow{grid-template-columns:1fr 1fr}.xp55-split{grid-template-columns:1fr}}
 @media(max-width:640px){.xp55-grid,.xp55-kpis,.xp55-flow{grid-template-columns:1fr}.xp55-shell{padding:14px}.xp55-head h2,.xp55-page-title h2{font-size:24px}}
 
+
+/* v56 Smart Form + Dropdown/Scroll Options */
+.xp56-form{background:#f8fafc;border:1px solid #e2e8f0;border-radius:22px;padding:16px;margin:0 0 14px}
+.xp56-form h3{margin:0 0 6px;color:#14213d;font-size:18px}
+.xp56-form p{margin:0 0 14px;color:#64748b;line-height:1.55;font-size:13px}
+.xp56-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.xp56-field{display:grid;gap:6px}
+.xp56-field label{font-size:12px;font-weight:900;color:#475569;text-transform:uppercase;letter-spacing:.04em}
+.xp56-field input,.xp56-field select,.xp56-field textarea{width:100%;border:1px solid #cbd5e1;border-radius:14px;padding:11px 12px;background:white;color:#0f172a;font-weight:700;outline:none}
+.xp56-field select{max-height:44px}
+.xp56-field textarea{min-height:72px;resize:vertical}
+.xp56-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.xp56-muted{font-size:12px;color:#64748b;margin-top:10px;line-height:1.5}
+@media(max-width:1100px){.xp56-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.xp56-grid{grid-template-columns:1fr}}
+
+
+/* v57 Dashboard clickable result pages */
+.dash57-panel{background:#fff;border:1px solid #d4dde9;border-radius:24px;padding:18px;margin-top:14px}
+.dash57-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0}
+.dash57-stat{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:14px}
+.dash57-stat small{display:block;color:#64748b;font-weight:900;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+.dash57-stat b{display:block;color:#0f172a;font-size:22px;margin-top:8px}
+.dash57-list{display:grid;gap:10px;margin-top:12px}
+.dash57-row{display:grid;grid-template-columns:1.1fr .8fr .8fr auto;gap:10px;align-items:center;background:#fbfcfe;border:1px solid #e6edf6;border-radius:16px;padding:11px 12px}
+.dash57-actions{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+@media(max-width:1000px){.dash57-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.dash57-grid,.dash57-row{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -1941,6 +1970,313 @@ function renderDashboard(){xp55Shell(xp55Config().dashboard)}
 function renderPricing(){xp55Shell(xp55Config().pricing)}
 function renderSettings(){xp55Shell(xp55Config().settings)}
 try{Object.assign(window,{renderCRM,renderSales,renderInventory,renderPOS,renderDashboard,renderPricing,renderSettings,setModulePage,xp55Page,renderModulePageBody});}catch(e){}
+
+
+// =======================
+// v56 Smart Forms + dropdown/scroll options
+// =======================
+function xp56Opts(list, selected=''){
+  return list.map(x=>`<option value="${safe(x)}" ${String(x)===String(selected)?'selected':''}>${safe(x)}</option>`).join('');
+}
+function xp56Field(type,label,name,options=[],placeholder=''){
+  if(type==='select') return `<div class="xp56-field"><label>${label}</label><select name="${name}">${xp56Opts(options)}</select></div>`;
+  if(type==='textarea') return `<div class="xp56-field" style="grid-column:span 2"><label>${label}</label><textarea name="${name}" placeholder="${safe(placeholder)}"></textarea></div>`;
+  return `<div class="xp56-field"><label>${label}</label><input type="${type||'text'}" name="${name}" placeholder="${safe(placeholder)}"></div>`;
+}
+function xp56Form(title,desc,fields,actions=''){
+  return `<div class="xp56-form"><h3>${title}</h3><p>${desc}</p><div class="xp56-grid">${fields.join('')}</div><div class="xp56-actions">${actions||`<button class="btn green" onclick="toast&&toast('Form contoh siap dipakai. Integrasi save bisa diaktifkan pada tahap berikutnya.')">Simpan Draft</button><button class="btn soft" onclick="toast&&toast('Pilihan standar sudah tersedia, field bebas tetap manual.')">Info</button>`}</div><div class="xp56-muted">Pilihan dropdown dibuat untuk data yang punya standar. Data bebas seperti catatan, nama unik, dan deskripsi tetap manual.</div></div>`;
+}
+function xp56ModuleForm(moduleId,page){
+  const status=['Aktif','Draft','Open','Belum Lunas','Lunas','Pending','Approved','Rejected','Closed'];
+  const pay=['Cash','Transfer Bank','QRIS','Debit/Credit Card','Tempo','Marketplace','E-Wallet'];
+  const tax=['PPN 11%','PPN 0%','Non PPN','PPh 21','PPh 23','PPh 25','PPh 29','Final'];
+  const wh=['Gudang Utama','Gudang Cabang','Gudang Retur','Gudang Produksi','Gudang Transit'];
+  if(moduleId==='crm') return xp56Form('Form Cepat CRM','Input customer/prospek dengan pilihan standar agar user tidak bingung.',[
+    xp56Field('select','Tipe Data','type',['Customer','Prospek','Supplier','Mitra','Distributor']),
+    xp56Field('select','Segment','segment',['Retail','Jasa','Trading','Industri/Pabrik','Distributor','Pemerintahan','Lainnya']),
+    xp56Field('select','Sumber Lead','source',['WhatsApp','Website','Referral','Sales Visit','Marketplace','Event','Manual']),
+    xp56Field('select','Status','status',['Aktif','Prospek Baru','Follow Up','Negosiasi','Deal','Tidak Aktif']),
+    xp56Field('text','Nama / Perusahaan','name',[],'PT Contoh Sejahtera'),
+    xp56Field('text','PIC / Kontak','pic',[],'Nama PIC'),
+    xp56Field('text','WhatsApp','wa',[],'08xxxxxxxxxx'),
+    xp56Field('textarea','Catatan','note',[],'Kebutuhan, histori, atau catatan follow up')
+  ]);
+  if(moduleId==='sales') return xp56Form('Form Cepat Sales','Sales dibuat dengan pilihan status, termin, metode pembayaran, dan pajak.',[
+    xp56Field('select','Jenis Dokumen','doc',['Quotation','Sales Order','Invoice','Delivery Order','Retur Penjualan']),
+    xp56Field('select','Termin','term',['Cash','Net 7','Net 14','Net 30','Net 45','Net 60','Custom']),
+    xp56Field('select','Status','status',['Draft','Approved','Terkirim','Belum Lunas','Lunas','Retur','Cancel']),
+    xp56Field('select','Pajak','tax',tax),
+    xp56Field('text','Customer','customer',[],'Pilih/ketik customer'),
+    xp56Field('number','Nilai','amount',[],'0'),
+    xp56Field('date','Jatuh Tempo','due',[],''),
+    xp56Field('textarea','Catatan Invoice','note',[],'Catatan pembayaran atau pengiriman')
+  ]);
+  if(moduleId==='inventory') return xp56Form('Form Cepat Inventory','Data stok memakai dropdown kategori, gudang, satuan, dan tipe mutasi.',[
+    xp56Field('select','Kategori','cat',['Produk Jadi','Bahan Baku','Spare Part','Consumable','Asset','Jasa','Lainnya']),
+    xp56Field('select','Gudang','warehouse',wh),
+    xp56Field('select','Satuan','unit',['Unit','Pcs','Set','Kg','Liter','Meter','Box','Lot']),
+    xp56Field('select','Tipe Mutasi','move',['Stok Masuk','Stok Keluar','Transfer Gudang','Adjustment','Retur','Opname']),
+    xp56Field('text','SKU / Kode','sku',[],'SKU-001'),
+    xp56Field('text','Nama Barang','item',[],'Nama produk'),
+    xp56Field('number','Qty','qty',[],'0'),
+    xp56Field('number','Harga','price',[],'0')
+  ]);
+  if(moduleId==='pos') return xp56Form('Form Cepat POS','Kasir dibantu pilihan metode bayar, shift, diskon, dan status transaksi.',[
+    xp56Field('select','Shift','shift',['Pagi','Siang','Sore','Malam','Full Day']),
+    xp56Field('select','Metode Bayar','payment',pay),
+    xp56Field('select','Diskon','disc',['Tanpa Diskon','Diskon Nominal','Diskon Persen','Voucher','Member']),
+    xp56Field('select','Status','status',['Draft','Paid','Void','Refund','Pending']),
+    xp56Field('text','Kasir','cashier',[],'Nama kasir'),
+    xp56Field('text','Customer','customer',[],'Walk-in / Member'),
+    xp56Field('number','Total','total',[],'0'),
+    xp56Field('textarea','Catatan Struk','note',[],'Catatan transaksi')
+  ]);
+  if(moduleId==='pricing') return xp56Form('Form Cepat License','Pengaturan paket dibuat dropdown agar kuota dan upgrade mudah dipakai.',[
+    xp56Field('select','Paket','plan',['Starter','Business','Lifetime','Enterprise Custom']),
+    xp56Field('select','Billing Cycle','cycle',['Monthly','Yearly','Lifetime','Custom']),
+    xp56Field('select','Status License','status',['Trial','Active','Suspended','Expired','Pending Payment']),
+    xp56Field('select','Metode Bayar','payment',pay),
+    xp56Field('number','Kuota User','quota',[],'1'),
+    xp56Field('number','Harga/User','price',[],'75000'),
+    xp56Field('date','Valid Until','valid',[],''),
+    xp56Field('textarea','Catatan Upgrade','note',[],'Kebutuhan tambahan user/cabang')
+  ]);
+  if(moduleId==='settings') return xp56Form('Form Cepat Settings','Pengaturan memakai pilihan role, akses, dan status keamanan.',[
+    xp56Field('select','Role','role',['Owner','Admin','Finance','Sales','Gudang','Kasir','HRD','Staff','Viewer']),
+    xp56Field('select','Akses Data','access',['Full Access','Read Only','Create Only','Approval Only','No Access']),
+    xp56Field('select','Status User','status',['Aktif','Nonaktif','Pending','Blocked']),
+    xp56Field('select','Backup','backup',['Manual','Harian','Mingguan','Bulanan']),
+    xp56Field('text','Nama User','name',[],'Nama lengkap'),
+    xp56Field('text','Email','email',[],'email@domain.com'),
+    xp56Field('text','Divisi','division',[],'Finance / Sales / Gudang'),
+    xp56Field('textarea','Catatan Security','note',[],'Catatan akses atau audit')
+  ]);
+  if(moduleId==='dashboard') return xp56Form('Filter Dashboard','Dashboard diberi pilihan filter agar laporan mudah dibaca.',[
+    xp56Field('select','Periode','period',['Hari Ini','Minggu Ini','Bulan Ini','Kuartal Ini','Tahun Ini','Custom']),
+    xp56Field('select','Cabang','branch',['Semua Cabang','Pusat','Cabang 1','Cabang 2','Gudang','Online']),
+    xp56Field('select','Modul','module',['Semua Modul','CRM','Sales','Inventory','POS','Accounting','Tax']),
+    xp56Field('select','Tampilan','view',['Ringkasan','Detail','Grafik','Tabel','Audit']),
+    xp56Field('date','Tanggal Awal','start',[],''),
+    xp56Field('date','Tanggal Akhir','end',[],''),
+    xp56Field('select','Status','status',status),
+    xp56Field('textarea','Catatan Analisa','note',[],'Catatan owner/manager')
+  ]);
+  return '';
+}
+function xp56AccountingForm(id){
+  const tax=['PPN 11%','PPN 0%','Non PPN','PPh 21','PPh 23','PPh 25','PPh 29','Final'];
+  const coaType=['Aset','Aset Kontra','Liabilitas','Ekuitas','Pendapatan','HPP','Beban','Beban Lain','Pendapatan Lain'];
+  const normal=['Debit','Kredit'];
+  const wh=['Gudang Utama','Gudang Cabang','Gudang Retur','Gudang Produksi','Gudang Transit'];
+  if(id==='coa') return xp56Form('Form Cepat COA','Chart of Accounts memakai pilihan tipe akun dan saldo normal.',[
+    xp56Field('select','Tipe Akun','type',coaType),
+    xp56Field('select','Saldo Normal','normal',normal),
+    xp56Field('select','Status','status',['Aktif','Nonaktif','Header','Detail']),
+    xp56Field('select','Divisi/Cabang','branch',['Pusat','Cabang 1','Cabang 2','Produksi','Gudang','Semua']),
+    xp56Field('text','Kode Akun','code',[],'1000'),
+    xp56Field('text','Nama Akun','name',[],'Kas / Bank / Piutang'),
+    xp56Field('text','Parent Account','parent',[],'Opsional'),
+    xp56Field('textarea','Catatan','note',[],'Keterangan akun')
+  ]);
+  if(id==='cashbank') return xp56Form('Form Cepat Kas & Bank','Transaksi kas-bank dibantu pilihan jenis mutasi, rekening, dan metode bayar.',[
+    xp56Field('select','Jenis Mutasi','type',['Kas Masuk','Kas Keluar','Transfer Antar Bank','Biaya Bank','Setoran','Penarikan','Rekonsiliasi']),
+    xp56Field('select','Rekening','bank',['Kas Kecil','Bank Utama','Bank Cabang','Virtual Account','QRIS']),
+    xp56Field('select','Metode','method',['Cash','Transfer','QRIS','Debit/Credit Card','E-Wallet']),
+    xp56Field('select','Status','status',['Draft','Approved','Matched','Unmatched','Closed']),
+    xp56Field('date','Tanggal','date',[],''),
+    xp56Field('number','Nominal','amount',[],'0'),
+    xp56Field('text','Ref','ref',[],'REF-001'),
+    xp56Field('textarea','Keterangan','note',[],'Keterangan transaksi')
+  ]);
+  if(id==='ar'||id==='ap') return xp56Form(id==='ar'?'Form Cepat Piutang':'Form Cepat Hutang','AR/AP diberi pilihan termin, aging, status pembayaran, dan pajak.',[
+    xp56Field('select','Termin','term',['Cash','Net 7','Net 14','Net 30','Net 45','Net 60','Custom']),
+    xp56Field('select','Aging','aging',['0-30 hari','31-60 hari','61-90 hari','>90 hari']),
+    xp56Field('select','Status','status',['Belum Lunas','Partial','Lunas','Overdue','Write Off']),
+    xp56Field('select','Pajak','tax',tax),
+    xp56Field('text',id==='ar'?'Customer':'Vendor','party',[],'Nama pihak'),
+    xp56Field('number','Nominal','amount',[],'0'),
+    xp56Field('date','Jatuh Tempo','due',[],''),
+    xp56Field('textarea','Catatan','note',[],'Catatan tagihan')
+  ]);
+  if(id==='purchase') return xp56Form('Form Cepat Pembelian','Pembelian memakai pilihan alur PR, PO, penerimaan, dan matching invoice.',[
+    xp56Field('select','Dokumen','doc',['Purchase Request','Purchase Order','Goods Receipt','Vendor Invoice','Retur Pembelian']),
+    xp56Field('select','Status','status',['Draft','Submitted','Approved','Received','Invoiced','Paid','Rejected']),
+    xp56Field('select','Kategori','cat',['Bahan Baku','Spare Part','Jasa','Asset','Consumable','Lainnya']),
+    xp56Field('select','Pajak','tax',tax),
+    xp56Field('text','Vendor','vendor',[],'Nama vendor'),
+    xp56Field('number','Nilai','amount',[],'0'),
+    xp56Field('date','Tanggal','date',[],''),
+    xp56Field('textarea','Catatan','note',[],'Catatan pembelian')
+  ]);
+  if(id==='production') return xp56Form('Form Cepat Biaya Produksi','Biaya produksi memakai pilihan standar costing.',[
+    xp56Field('select','Jenis Biaya','cost',['Bahan Baku','Tenaga Kerja Langsung','Overhead Pabrik','Subkontrak','WIP','Barang Jadi']),
+    xp56Field('select','Metode Costing','method',['Job Order','Process Costing','Batch Costing','Project Costing']),
+    xp56Field('select','Status','status',['Draft','Proses','Selesai','Closed']),
+    xp56Field('select','Gudang','warehouse',wh),
+    xp56Field('text','Batch/Project','batch',[],'BATCH-001'),
+    xp56Field('number','Qty','qty',[],'0'),
+    xp56Field('number','Biaya','amount',[],'0'),
+    xp56Field('textarea','Catatan','note',[],'Catatan produksi')
+  ]);
+  if(id==='inventory') return xp56ModuleForm('inventory',id);
+  if(id==='asset') return xp56Form('Form Cepat Aset Tetap','Aset tetap memakai pilihan kategori dan metode penyusutan.',[
+    xp56Field('select','Kategori Aset','cat',['Tanah','Bangunan','Kendaraan','Mesin','Peralatan','Komputer','Furniture','Lainnya']),
+    xp56Field('select','Metode Depresiasi','method',['Garis Lurus','Saldo Menurun','Unit Produksi','Manual']),
+    xp56Field('select','Status','status',['Aktif','Idle','Disposal','Dijual','Rusak']),
+    xp56Field('select','Lokasi','loc',['Kantor Pusat','Cabang','Gudang','Pabrik','Lapangan']),
+    xp56Field('text','Kode Aset','code',[],'FA-001'),
+    xp56Field('number','Nilai Perolehan','cost',[],'0'),
+    xp56Field('number','Umur Bulan','life',[],'36'),
+    xp56Field('textarea','Catatan','note',[],'Catatan aset')
+  ]);
+  if(id==='payroll') return xp56Form('Form Cepat Payroll Finance','Payroll dibantu pilihan komponen gaji dan status pembayaran.',[
+    xp56Field('select','Komponen','component',['Gaji Pokok','Tunjangan','Lembur','Potongan','BPJS','PPh 21','Reimburse','Kasbon']),
+    xp56Field('select','Periode','period',['Bulanan','Mingguan','Harian','Project','Custom']),
+    xp56Field('select','Status','status',['Draft','Approved','Paid','Hold','Cancel']),
+    xp56Field('select','Metode Bayar','method',['Transfer Bank','Cash','Payroll Bank','E-Wallet']),
+    xp56Field('text','Karyawan','employee',[],'Nama karyawan'),
+    xp56Field('number','Nominal','amount',[],'0'),
+    xp56Field('date','Tanggal Bayar','date',[],''),
+    xp56Field('textarea','Catatan','note',[],'Catatan payroll')
+  ]);
+  if(id==='tax') return xp56Form('Form Cepat Pajak & Coretax','Pajak memakai pilihan jenis pajak, masa pajak, dan status dokumen.',[
+    xp56Field('select','Jenis Pajak','taxType',tax),
+    xp56Field('select','Masa Pajak','period',['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember']),
+    xp56Field('select','Jenis Dokumen','doc',['Faktur Keluaran','Faktur Masukan','Bukti Potong','SPT Masa','Coretax Draft']),
+    xp56Field('select','Status','status',['Draft','Review','Ready Export','Uploaded','Rejected','Corrected']),
+    xp56Field('text','NPWP/NIK','npwp',[],'00.000.000.0-000.000'),
+    xp56Field('number','DPP','dpp',[],'0'),
+    xp56Field('number','PPN/PPh','taxAmount',[],'0'),
+    xp56Field('textarea','Catatan Coretax','note',[],'Catatan validasi pajak')
+  ]);
+  if(id==='budget') return xp56Form('Form Cepat Budgeting','Budgeting memakai pilihan periode, divisi, dan tipe biaya.',[
+    xp56Field('select','Periode','period',['Bulanan','Kuartal','Semester','Tahunan','Project']),
+    xp56Field('select','Divisi','division',['Sales','Finance','Gudang','Produksi','Marketing','HRD','Umum']),
+    xp56Field('select','Tipe Budget','type',['Revenue','Expense','CAPEX','OPEX','Project','Cashflow']),
+    xp56Field('select','Status','status',['Draft','Submitted','Approved','Revised','Closed']),
+    xp56Field('text','Nama Budget','name',[],'Budget Operasional'),
+    xp56Field('number','Anggaran','budget',[],'0'),
+    xp56Field('number','Realisasi','actual',[],'0'),
+    xp56Field('textarea','Catatan','note',[],'Catatan budget')
+  ]);
+  if(id==='report') return xp56Form('Filter Laporan Keuangan','Laporan diberi filter standar agar user mudah memilih data.',[
+    xp56Field('select','Jenis Laporan','report',['Dashboard','Jurnal','General Ledger','Trial Balance','Laba Rugi','Neraca','Arus Kas','Aging','Tax Summary']),
+    xp56Field('select','Periode','period',['Hari Ini','Minggu Ini','Bulan Ini','Kuartal Ini','Tahun Ini','Custom']),
+    xp56Field('select','Cabang','branch',['Semua Cabang','Pusat','Cabang 1','Cabang 2','Gudang','Produksi']),
+    xp56Field('select','Format Export','format',['Tampilan','PDF','Excel/CSV','XML Draft']),
+    xp56Field('date','Tanggal Awal','start',[],''),
+    xp56Field('date','Tanggal Akhir','end',[],''),
+    xp56Field('select','Status','status',['Semua','Draft','Posted','Closed']),
+    xp56Field('textarea','Catatan','note',[],'Catatan laporan')
+  ]);
+  return '';
+}
+
+
+try{
+  const __renderModulePageBody_v56 = renderModulePageBody;
+  renderModulePageBody = function(moduleId,page){
+    __renderModulePageBody_v56(moduleId,page);
+    const box=document.getElementById('xp55PageBody');
+    if(box && !box.querySelector('.xp56-form')){
+      const form=xp56ModuleForm(moduleId,page);
+      if(form) box.insertAdjacentHTML('afterbegin',form);
+    }
+  };
+}catch(e){console.warn('v56 module form wrapper skipped',e)}
+try{
+  const __renderAccountingPageBody_v56 = renderAccountingPageBody;
+  renderAccountingPageBody = function(id){
+    __renderAccountingPageBody_v56(id);
+    const box=document.getElementById('acct54PageBody');
+    if(box && !box.querySelector('.xp56-form')){
+      const form=xp56AccountingForm(id);
+      if(form) box.insertAdjacentHTML('afterbegin',form);
+    }
+  };
+}catch(e){console.warn('v56 accounting form wrapper skipped',e)}
+try{Object.assign(window,{xp56Form,xp56ModuleForm,xp56AccountingForm});}catch(e){}
+
+
+// =======================
+// v57 Dashboard Click Fix
+// =======================
+function dash57Summary(){
+  const n=v=>Number(String(v||'').replace(/[^0-9-]/g,''))||0;
+  const sales=(db.sales||[]).reduce((s,r)=>s+n(r[4]),0);
+  const expenses=(db.expenses||[]).reduce((s,r)=>s+n(r[4]),0);
+  const customer=(db.customers||[]).length;
+  const inventory=(db.inventory||[]).length;
+  const lowStock=(db.inventory||[]).filter(r=>n(r[2])<=5).length;
+  const openInv=(db.sales||[]).filter(r=>String(r[5]||'').toLowerCase()!=='lunas').length;
+  const pos=(db.pos||[]).reduce((s,r)=>s+n(r[4]),0);
+  return {sales,expenses,profit:sales+pos-expenses,customer,inventory,lowStock,openInv,pos};
+}
+function dash57Table(headers,rows){
+  return `<div class="wrap"><table><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="empty">Belum ada data.</td></tr>`}</tbody></table></div>`;
+}
+function dash57Home(){
+  const s=dash57Summary();
+  return `<div class="dash57-panel"><h3>Dashboard Result Panel</h3><p style="color:#64748b;line-height:1.6">Klik salah satu card dashboard untuk membuka hasil analisa. Panel ini memastikan dashboard bukan hanya tampilan, tapi benar-benar masuk ke halaman kerja.</p><div class="dash57-grid"><div class="dash57-stat"><small>Sales</small><b>${rp(s.sales)}</b></div><div class="dash57-stat"><small>Profit</small><b>${rp(s.profit)}</b></div><div class="dash57-stat"><small>Customer</small><b>${s.customer}</b></div><div class="dash57-stat"><small>Low Stock</small><b>${s.lowStock}</b></div></div></div>`;
+}
+function dash57Page(page){
+  const s=dash57Summary();
+  if(page==='business'){
+    const rows=[
+      ['Total Sales',rp(s.sales),'Dari invoice sales','Aktif'],
+      ['Total POS',rp(s.pos),'Dari transaksi kasir','Aktif'],
+      ['Expense',rp(s.expenses),'Dari biaya operasional','Monitoring'],
+      ['Profit',rp(s.profit),'Sales + POS - Expense','Monitoring']
+    ].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${xp55Status?xp55Status(r[3]):r[3]}</td></tr>`).join('');
+    return `<div class="dash57-panel"><h3>Business Overview</h3><div class="dash57-actions"><button class="btn blue" onclick="setModule('accounting')">Buka Accounting</button><button class="btn soft" onclick="setModule('sales')">Buka Sales</button></div>${dash57Table(['KPI','Nilai','Sumber','Status'],rows)}</div>`;
+  }
+  if(page==='operations'){
+    const rows=[
+      ['CRM',(db.customers||[]).length,'Customer aktif'],
+      ['Sales',(db.sales||[]).length,'Invoice / sales order'],
+      ['Inventory',(db.inventory||[]).length,'Produk / SKU'],
+      ['POS',(db.pos||[]).length,'Transaksi kasir']
+    ].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td><button class="btn soft" onclick="setModule('${r[0].toLowerCase()==='crm'?'crm':r[0].toLowerCase()==='sales'?'sales':r[0].toLowerCase()==='inventory'?'inventory':'pos'}')">Buka</button></td></tr>`).join('');
+    return `<div class="dash57-panel"><h3>Operations Monitor</h3>${dash57Table(['Modul','Jumlah','Keterangan','Aksi'],rows)}</div>`;
+  }
+  if(page==='finance'){
+    const rows=[
+      ['Revenue',rp(s.sales+s.pos),'Sales + POS'],
+      ['Expense',rp(s.expenses),'Biaya'],
+      ['Profit',rp(s.profit),'Laba/Rugi'],
+      ['Open Invoice',s.openInv,'Invoice belum lunas']
+    ].map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td><button class="btn soft" onclick="setModule('accounting')">Detail</button></td></tr>`).join('');
+    return `<div class="dash57-panel"><h3>Finance Snapshot</h3><div class="dash57-actions"><button class="btn blue" onclick="setModule('accounting')">Buka Accounting Center</button><button class="btn soft" onclick="renderTax&&renderTax()">Pajak/Coretax</button></div>${dash57Table(['Item','Nilai','Keterangan','Aksi'],rows)}</div>`;
+  }
+  if(page==='alert'){
+    const low=(db.inventory||[]).filter(r=>Number(String(r[2]||'').replace(/[^0-9-]/g,''))<=5).map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[2])}</td><td>${xp55Status?xp55Status('Warning'):'Warning'}</td></tr>`).join('');
+    const open=(db.sales||[]).filter(r=>String(r[5]||'').toLowerCase()!=='lunas').map(r=>`<tr><td><b>${safe(r[0])}</b></td><td>${safe(r[1])}</td><td>${safe(r[4])}</td><td>${xp55Status?xp55Status(r[5]||'Belum Lunas'):safe(r[5]||'Belum Lunas')}</td></tr>`).join('');
+    return `<div class="dash57-panel"><h3>Alerts</h3><div class="dash57-actions"><button class="btn soft" onclick="setModule('inventory')">Cek Stok</button><button class="btn soft" onclick="setModule('sales')">Cek Piutang</button></div><h4>Stok Rendah</h4>${dash57Table(['SKU','Produk','Stok','Status'],low)}<div style="height:12px"></div><h4>Invoice Belum Lunas</h4>${dash57Table(['Invoice','Customer','Nilai','Status'],open)}</div>`;
+  }
+  return dash57Home();
+}
+function renderDashboard(){
+  const cfg=xp55Config().dashboard;
+  xp55Shell(cfg);
+  const box=document.querySelector('.xp55-shell');
+  if(box && !document.getElementById('dash57Result')){
+    box.insertAdjacentHTML('beforeend',`<div id="dash57Result">${dash57Home()}</div>`);
+  }
+}
+function setDashboardPage(page){
+  const panel=document.getElementById('dash57Result');
+  if(panel) panel.innerHTML=dash57Page(page);
+  else {renderDashboard(); setTimeout(()=>setDashboardPage(page),50)}
+  try{document.getElementById('dash57Result').scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}
+}
+try{
+  const __oldSetModulePage_v57=setModulePage;
+  setModulePage=function(moduleId,page){
+    if(moduleId==='dashboard') return setDashboardPage(page);
+    return __oldSetModulePage_v57(moduleId,page);
+  };
+}catch(e){console.warn('v57 setModulePage wrapper skipped',e)}
+try{Object.assign(window,{renderDashboard,setDashboardPage,dash57Page,dash57Home});}catch(e){}
 
 </script>
 </body>

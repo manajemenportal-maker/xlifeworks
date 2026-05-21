@@ -1,0 +1,14 @@
+XLifeWorks v57 - Dashboard Click Fix
+
+Perbaikan:
+- Dashboard card sekarang punya panel hasil klik yang nyata.
+- Business Overview membuka ringkasan KPI bisnis.
+- Operations Monitor membuka ringkasan CRM, Sales, Inventory, POS.
+- Finance Snapshot membuka ringkasan finance dan tombol Accounting Center.
+- Alerts membuka stok rendah dan invoice belum lunas.
+- setModulePage dibungkus khusus untuk Dashboard.
+- JavaScript lolos node --check.
+
+Upload minimal:
+- app.html
+- xlifeworks-x-emblem-transparent.png

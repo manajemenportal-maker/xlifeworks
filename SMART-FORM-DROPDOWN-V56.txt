@@ -1,0 +1,15 @@
+XLifeWorks v56 - Smart Form + Dropdown/Scroll Options
+
+Perubahan:
+- Setiap halaman detail modul page-mode diberi Quick Form.
+- Field yang punya standar memakai dropdown/select:
+  status, role, metode bayar, termin, pajak, kategori produk, gudang, satuan, tipe mutasi, paket, billing, laporan, dll.
+- Field yang tidak punya standar tetap manual:
+  nama, catatan, deskripsi, kode unik, nominal.
+- Berlaku untuk:
+  CRM, Sales, Inventory, POS, Dashboard, Pricing, Settings, dan semua submodul Accounting Center.
+- Form diletakkan dekat uraian modul agar user cepat paham.
+- JavaScript lolos node --check.
+
+Catatan:
+- Tombol Simpan Draft saat ini placeholder UI; integrasi save real bisa dibuat tahap berikutnya per modul.
