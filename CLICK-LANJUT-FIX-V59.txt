@@ -1,0 +1,22 @@
+XLifeWorks v59 - Click Lanjut Fix
+
+Perbaikan:
+- Tombol Simpan & Proses Draft dipaksa memakai fungsi global proc59Save.
+- Panel proses diletakkan setelah form, bukan sebelum form.
+- Klik tombol langsung menampilkan hasil proses.
+- Draft proses langsung muncul di tabel list.
+- Data tertentu langsung masuk master:
+  CRM -> customers
+  Sales -> sales
+  Inventory -> inventory
+  POS -> pos
+  Pricing -> subscription
+  Accounting -> accounts/accounting/sales/expenses/inventory
+- JavaScript lolos node --check.
+
+Upload minimal:
+- app.html
+- xlifeworks-x-emblem-transparent.png
+
+Penting:
+- Setelah upload tekan Ctrl+F5 agar cache lama hilang.
