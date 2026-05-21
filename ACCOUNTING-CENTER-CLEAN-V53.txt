@@ -1,0 +1,28 @@
+XLifeWorks v53 - Accounting Center clean sync
+
+Perubahan besar:
+- Finance Center dan Pajak digabung menjadi Accounting Center.
+- Menu Tax/Coretax terpisah di sidebar dihapus agar tidak dobel.
+- Accounting Center menjadi satu pusat:
+  1. Chart of Accounts
+  2. Kas & Bank
+  3. Invoice & Piutang
+  4. Hutang Vendor
+  5. Pembelian
+  6. Biaya Produksi
+  7. Persediaan & HPP
+  8. Aset Tetap
+  9. Payroll Finance
+  10. Pajak & Coretax
+  11. Budgeting
+  12. Laporan Keuangan
+- Menu atas dan card modul memakai nama yang sama.
+- Klik menu atas dan klik card masuk panel modul yang sama.
+- renderTax diarahkan ke Accounting Center tab Pajak & Coretax.
+- Report lama tetap tersambung via renderAccountingTab.
+- Tax lama tetap tersambung via renderTaxTab.
+- JavaScript lolos node --check.
+
+Upload minimal:
+- app.html
+- xlifeworks-x-emblem-transparent.png

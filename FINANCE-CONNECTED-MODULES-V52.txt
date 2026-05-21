@@ -1,0 +1,16 @@
+XLifeWorks v52 - Finance Center menu terkoneksi
+
+Perbaikan:
+- Menu atas tidak lagi beda istilah dengan grid card.
+- Menu atas disamakan dengan card:
+  Chart of Accounts, Kas & Bank, Invoice & Piutang, Hutang Vendor, Pembelian, Biaya Produksi, Persediaan & HPP, Aset Tetap, Payroll Finance, Pajak, Budgeting, Laporan Keuangan.
+- Klik menu atas dan klik card modul menuju panel detail yang sama.
+- Semua modul dibuat aktif dengan panel detail, action button, flow proses, atau tabel data.
+- Report lama tetap tersambung via renderAccountingTab.
+- Tax lama tetap tersambung via renderTaxTab.
+- Coretax/export pajak tetap tersedia di modul Pajak.
+- JavaScript lolos node --check.
+
+Upload minimal:
+- app.html
+- xlifeworks-x-emblem-transparent.png
